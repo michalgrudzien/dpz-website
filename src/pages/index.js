@@ -58,37 +58,43 @@ const Footer = styled.footer`
   text-transform: uppercase;
 `;
 
+const content = (
+  <Wrapper>
+    <>
+      <Heading>Idzie nowe</Heading>
+      <div>
+        <a href="https://www.facebook.com/dobrapraktykazeglarska/">
+          <Icon src={facebookIcon} alt="Facebook" />
+        </a>
+        <a href="https://m.me/dobrapraktykazeglarska/">
+          <Icon src={messengerIcon} alt="Messenger" />
+        </a>
+        <a href="https://www.instagram.com/de_pe_zet/">
+          <Icon src={instagramIcon} alt="Instagram" />
+        </a>
+        <a href="https://www.youtube.com/channel/UCku8IcZT7gwCDSfonuduBew">
+          <Icon src={youtubeIcon} alt="YouTube" />
+        </a>
+      </div>
+    </>
+    <Footer>© Dobra Praktyka Żeglarska {new Date().getFullYear()}</Footer>
+  </Wrapper>
+);
+
 const IndexPage = () => (
   <>
     <Reset />
     <GlobalStyle />
     <SEO title="Idzie nowe" />
-    <YoutubeBackground
-      videoId="BEImUEpgPi4" // default -> "jssO8-5qmag"
-      // aspectRatio={string} // default -> "16:9"
-      overlay="rgba(5,15,25,0.9)" // defaults -> null | e.g. "rgba(0,0,0,.4)"
-    >
-      <Wrapper>
-        <>
-          <Heading>Idzie nowe</Heading>
-          <div>
-            <a href="https://www.facebook.com/dobrapraktykazeglarska/">
-              <Icon src={facebookIcon} alt="Facebook" />
-            </a>
-            <a href="https://m.me/dobrapraktykazeglarska/">
-              <Icon src={messengerIcon} alt="Messenger" />
-            </a>
-            <a href="https://www.instagram.com/de_pe_zet/">
-              <Icon src={instagramIcon} alt="Instagram" />
-            </a>
-            <a href="https://www.youtube.com/channel/UCku8IcZT7gwCDSfonuduBew">
-              <Icon src={youtubeIcon} alt="YouTube" />
-            </a>
-          </div>
-        </>
-        <Footer>© Dobra Praktyka Żeglarska {new Date().getFullYear()}</Footer>
-      </Wrapper>
-    </YoutubeBackground>
+    {/* <YoutubeBackground videoId="BEImUEpgPi4" overlay="rgba(5,15,25,0.9)"> */}
+    {typeof window !== "undefined" ? (
+      <YoutubeBackground videoId="BEImUEpgPi4" overlay="rgba(5,15,25,0.8)">
+        {content}
+      </YoutubeBackground>
+    ) : (
+      content
+    )}
+    {/* </YoutubeBackground> */}
   </>
 );
 
