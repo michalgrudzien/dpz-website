@@ -50,6 +50,18 @@ const Icon = styled.img`
   }
 `;
 
+const OldPageLink = styled.small`
+  margin: 24px 0;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  font-weight: 500;
+  a {
+    color: #ffffff;
+    font-weight: 700;
+    text-decoration: none;
+  }
+`;
+
 const Footer = styled.footer`
   font-size: 0.75em;
   padding: 15px 0;
@@ -76,6 +88,10 @@ const content = (
           <Icon src={youtubeIcon} alt="YouTube" />
         </a>
       </div>
+      <OldPageLink>
+        Szukasz starej strony? Jest <a href="http://old.depezet.com">tutaj</a>{" "}
+        :)
+      </OldPageLink>
     </>
     <Footer>© Dobra Praktyka Żeglarska {new Date().getFullYear()}</Footer>
   </Wrapper>
