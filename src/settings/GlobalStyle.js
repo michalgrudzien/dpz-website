@@ -2,16 +2,15 @@ import { createGlobalStyle } from "styled-components";
 import colors from "./colors";
 import fonts from "./fonts";
 
+//TODO: why !important for font-family needed?
 const GlobalStyle = createGlobalStyle`
   
   ${fonts}
   
   html, body {
     font-family: 'Raleway', sans-serif !important;  
-    background-color: black;
-    color: ${colors.white};
+    color: ${colors.default};
     font-size: 16px;
-    overflow: hidden;
   }
 
   h1,h2,h3,h4,h5,h6{
