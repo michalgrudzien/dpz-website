@@ -1,0 +1,26 @@
+[
+  {
+    "label": "Home",
+    "linkTo": "/"
+  },
+  {
+    "label": "O nas",
+    "linkTo": "/o-nas"
+  },
+  {
+    "label": "Rejsy",
+    "linkTo": null
+  },
+  {
+    "label": "Produkty",
+    "linkTo": "/produkty"
+  },
+  {
+    "label": "Blog",
+    "linkTo": "/blog"
+  },
+  {
+    "label": "Kontakt",
+    "linkTo": "/kontakt"
+  }
+]
