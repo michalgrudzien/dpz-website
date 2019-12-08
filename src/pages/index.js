@@ -8,7 +8,7 @@ const IndexPage = () => (
   <>
     <Reset />
     <GlobalStyle />
-    <PageLayout />
+    <PageLayout colorTheme="light" />
   </>
 );
 

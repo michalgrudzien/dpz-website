@@ -11,10 +11,10 @@ const StyledImg = styled.img`
   width: 40px;
   height: 40px;
   transition: all 150ms ease-out;
-  transform-origin: 50% 0;
+  transform-origin: 50% 50%;
 
   ${media.md`
-    ${({ isShrinked }) => isShrinked && `transform: scale(0.625)`};
+    ${({ isShrinked }) => isShrinked && `transform: scale(0.625);`};
     width: 64px;
     height: 64px;
   `}

@@ -1,24 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
 
-import colors from "settings/colors";
+import MenuItem from "./MenuItem";
+import structure from "./menu.json";
 
-const Menu = styled.nav`
-  font-family: "Bebas Neue Book", sans-serif;
-  padding-top: 4px;
-
-  li a {
-    ${({ colorTheme }) => {
-      switch (colorTheme) {
-        case "light":
-          return `color: ${colors.white}`;
-        default:
-          return `color: ${colors.secondary}`;
-      }
-    }}
-  }
-`;
+const Menu = ({ colorTheme }) => (
+  <nav>
+    {structure.map(item => (
+      <MenuItem
+        label={item.label}
+        linkTo={item.linkTo}
+        colorTheme={colorTheme}
+      />
+    ))}
+  </nav>
+);
 
 Menu.propTypes = {
   children: PropTypes.object,

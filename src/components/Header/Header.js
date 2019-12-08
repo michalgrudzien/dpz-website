@@ -5,7 +5,7 @@ import { Container } from "styled-bootstrap-grid";
 
 import { StyledHeadroom, HeaderContentWrapper } from "./partials";
 import Logo from "./Logo";
-import { Menu, MenuItem, Submenu } from "./Menu";
+import Menu from "./Menu";
 
 /**
  * Page Header component containing menu and logo.
@@ -25,18 +25,9 @@ const Header = ({ colorTheme }) => {
       isShrinked={!isTop}
     >
       <Container>
-        <HeaderContentWrapper>
+        <HeaderContentWrapper isShrinked={!isTop}>
           <Logo colorTheme={computedColorTheme} isShrinked={!isTop} />
-          <Menu colorTheme={computedColorTheme}>
-            <MenuItem label="O nas" linkTo="/o-nas" />
-            <MenuItem label="Rejsy" linkTo="/rejsy">
-              {/* <MenuItem label="DPŻ World Tour" linkTo="/rejst/dpz-world-tour" />
-              <MenuItem
-                label="DPŻ We Shall Sea"
-                linkTo="/rejst/dpz-we-shall-sea"
-              /> */}
-            </MenuItem>
-          </Menu>
+          <Menu colorTheme={computedColorTheme} />
         </HeaderContentWrapper>
       </Container>
     </StyledHeadroom>
