@@ -9,7 +9,6 @@ export const StyledHeadroom = styled(Headroom)`
     height: 64px;
     background-color: ${colors.white};
     transition: height 350ms ease-out, padding 350ms ease-out;
-    overflow: hidden;
     box-shadow: 0px 3px 11px -8px rgba(0, 0, 0, 0.25);
 
     ${({ isShrinked }) =>

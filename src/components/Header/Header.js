@@ -27,7 +27,7 @@ const Header = ({ colorTheme }) => {
       <Container>
         <HeaderContentWrapper isShrinked={!isTop}>
           <Logo colorTheme={computedColorTheme} isShrinked={!isTop} />
-          <Menu colorTheme={computedColorTheme} />
+          <Menu colorTheme={computedColorTheme} isShrinked={!isTop} />
         </HeaderContentWrapper>
       </Container>
     </StyledHeadroom>

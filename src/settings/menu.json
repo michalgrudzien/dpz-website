@@ -9,7 +9,17 @@
   },
   {
     "label": "Rejsy",
-    "linkTo": null
+    "linkTo": null,
+    "submenu": [
+      {
+        "label": "DPŻ World Tour",
+        "linkTo": null
+      },
+      {
+        "label": "DPŻ We Shall Sea",
+        "linkTo": null
+      }
+    ]
   },
   {
     "label": "Produkty",
