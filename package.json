@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "dpz-website",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "DPŻ Website in Gatsby",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Michał Grudzień <michal.grudzien@depezet.com>",
   "dependencies": {
     "babel-plugin-styled-components": "1.10.0",
     "gatsby": "2.7.3",
@@ -18,10 +18,10 @@
     "prop-types": "^15.7.2",
     "react": "16.8.6",
     "react-dom": "16.8.6",
-    "react-headroom": "^3.0.0",
+    "react-headroom": "3.0.0",
     "react-helmet": "5.2.1",
     "react-youtube-background": "0.1.4",
-    "styled-bootstrap-grid": "^3.0.5",
+    "styled-bootstrap-grid": "3.0.5",
     "styled-components": "4.2.0",
     "styled-reset": "2.0.13"
   },
