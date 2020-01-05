@@ -10,6 +10,11 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   flex-flow: column;
+  
+  &:hover {
+    transform: scale(1.05);
+    transition: transform .3s ease;
+  }
 `;
 
 export const Number = styled.div`
@@ -17,6 +22,7 @@ export const Number = styled.div`
 `;
 
 export const Icon = styled.div`
+  height: 20px;
   color: ${colors.white};
 `;
 

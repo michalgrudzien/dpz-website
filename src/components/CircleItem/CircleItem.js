@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import CountUp from "react-countup";
 import * as P from "./parts";
 
 const CircleItem = ({ number, children, icon }) => {
@@ -7,7 +8,7 @@ const CircleItem = ({ number, children, icon }) => {
     <P.Wrapper>
       {!!icon
         ? <P.Icon>{icon}</P.Icon>
-        : <P.Number>{number}</P.Number>
+        : <P.Number><CountUp end={number} duration={5} /></P.Number>
       }
       <P.Content>
         {children}
