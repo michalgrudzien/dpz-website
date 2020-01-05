@@ -1,8 +1,8 @@
 import React from "react";
-import { Title, Subtitle, ContentText } from "../../Typography/Typography";
+import { Title, Subtitle, ContentText } from "shared/Typography";
+import CircleItem from "shared/CircleItem";
+import Card from "shared/Card";
 import * as P from "./parts";
-import CircleItem from "../../CircleItem/CircleItem";
-import Card from "../../Card/Card";
 
 const InfoSection = () => {
   return (

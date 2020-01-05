@@ -1,9 +1,9 @@
 import React from "react";
-import { Subtitle, ContentText } from "../../Typography/Typography";
-import CircleItem from "../../CircleItem/CircleItem";
-import { resolutions } from "./data";
+import { Subtitle, ContentText } from "shared/Typography";
+import CircleItem from "shared/CircleItem";
 import * as A from "assets/images";
 import * as P from "./parts";
+import { resolutions } from "./data";
 
 const resultionsArr = resolutions.map((item, i) => (
   <P.ListItem key={i}>

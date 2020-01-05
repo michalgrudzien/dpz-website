@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
   flex-flow: column;
   
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.05w);
     transition: transform .3s ease;
   }
 `;

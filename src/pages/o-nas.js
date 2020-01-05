@@ -2,8 +2,8 @@ import React from "react";
 import { Reset } from "styled-reset";
 import GlobalStyle from "settings/GlobalStyle";
 import PageLayout from "components/PageLayout";
-import InfoSection from "../components/AboutUs/InfoSection/InfoSection";
-import StatuteSection from "../components/AboutUs/StatuteSection/StatuteSection";
+import InfoSection from "components/AboutUs/InfoSection";
+import StatuteSection from "components/AboutUs/StatuteSection";
 
 
 const AboutUsPage = () => (

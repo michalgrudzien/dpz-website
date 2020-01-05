@@ -1,5 +1,3 @@
-import React from "react";
-
 import Logo from "./dpz_logo.png";
 import LogoBlue from "./dpz_logo_blue.svg";
 import LogoWhite from "./dpz_logo_white.svg";
