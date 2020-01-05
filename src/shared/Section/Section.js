@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import * as P from "./parts";
 
-const Card = ({ children, className }) => {
+const Section = ({ children, className }) => {
   return (
     <P.Wrapper className={className}>
       {children}
@@ -10,9 +10,9 @@ const Card = ({ children, className }) => {
   );
 };
 
-export default Card;
+export default Section;
 
-Card.propTypes = {
+Section.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
 };

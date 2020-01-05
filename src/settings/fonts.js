@@ -41,4 +41,5 @@ export default `
     font-style: normal;
     font-weight: normal;
     src: url('fonts/BebasNeueBold.woff') format('woff');
-    };  `;
+    };  
+  `;

@@ -1,40 +1,55 @@
 import React from "react";
+import { Col, Container, Row } from "styled-bootstrap-grid";
 import { Subtitle, ContentText } from "shared/Typography";
-import CircleItem from "shared/CircleItem";
 import * as A from "assets/images";
 import * as P from "./parts";
 import { resolutions } from "./data";
 
 const resultionsArr = resolutions.map((item, i) => (
-  <P.ListItem key={i}>
-    <P.StyledLink to={item.link}>
+  <P.StyledLink to={item.link} key={i}>
+    <P.ListItem>
       <P.Icon src={item.icon} />
       <P.Title>{item.name}</P.Title>
-    </P.StyledLink>
-  </P.ListItem>
+    </P.ListItem>
+  </P.StyledLink>
 ));
 
 const StatuteSection = () => {
   return (
-    <P.Wrapper>
-      <Subtitle white>
-        Statut
-      </Subtitle>
-      <ContentText white>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio ea facere porro sit voluptatem.
-        Architecto culpa nesciunt odio voluptatem voluptates. Accusamus adipisci aut culpa doloribus incidunt minus
-        quidem tempore voluptatem.
-      </ContentText>
-      <CircleItem icon={A.Logo}>
-        Statut Stowarzyszenia
-      </CircleItem>
-      <Subtitle white>
-        Podjęte uchwały
-      </Subtitle>
-      <P.List>
-        {resultionsArr}
-      </P.List>
-    </P.Wrapper>
+    <P.StyledSection>
+      <Container>
+        <Row>
+          <Col col={12}>
+            <Subtitle white>
+              Statut
+            </Subtitle>
+            <ContentText white>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua. Ut enim ad minim veniam, quis
+            </ContentText>
+            <P.CircleItemWrapper>
+              <P.StyledCircleLink to={"/"}>
+                <P.StyledCircleItem icon={A.DownloadIcon} activeIcon={A.DownloadIconBlue}>
+                  Statut
+                  <br />
+                  Stowarzyszenia
+                </P.StyledCircleItem>
+              </P.StyledCircleLink>
+            </P.CircleItemWrapper>
+          </Col>
+        </Row>
+        <Row>
+          <Col col={12}>
+            <Subtitle white>
+              Podjęte uchwały
+            </Subtitle>
+            <P.List>
+              {resultionsArr}
+            </P.List>
+          </Col>
+        </Row>
+      </Container>
+    </P.StyledSection>
   );
 };
 

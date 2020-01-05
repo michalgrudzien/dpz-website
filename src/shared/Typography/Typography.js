@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import * as P from "./parts";
 
-export const Title = ({ children }) => {
+export const Title = ({ children, className }) => {
   return (
-    <P.Title>
+    <P.Title className={className}>
       {children}
     </P.Title>
   );
@@ -14,9 +14,9 @@ Title.propTypes = {
   children: PropTypes.node,
 };
 
-export const Subtitle = ({ children, white }) => {
+export const Subtitle = ({ children, white, className }) => {
   return (
-    <P.Subtitle white={white}>
+    <P.Subtitle white={white} className={className}>
       {children}
     </P.Subtitle>
   );
@@ -27,9 +27,9 @@ Subtitle.propTypes = {
   white: PropTypes.bool,
 };
 
-export const ContentText = ({ children, white }) => {
+export const ContentText = ({ children, white, className }) => {
   return (
-    <P.ContentText white={white}>
+    <P.ContentText white={white} className={className}>
       {children}
     </P.ContentText>
   );
