@@ -21,7 +21,7 @@ const MOBILE_BREAKPOINT = 768;
 const Header = ({ colorTheme }) => {
   const [isTop, setTop] = useState(true);
   const [isMenuOpen, setMenuOpen] = useState(false);
-  const [windowWidth, windowHeight] = useWindowSize();
+  const [windowWidth] = useWindowSize();
 
   const isOnMobile = windowWidth < MOBILE_BREAKPOINT;
   useEffect(() => setMenuOpen(false), [isOnMobile]);
