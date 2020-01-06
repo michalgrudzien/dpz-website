@@ -26,7 +26,6 @@ const Header = ({ colorTheme }) => {
   const isOnMobile = windowWidth < MOBILE_BREAKPOINT;
   useEffect(() => setMenuOpen(false), [isOnMobile]);
 
-  console.log(isMenuOpen);
   const getColorTheme = (colorTheme, isTop, isMenuOpen) =>
     isMenuOpen && isOnMobile ? "dark" : isTop ? colorTheme : "dark";
   const getShrinked = (isTop, isMenuOpen) =>
