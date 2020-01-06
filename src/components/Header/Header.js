@@ -16,20 +16,32 @@ import Menu from "./Menu";
  */
 const Header = ({ colorTheme }) => {
   const [isTop, setTop] = useState(true);
+  const [isMenuOpen, setMenuOpen] = useState(false);
 
-  const getColorTheme = (colorTheme, isTop) => (isTop ? colorTheme : "dark");
-  const computedColorTheme = getColorTheme(colorTheme, isTop);
+  const getColorTheme = (colorTheme, isTop, isMenuOpen) =>
+    isMenuOpen ? "dark" : isTop ? colorTheme : "dark";
+  const getShrinked = (isTop, isMenuOpen) => !isTop || isMenuOpen;
+
+  const computedColorTheme = getColorTheme(colorTheme, isTop, isMenuOpen);
+  const computedShrinked = getShrinked(isTop, isMenuOpen);
 
   return (
     <StyledHeadroom
       onPin={() => setTop(false)}
       onUnfix={() => setTop(true)}
-      isShrinked={!isTop}
+      disable={isMenuOpen}
+      isShrinked={computedShrinked}
+      isMenuOpen={isMenuOpen}
     >
       <HeaderContainer>
-        <HeaderContentWrapper isShrinked={!isTop}>
-          <Logo colorTheme={computedColorTheme} isShrinked={!isTop} />
-          <Menu colorTheme={computedColorTheme} isShrinked={!isTop} />
+        <HeaderContentWrapper isShrinked={computedShrinked}>
+          <Logo colorTheme={computedColorTheme} isShrinked={computedShrinked} />
+          <Menu
+            colorTheme={computedColorTheme}
+            isShrinked={computedShrinked}
+            isMenuOpen={isMenuOpen}
+            setMenuOpen={setMenuOpen}
+          />
         </HeaderContentWrapper>
       </HeaderContainer>
     </StyledHeadroom>

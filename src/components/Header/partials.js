@@ -6,6 +6,16 @@ import { Container } from "styled-bootstrap-grid";
 import colors from "settings/colors";
 
 export const StyledHeadroom = styled(Headroom)`
+  position: relative;
+  z-index: 500;
+
+  ${({ isMenuOpen }) =>
+    isMenuOpen &&
+    `
+      position: fixed;
+      width: 100%;
+    `}
+
   .headroom {
     padding: 1em 0;
     height: 64px;

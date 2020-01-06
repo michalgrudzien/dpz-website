@@ -1,10 +1,15 @@
 import React, { useState } from "react";
+import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { media } from "styled-bootstrap-grid";
 
+import Portal from "components/Portal";
+
 import MenuItem from "./MenuItem";
 import MobileNavToggle from "./MobileNavToggle";
+import MobileNav from "./MobileNav";
+
 import structure from "settings/menu.json";
 
 const DesktopNav = styled.nav`
@@ -21,9 +26,7 @@ const MobileNavWrapper = styled.div`
   `}
 `;
 
-const Menu = ({ colorTheme, isShrinked }) => {
-  const [isOpen, setMenuOpen] = useState(false);
-
+const Menu = ({ isMenuOpen, setMenuOpen, colorTheme, isShrinked }) => {
   return (
     <>
       <DesktopNav>
@@ -39,10 +42,13 @@ const Menu = ({ colorTheme, isShrinked }) => {
       </DesktopNav>
       <MobileNavWrapper>
         <MobileNavToggle
-          isOpen={isOpen}
-          onClick={() => setMenuOpen(!isOpen)}
+          isOpen={isMenuOpen}
+          onClick={() => setMenuOpen(!isMenuOpen)}
           colorTheme={colorTheme}
         />
+        <Portal>
+          <MobileNav isOpen={isMenuOpen}>Mobile Nav!</MobileNav>
+        </Portal>
       </MobileNavWrapper>
     </>
   );
