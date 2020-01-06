@@ -11,6 +11,12 @@ export const Icon = styled.div`
   background-position: center center;
   background-image: ${props => `url(${props.icon})`};
   transition: all .3s ease-in-out;
+  
+  @media screen and (min-width: 992px) {
+    height: 80px;
+    width: 68px;  
+    margin-bottom: 20px;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -33,24 +39,41 @@ export const Wrapper = styled.div`
       transition: all .3s ease-in-out;
     }
   }
+  
+  @media screen and (min-width: 992px) {
+    height: 267px;
+    width: 267px;
+  }
 `;
 
 export const Number = styled.div`
   color: ${colors.turquoise};
   font-weight: bold;
   font-size: 65px;
-  font-family: 'Bebas Neue Bold', sans-serif
+  font-family: 'Bebas Neue Bold', sans-serif;
+  
+  @media screen and (min-width: 992px){
+    font-size: 113px;
+  }
 `;
 
 export const Content = styled.div`
   font-weight: bold;
   font-size: 14px;
   color: ${colors.darkBlue};
-  font-family: 'Bebas Neue Bold', sans-serif
+  font-family: 'Bebas Neue Bold', sans-serif;
+  
+  @media screen and (min-width: 992px) {
+    font-size: 28px;
+  }
 `;
 
 export const StyledContent = styled.div`
   color: inherit;
   font-size: 9px;
   font-family: 'Poppins', sans-serif;
+  
+  @media screen and (min-width: 992px) {
+    font-size: 28px;
+  }
 `;

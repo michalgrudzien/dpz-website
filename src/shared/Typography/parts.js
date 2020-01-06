@@ -5,6 +5,10 @@ export const Title = styled.h2`
   color: ${colors.darkBlue};
   font-weight: bold;
   font-size: 59px;
+  
+  @media screen and (min-width: 992px){
+    font-size: 162px;
+  }
 `;
 
 export const Subtitle = styled.h3`
@@ -12,6 +16,10 @@ export const Subtitle = styled.h3`
   font-weight: bold;
   font-size: 40px;
   margin: 10px 0;
+  
+  @media screen and (min-width: 992px){
+    font-size: 113px;
+  }
 `;
 
 export const ContentText = styled.p`
@@ -20,4 +28,8 @@ export const ContentText = styled.p`
   font-family: 'Poppins', sans-serif;
   font-weight: 300;
   line-height: 2;
+  
+  @media screen and (min-width: 992px){
+    font-size: 28px;
+  }
 `;

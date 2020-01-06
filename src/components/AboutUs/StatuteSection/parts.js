@@ -7,6 +7,10 @@ import CircleItem from "shared/CircleItem";
 export const StyledSection = styled(Section)`
   background: ${colors.darkBlue};
   padding-top: 150px;
+  
+  @media screen and (min-width: 992px) {
+    padding: 200px 0; 
+  }
 `;
 
 export const List = styled.div``;
@@ -16,6 +20,11 @@ export const ListItem = styled.div`
   flex-flow: row;
   margin: 10px 0;
   align-items: center;
+  
+  @media screen and (min-width: 992px) {
+    font-size: 28px;
+    width: 50%;
+  }
 `;
 
 export const StyledLink = styled(Link)`
@@ -58,5 +67,10 @@ export const StyledCircleItem = styled(CircleItem)`
   
   &:hover {
     color: ${colors.turquoise};
+  }
+  
+  @media screen and (min-width: 992px) {
+    height: 392px;
+    width: 392px;  
   }
 `;
