@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+
+import useWindowSize from "hooks/useWindowSize";
 
 import {
   StyledHeadroom,
@@ -9,6 +11,8 @@ import {
 import Logo from "./Logo";
 import Menu from "./Menu";
 
+const MOBILE_BREAKPOINT = 768;
+
 /**
  * Page Header component containing menu and logo.
  * Using react-headroom for automatic hiding on scroll.
@@ -17,10 +21,16 @@ import Menu from "./Menu";
 const Header = ({ colorTheme }) => {
   const [isTop, setTop] = useState(true);
   const [isMenuOpen, setMenuOpen] = useState(false);
+  const [windowWidth, windowHeight] = useWindowSize();
 
+  const isOnMobile = windowWidth < MOBILE_BREAKPOINT;
+  useEffect(() => setMenuOpen(false), [isOnMobile]);
+
+  console.log(isMenuOpen);
   const getColorTheme = (colorTheme, isTop, isMenuOpen) =>
-    isMenuOpen ? "dark" : isTop ? colorTheme : "dark";
-  const getShrinked = (isTop, isMenuOpen) => !isTop || isMenuOpen;
+    isMenuOpen && isOnMobile ? "dark" : isTop ? colorTheme : "dark";
+  const getShrinked = (isTop, isMenuOpen) =>
+    !isTop || (isMenuOpen && isOnMobile);
 
   const computedColorTheme = getColorTheme(colorTheme, isTop, isMenuOpen);
   const computedShrinked = getShrinked(isTop, isMenuOpen);
