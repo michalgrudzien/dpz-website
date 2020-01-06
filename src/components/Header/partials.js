@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import Headroom from "react-headroom";
 
+import { Container } from "styled-bootstrap-grid";
+
 import colors from "settings/colors";
 
 export const StyledHeadroom = styled(Headroom)`
@@ -23,6 +25,10 @@ export const StyledHeadroom = styled(Headroom)`
     background-color: transparent;
     box-shadow: none;
   }
+`;
+
+export const HeaderContainer = styled(Container)`
+  width: auto;
 `;
 
 export const HeaderContentWrapper = styled.div`

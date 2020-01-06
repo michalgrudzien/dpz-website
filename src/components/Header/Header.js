@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-import { Container } from "styled-bootstrap-grid";
-
-import { StyledHeadroom, HeaderContentWrapper } from "./partials";
+import {
+  StyledHeadroom,
+  HeaderContainer,
+  HeaderContentWrapper,
+} from "./partials";
 import Logo from "./Logo";
 import Menu from "./Menu";
 
@@ -24,12 +26,12 @@ const Header = ({ colorTheme }) => {
       onUnfix={() => setTop(true)}
       isShrinked={!isTop}
     >
-      <Container>
+      <HeaderContainer>
         <HeaderContentWrapper isShrinked={!isTop}>
           <Logo colorTheme={computedColorTheme} isShrinked={!isTop} />
           <Menu colorTheme={computedColorTheme} isShrinked={!isTop} />
         </HeaderContentWrapper>
-      </Container>
+      </HeaderContainer>
     </StyledHeadroom>
   );
 };

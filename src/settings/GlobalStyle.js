@@ -3,6 +3,7 @@ import colors from "./colors";
 import fonts from "./fonts";
 
 //TODO: why !important for font-family needed?
+//TODO: Write global styles for :focus states
 const GlobalStyle = createGlobalStyle`
   
   ${fonts}
