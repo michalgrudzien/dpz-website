@@ -7,12 +7,14 @@ import * as P from "./parts";
 import { resolutions } from "./data";
 
 const resultionsArr = resolutions.map((item, i) => (
-  <P.StyledLink to={item.link} key={i}>
-    <P.ListItem>
-      <P.Icon src={item.icon} />
-      <P.Content>{item.name}</P.Content>
-    </P.ListItem>
-  </P.StyledLink>
+  <Col md={6} sm={12} key={i}>
+    <P.StyledLink to={item.link}>
+      <P.ListItem>
+        <P.Icon src={item.icon} />
+        <P.Content>{item.name}</P.Content>
+      </P.ListItem>
+    </P.StyledLink>
+  </Col>
 ));
 
 const StatuteSection = () => {
@@ -22,15 +24,15 @@ const StatuteSection = () => {
         <Row>
           <Col lg={8}>
             <Fade>
-            <Subtitle white>
-              Statut
-            </Subtitle>
+              <Subtitle white>
+                Statut
+              </Subtitle>
             </Fade>
             <Fade>
-            <ContentText white>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis
-            </ContentText>
+              <ContentText white>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis
+              </ContentText>
             </Fade>
           </Col>
           <Col lg={4}>
@@ -49,18 +51,16 @@ const StatuteSection = () => {
           </Col>
         </Row>
         <Fade>
-        <Subtitle white>
-          Podjęte uchwały
-        </Subtitle>
+          <P.StyledSubtitle white>
+            Podjęte uchwały
+          </P.StyledSubtitle>
         </Fade>
         <P.List>
-          <Row>
-            <Col lg={6} md={12}>
-              <Fade cascade>
+          <Fade>
+            <Row>
               {resultionsArr}
-              </Fade>
-            </Col>
-          </Row>
+            </Row>
+          </Fade>
         </P.List>
       </Container>
     </P.StyledSection>

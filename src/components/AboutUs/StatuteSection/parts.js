@@ -3,7 +3,7 @@ import colors from "settings/colors";
 import { Link } from "gatsby";
 import Section from "shared/Section";
 import CircleItem from "shared/CircleItem";
-import { ContentText } from "shared/Typography";
+import { ContentText, Subtitle } from "shared/Typography";
 
 export const StyledSection = styled(Section)`
   background: ${colors.darkBlue};
@@ -11,6 +11,10 @@ export const StyledSection = styled(Section)`
   
   @media screen and (min-width: 992px) {
     padding: 200px 0; 
+  }
+  
+  @media screen and (min-width: 1440px) {
+    padding: 350px 0 200px 0; 
   }
 `;
 
@@ -24,7 +28,11 @@ export const ListItem = styled.div`
   
   @media screen and (min-width: 992px) {
     font-size: 28px;
-    width: 50%;
+    margin: 20px 0;
+  }
+  
+  @media screen and (min-width: 1440px) {
+    margin: 40px 0;
   }
 `;
 
@@ -38,17 +46,31 @@ export const StyledLink = styled(Link)`
   &:hover { 
     text-decoration: none
   }
+  
+  @media screen and (min-width: 992px) {
+    max-width: 95%;
+  }
 `;
 
 export const Content = styled(ContentText)`
   color: ${colors.white};
   font-size: 14px;
   line-height: 21px;
+  
+  @media screen and (min-width: 992px) {
+    font-size: 28px;
+    line-height: 42px;
+  }
 `;
 
 export const Icon = styled.img`
    height: 32px;
    margin-right: 10px;
+   
+   @media screen and (min-width: 992px) {
+     height: 60px;
+     margin-right: 20px;
+   }
 `;
 
 export const CircleItemWrapper = styled.div`
@@ -74,5 +96,11 @@ export const StyledCircleItem = styled(CircleItem)`
   @media screen and (min-width: 992px) {
     height: 392px;
     width: 392px;  
+  }
+`;
+
+export const StyledSubtitle = styled(Subtitle)`
+  @media screen and (min-width: 1440px) {
+    font-size: 73px;
   }
 `;

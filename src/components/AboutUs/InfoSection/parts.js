@@ -20,6 +20,10 @@ export const StyledCircleItem = styled(CircleItem)`
   @media screen and (min-width: 576px) {
     margin: 20px;
   }
+  
+  @media screen and (min-width: 1440px) {
+    margin-left: auto;
+  }
 `;
 
 export const StyledCard = styled(Card)`
@@ -27,6 +31,11 @@ export const StyledCard = styled(Card)`
   
   @media screen and (min-width: 992px) {
     margin-bottom: -250px;
+  }
+  
+  @media screen and (min-width: 1440px) {
+    padding: 65px;
+    margin-bottom: -280px;
   }
 `;
 

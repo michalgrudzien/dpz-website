@@ -20,6 +20,10 @@ export const Subtitle = styled.h3`
   @media screen and (min-width: 992px){
     font-size: 113px;
   }
+  
+  @media screen and (min-width: 1440px){
+    margin-bottom: 30px;
+  }
 `;
 
 export const ContentText = styled.p`

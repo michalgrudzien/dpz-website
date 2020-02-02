@@ -12,13 +12,13 @@ const InfoSection = () => {
         <P.HeaderWrapper>
           <Container>
             <Row>
-              <Col col sm={8} xs={6}>
+              <Col col lg={12} sm={8} xs={6}>
                 <P.TitleWrapper>
                   <Subtitle>Stowarzyszenie</Subtitle>
                   <Title> Dobra Praktyka Żeglarska</Title>
                 </P.TitleWrapper>
               </Col>
-              <Col col sm={4} xs={6}>
+              <Col col lgOffset={1} lg={10} sm={4} xs={6}>
                 <P.StyledCircleItem number={26}>
                   członków
                 </P.StyledCircleItem>

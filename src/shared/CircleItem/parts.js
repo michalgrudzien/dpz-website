@@ -3,6 +3,12 @@ import colors from "settings/colors";
 
 export const Img = styled.img`
   margin-bottom: 10px;
+  height: 30px;
+  
+  @media screen and (min-width: 1440px) {
+    margin-bottom: 25px;
+    height: 68px;
+  }
 `;
 
 export const Icon = styled.div`
@@ -21,6 +27,8 @@ export const Icon = styled.div`
     width: 68px;  
     margin-bottom: 20px;
   }
+  
+  
 `;
 
 export const Wrapper = styled.div`
@@ -72,9 +80,9 @@ export const Subtitle = styled.div`
   }
 `;
 
-const ActiveStyles=`
+const ActiveStyles= css`
   color: ${colors.turquoise};
- `;
+`;
 
 export const Content = styled.div`
   color: inherit;
