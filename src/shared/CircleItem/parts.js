@@ -92,6 +92,10 @@ export const Content = styled.div`
   ${({ isActive }) => isActive && ActiveStyles};
   
   @media screen and (min-width: 992px) {
+    font-size: 20px;
+  }  
+  
+  @media screen and (min-width: 1920px) {
     font-size: 28px;
   }
 `;

@@ -13,7 +13,7 @@ export const StyledSection = styled(Section)`
     padding: 200px 0; 
   }
   
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1920px) {
     padding: 350px 0 200px 0; 
   }
 `;
@@ -48,6 +48,10 @@ export const StyledLink = styled(Link)`
   }
   
   @media screen and (min-width: 992px) {
+    max-width: 100%;
+  }  
+  
+  @media screen and (min-width: 1920px) {
     max-width: 95%;
   }
 `;
@@ -58,6 +62,11 @@ export const Content = styled(ContentText)`
   line-height: 21px;
   
   @media screen and (min-width: 992px) {
+    font-size: 20px;
+    line-height: 32px;
+  }  
+  
+  @media screen and (min-width: 1920px) {
     font-size: 28px;
     line-height: 42px;
   }
@@ -94,13 +103,28 @@ export const StyledCircleItem = styled(CircleItem)`
   text-align: center;
   
   @media screen and (min-width: 992px) {
+    height: 250px;
+    width: 250px;  
+  }  
+  
+  @media screen and (min-width: 1920px) {
     height: 392px;
     width: 392px;  
   }
 `;
 
 export const StyledSubtitle = styled(Subtitle)`
+
+  @media screen and (min-width: 920px) {
+    font-size: 60px;
+    margin-top: 30px;
+  }  
+  
   @media screen and (min-width: 1440px) {
+    margin-top: 60px;
+  }
+  
+  @media screen and (min-width: 1920px) {
     font-size: 73px;
   }
 `;

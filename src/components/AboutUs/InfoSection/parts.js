@@ -34,6 +34,10 @@ export const StyledCard = styled(Card)`
   }
   
   @media screen and (min-width: 1440px) {
+    padding: 40px;
+  }
+  
+  @media screen and (min-width: 1920px) {
     padding: 65px;
     margin-bottom: -280px;
   }

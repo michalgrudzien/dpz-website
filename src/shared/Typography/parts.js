@@ -7,6 +7,10 @@ export const Title = styled.h2`
   font-size: 59px;
   
   @media screen and (min-width: 992px){
+    font-size: 100px;
+  } 
+  
+  @media screen and (min-width: 1920px){
     font-size: 162px;
   }
 `;
@@ -18,10 +22,12 @@ export const Subtitle = styled.h3`
   margin: 10px 0;
   
   @media screen and (min-width: 992px){
-    font-size: 113px;
+    font-size: 86px;
+    margin-bottom: 20px;
   }
   
-  @media screen and (min-width: 1440px){
+  @media screen and (min-width: 1920px){
+    font-size: 113px;
     margin-bottom: 30px;
   }
 `;
@@ -34,6 +40,11 @@ export const ContentText = styled.p`
   line-height: 1.8;
   
   @media screen and (min-width: 992px){
+    font-size: 24px;
+  }  
+  
+  @media screen and (min-width: 1920px){
     font-size: 28px;
+    line-height: 42px;
   }
 `;
