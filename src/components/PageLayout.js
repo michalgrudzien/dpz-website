@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import UnderConstruction from "components/UnderConstruction";
 import Header from "components/Header";
+import Footer from "components/Footer";
 
 /**
  * Page layout component including constant
@@ -14,9 +15,9 @@ const PageLayout = ({ children, colorTheme, isUnderConstruction }) => {
 
   return (
     <>
-      {/*<Header colorTheme={colorTheme} />*/}
+      <Header colorTheme={colorTheme} />
       {children}
-      <div>FOOTER</div>
+      <Footer>FOOTER</Footer>
     </>
   );
 };

@@ -8,6 +8,10 @@ import YoutubeIcon from "./youtube_icon.svg";
 import DocumentIcon from "./document_icon.svg";
 import DownloadIcon from "./download_icon.svg";
 import DownloadIconBlue from "./download_icon--blue.svg";
+import FooterFbIcon from "./facebook.svg";
+import FooterInstagraIcon from "./instagram.svg";
+import FooterYouTubeIcon from "./youtube.svg";
+import FooterMessengerIcon from "./messenger.svg";
 
 export {
   Logo,
@@ -20,4 +24,8 @@ export {
   DocumentIcon,
   DownloadIcon,
   DownloadIconBlue,
+  FooterFbIcon,
+  FooterInstagraIcon,
+  FooterMessengerIcon,
+  FooterYouTubeIcon,
 };
