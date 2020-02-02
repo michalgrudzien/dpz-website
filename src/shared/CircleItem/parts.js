@@ -1,5 +1,9 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import colors from "settings/colors";
+
+export const Img = styled.img`
+  margin-bottom: 10px;
+`;
 
 export const Icon = styled.div`
   height: 30px;
@@ -35,7 +39,7 @@ export const Wrapper = styled.div`
     transition: all .3s ease-in-out;
     
     > ${Icon} {
-      background-image: ${props => `url(${props.activeIcon})`};
+      background-image: ${props => `url(${props.icon})`};
       transition: all .3s ease-in-out;
     }
   }
@@ -57,7 +61,7 @@ export const Number = styled.div`
   }
 `;
 
-export const Content = styled.div`
+export const Subtitle = styled.div`
   font-weight: bold;
   font-size: 14px;
   color: ${colors.darkBlue};
@@ -68,10 +72,16 @@ export const Content = styled.div`
   }
 `;
 
-export const StyledContent = styled.div`
+const ActiveStyles=`
+  color: ${colors.turquoise};
+ `;
+
+export const Content = styled.div`
   color: inherit;
   font-size: 9px;
   font-family: 'Poppins', sans-serif;
+  
+  ${({ isActive }) => isActive && ActiveStyles};
   
   @media screen and (min-width: 992px) {
     font-size: 28px;

@@ -3,34 +3,51 @@ import PropTypes from "prop-types";
 import CountUp from "react-countup";
 import * as P from "./parts";
 
-const CircleItem = ({ number, children, icon, activeIcon, className }) => {
+class CircleItem extends React.PureComponent {
+  state = {
+    icon: this.props.icon,
+    isActive: false,
+  };
+
+  handleActiveState = () => {
+    this.setState((prevState) => ({ isActive: !prevState.isActive }));
+  };
 
 
-  return (
-    <P.Wrapper className={className} activeIcon={activeIcon}>
-      {number
-        ? (
-          <>
-            <P.Number>
-              <CountUp end={number} duration={5} />
-            </P.Number>
-            < P.Content>
-              {children}
-            </P.Content>
-          </>
-        )
-        : (
-          <>
-            <P.Icon icon={icon} activeIcon={activeIcon} />
-            < P.StyledContent>
-              {children}
-            </P.StyledContent>
-          </>
-        )
-      }
-    </P.Wrapper>
-  );
-};
+  render() {
+    const { isActive } = this.state;
+    const { icon, activeIcon, number, children, className } = this.props;
+
+    return (
+      <P.Wrapper
+        className={className}
+        onMouseOut={this.handleActiveState}
+        onMouseOver={this.handleActiveState}
+      >
+        {number
+          ? (
+            <>
+              <P.Number>
+                <CountUp end={number} duration={5} />
+              </P.Number>
+              < P.Subtitle>
+                {children}
+              </P.Subtitle>
+            </>
+          )
+          : (
+            <>
+              <P.Img src={isActive ? activeIcon : icon} />
+              < P.Content isActive={isActive}>
+                {children}
+              </P.Content>
+            </>
+          )
+        }
+      </P.Wrapper>
+    );
+  }
+}
 
 export default CircleItem;
 

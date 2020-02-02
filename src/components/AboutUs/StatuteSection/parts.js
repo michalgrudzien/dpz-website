@@ -3,6 +3,7 @@ import colors from "settings/colors";
 import { Link } from "gatsby";
 import Section from "shared/Section";
 import CircleItem from "shared/CircleItem";
+import { ContentText } from "shared/Typography";
 
 export const StyledSection = styled(Section)`
   background: ${colors.darkBlue};
@@ -32,13 +33,18 @@ export const StyledLink = styled(Link)`
   text-decoration: none;
   margin: 25px 0;
   display: block;
+  max-width: 345px;
   
   &:hover { 
-    text-decoration: underline
+    text-decoration: none
   }
 `;
 
-export const Title = styled.div``;
+export const Content = styled(ContentText)`
+  color: ${colors.white};
+  font-size: 14px;
+  line-height: 21px;
+`;
 
 export const Icon = styled.img`
    height: 32px;
@@ -64,10 +70,6 @@ export const StyledCircleItem = styled(CircleItem)`
   background: ${colors.graphite};
   color: ${colors.white};
   text-align: center;
-  
-  &:hover {
-    color: ${colors.turquoise};
-  }
   
   @media screen and (min-width: 992px) {
     height: 392px;

@@ -27,7 +27,7 @@ export const ContentText = styled.p`
   font-size: 16px;
   font-family: 'Poppins', sans-serif;
   font-weight: 300;
-  line-height: 2;
+  line-height: 1.8;
   
   @media screen and (min-width: 992px){
     font-size: 28px;

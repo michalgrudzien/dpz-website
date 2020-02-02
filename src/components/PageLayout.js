@@ -14,7 +14,7 @@ const PageLayout = ({ children, colorTheme, isUnderConstruction }) => {
 
   return (
     <>
-      <Header colorTheme={colorTheme} />
+      {/*<Header colorTheme={colorTheme} />*/}
       {children}
       <div>FOOTER</div>
     </>
