@@ -1,7 +1,7 @@
 import React from "react";
 import { Col, Container, Row } from "styled-bootstrap-grid";
 import Fade from "react-reveal/Fade";
-import { Subtitle, ContentText } from "shared/Typography";
+import { ContentText, Subtitle } from "shared/Typography";
 import * as A from "assets/images";
 import * as P from "./parts";
 import { resolutions } from "./data";
@@ -62,6 +62,12 @@ const StatuteSection = () => {
             </Row>
           </Fade>
         </P.List>
+        <P.ScrollDownWrapper>
+          <P.TinySubtitle>
+            Logo i barwy klubowe
+          </P.TinySubtitle>
+          <P.ArrowDown />
+        </P.ScrollDownWrapper>
       </Container>
     </P.StyledSection>
   );

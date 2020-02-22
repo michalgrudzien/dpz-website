@@ -12,6 +12,16 @@ import FooterFbIcon from "./facebook.svg";
 import FooterInstagraIcon from "./instagram.svg";
 import FooterYouTubeIcon from "./youtube.svg";
 import FooterMessengerIcon from "./messenger.svg";
+import Logos from "./logos.svg";
+import ColorDarkBlue from "./color-item-1.svg";
+import ColorTurquoise from "./color-item-2.svg";
+import ColorGradient from "./color-item-3.svg";
+import ColorDarkGrey from "./color-item-4.svg";
+import FontBebas from "./font-item-1.svg";
+import FontPoppins from "./font-item-2.svg";
+import CardItem1 from "./card-item.svg";
+import CardItem2 from "./card-item-2.svg";
+import CardItem3 from "./card-item-3.svg";
 
 export {
   Logo,
@@ -28,4 +38,14 @@ export {
   FooterInstagraIcon,
   FooterMessengerIcon,
   FooterYouTubeIcon,
+  Logos,
+  ColorDarkBlue,
+  ColorTurquoise,
+  ColorGradient,
+  ColorDarkGrey,
+  FontBebas,
+  FontPoppins,
+  CardItem1,
+  CardItem2,
+  CardItem3,
 };

@@ -18,7 +18,9 @@ export const StyledSection = styled(Section)`
   }
 `;
 
-export const List = styled.div``;
+export const List = styled.div`
+  margin-bottom: 60px;
+`;
 
 export const ListItem = styled.div`
   display: flex;
@@ -127,4 +129,25 @@ export const StyledSubtitle = styled(Subtitle)`
   @media screen and (min-width: 1920px) {
     font-size: 73px;
   }
+`;
+
+export const ScrollDownWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+`;
+
+export const TinySubtitle = styled(Subtitle)`
+  font-size: 23px;
+  color: ${colors.white};
+`;
+
+export const ArrowDown = styled.div`
+  height: 0;
+  width: 0;
+
+  border-top: 33px solid ${colors.turquoise};
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
 `;
