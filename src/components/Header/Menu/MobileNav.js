@@ -10,7 +10,7 @@ const StyledNav = styled.nav`
   width: 100%;
   height: 100%;
   background-color: ${colors.white};
-  padding: 80px 15px 32px;
+  padding: 80px 0 32px;
   overflow: hidden;
   z-index: 300;
 
@@ -24,7 +24,9 @@ const StyledNav = styled.nav`
   `}
 `;
 
-const MobileNav = ({ isOpen }) => <StyledNav isOpen={isOpen}>Nav!</StyledNav>;
+const MobileNav = ({ isOpen, children }) => (
+  <StyledNav isOpen={isOpen}>{children}</StyledNav>
+);
 
 MobileNav.defaultProps = {
   isOpen: false,
