@@ -3,6 +3,7 @@ import colors from "./colors";
 import fonts from "./fonts";
 
 //TODO: why !important for font-family needed?
+//TODO: Write global styles for :focus states
 const GlobalStyle = createGlobalStyle`
   
   ${fonts}
@@ -11,8 +12,6 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Raleway', sans-serif !important;  
     color: ${colors.default};
     font-size: 16px;
-    height: 100%;
-    background-color: #ddd;
   }
 
   h1,h2,h3,h4,h5,h6{
