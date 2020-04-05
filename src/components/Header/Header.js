@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-import { Container } from "styled-bootstrap-grid";
+import useWindowSize from "hooks/useWindowSize";
 
-import { StyledHeadroom, HeaderContentWrapper } from "./partials";
+import {
+  StyledHeadroom,
+  HeaderContainer,
+  HeaderContentWrapper,
+} from "./partials";
 import Logo from "./Logo";
 import Menu from "./Menu";
+
+const MOBILE_BREAKPOINT = 768;
 
 /**
  * Page Header component containing menu and logo.
@@ -14,22 +20,39 @@ import Menu from "./Menu";
  */
 const Header = ({ colorTheme }) => {
   const [isTop, setTop] = useState(true);
+  const [isMenuOpen, setMenuOpen] = useState(false);
+  const [windowWidth] = useWindowSize();
 
-  const getColorTheme = (colorTheme, isTop) => (isTop ? colorTheme : "dark");
-  const computedColorTheme = getColorTheme(colorTheme, isTop);
+  const isOnMobile = windowWidth < MOBILE_BREAKPOINT;
+  useEffect(() => setMenuOpen(false), [isOnMobile]);
+
+  const getColorTheme = (colorTheme, isTop, isMenuOpen) =>
+    isMenuOpen && isOnMobile ? "dark" : isTop ? colorTheme : "dark";
+  const getShrinked = (isTop, isMenuOpen) =>
+    !isTop || (isMenuOpen && isOnMobile);
+
+  const computedColorTheme = getColorTheme(colorTheme, isTop, isMenuOpen);
+  const computedShrinked = getShrinked(isTop, isMenuOpen);
 
   return (
     <StyledHeadroom
       onPin={() => setTop(false)}
       onUnfix={() => setTop(true)}
-      isShrinked={!isTop}
+      disable={isMenuOpen}
+      isShrinked={computedShrinked}
+      isMenuOpen={isMenuOpen}
     >
-      <Container>
-        <HeaderContentWrapper isShrinked={!isTop}>
-          <Logo colorTheme={computedColorTheme} isShrinked={!isTop} />
-          <Menu colorTheme={computedColorTheme} isShrinked={!isTop} />
+      <HeaderContainer>
+        <HeaderContentWrapper isShrinked={computedShrinked}>
+          <Logo colorTheme={computedColorTheme} isShrinked={computedShrinked} />
+          <Menu
+            colorTheme={computedColorTheme}
+            isShrinked={computedShrinked}
+            isMenuOpen={isMenuOpen}
+            setMenuOpen={setMenuOpen}
+          />
         </HeaderContentWrapper>
-      </Container>
+      </HeaderContainer>
     </StyledHeadroom>
   );
 };
