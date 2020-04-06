@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 
 import Submenu from "./Submenu";
-import colors from "settings/colors";
+import colors from "utils/colors";
 
 const listItemCommonStyles = css`
   position: relative;

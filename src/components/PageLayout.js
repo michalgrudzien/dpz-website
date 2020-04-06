@@ -5,6 +5,8 @@ import UnderConstruction from "components/UnderConstruction";
 import Header from "components/Header";
 import Footer from "components/Footer";
 
+import GlobalStyle from "utils/GlobalStyle";
+
 /**
  * Page layout component including constant
  * website elements such as header, footer, widgets,
@@ -15,6 +17,7 @@ const PageLayout = ({ children, colorTheme, isUnderConstruction }) => {
 
   return (
     <>
+      <GlobalStyle />
       <Header colorTheme={colorTheme} />
       {children}
       <Footer>FOOTER</Footer>

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import colors from "settings/colors";
+import colors from "utils/colors";
 
 //TODO: implement using anchors, add proptypes
 const SubmenuList = styled.ul`

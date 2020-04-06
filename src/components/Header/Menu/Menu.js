@@ -10,7 +10,7 @@ import MobileNavToggle from "./MobileNavToggle";
 import MobileNav from "./MobileNav";
 import MenuItemMobile from "./MenuItemMobile";
 
-import structure from "settings/menu.json";
+import structure from "utils/menu.json";
 
 const DesktopNav = styled.nav`
   display: none;

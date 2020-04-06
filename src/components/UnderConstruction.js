@@ -4,7 +4,7 @@ import YoutubeBackground from "react-youtube-background";
 
 import WindowCheck from "components/WindowCheck";
 import SEO from "components/SEO";
-import colors from "settings/colors";
+import colors from "utils/colors";
 
 import facebookIcon from "assets/images/facebook_icon.svg";
 import messengerIcon from "assets/images/messenger_icon.svg";

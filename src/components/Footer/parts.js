@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import colors from "settings/colors";
+import colors from "utils/colors";
 import { ContentText, Subtitle } from "../../shared/Typography";
 
 export const Footer = styled.footer`

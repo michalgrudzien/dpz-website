@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import colors from "settings/colors";
+import colors from "utils/colors";
 
 const MenuButton = styled.button`
   padding: 0;

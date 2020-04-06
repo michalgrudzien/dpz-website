@@ -3,7 +3,7 @@ import { Link } from "gatsby";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import colors from "settings/colors";
+import colors from "utils/colors";
 
 const StyledListItem = styled.li`
   display: block;

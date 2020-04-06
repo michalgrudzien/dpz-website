@@ -3,7 +3,7 @@ import Headroom from "react-headroom";
 
 import { Container } from "styled-bootstrap-grid";
 
-import colors from "settings/colors";
+import colors from "utils/colors";
 
 export const StyledHeadroom = styled(Headroom)`
   position: relative;

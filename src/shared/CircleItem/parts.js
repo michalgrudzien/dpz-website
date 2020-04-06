@@ -1,10 +1,10 @@
 import styled, { css } from "styled-components";
-import colors from "settings/colors";
+import colors from "utils/colors";
 
 export const Img = styled.img`
   margin-bottom: 10px;
   height: 30px;
-  
+
   @media screen and (min-width: 1440px) {
     margin-bottom: 25px;
     height: 68px;
@@ -20,15 +20,13 @@ export const Icon = styled.div`
   background-repeat: no-repeat;
   background-position: center center;
   background-image: ${props => `url(${props.icon})`};
-  transition: all .3s ease-in-out;
-  
+  transition: all 0.3s ease-in-out;
+
   @media screen and (min-width: 992px) {
     height: 80px;
-    width: 68px;  
+    width: 68px;
     margin-bottom: 20px;
   }
-  
-  
 `;
 
 export const Wrapper = styled.div`
@@ -40,18 +38,18 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   flex-flow: column;
-  transition: all .3s ease-in-out;
-  
+  transition: all 0.3s ease-in-out;
+
   &:hover {
     transform: scale(1.05);
-    transition: all .3s ease-in-out;
-    
+    transition: all 0.3s ease-in-out;
+
     > ${Icon} {
       background-image: ${props => `url(${props.icon})`};
-      transition: all .3s ease-in-out;
+      transition: all 0.3s ease-in-out;
     }
   }
-  
+
   @media screen and (min-width: 992px) {
     height: 267px;
     width: 267px;
@@ -62,9 +60,9 @@ export const Number = styled.div`
   color: ${colors.turquoise};
   font-weight: bold;
   font-size: 65px;
-  font-family: 'Bebas Neue Bold', sans-serif;
-  
-  @media screen and (min-width: 992px){
+  font-family: "Bebas Neue Bold", sans-serif;
+
+  @media screen and (min-width: 992px) {
     font-size: 113px;
   }
 `;
@@ -73,28 +71,28 @@ export const Subtitle = styled.div`
   font-weight: bold;
   font-size: 14px;
   color: ${colors.darkBlue};
-  font-family: 'Bebas Neue Bold', sans-serif;
-  
+  font-family: "Bebas Neue Bold", sans-serif;
+
   @media screen and (min-width: 992px) {
     font-size: 28px;
   }
 `;
 
-const ActiveStyles= css`
+const ActiveStyles = css`
   color: ${colors.turquoise};
 `;
 
 export const Content = styled.div`
   color: inherit;
   font-size: 9px;
-  font-family: 'Poppins', sans-serif;
-  
+  font-family: "Poppins", sans-serif;
+
   ${({ isActive }) => isActive && ActiveStyles};
-  
+
   @media screen and (min-width: 992px) {
     font-size: 20px;
-  }  
-  
+  }
+
   @media screen and (min-width: 1920px) {
     font-size: 28px;
   }

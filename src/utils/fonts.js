@@ -1,6 +1,4 @@
 export default `
-    @import url("https://fonts.googleapis.com/css?family=Raleway:100,300,400,400i,500,500i,600,700,800,900&display=swap&subset=latin-ext");
-
     @font-face {
     font-family: 'Bebas Neue Book';
     font-style: normal;
