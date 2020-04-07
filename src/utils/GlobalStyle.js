@@ -7,11 +7,13 @@ const GlobalStyle = createGlobalStyle`
   
   ${fonts}
   
-  // html, body {
-  //   color: ${colors.default};
-  //   box-sizing: inherit;
-  //   overflow-y: auto;
-  // }
+  html, body {
+    color: ${colors.default};
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
 `;
 
 export default GlobalStyle;
