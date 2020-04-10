@@ -4,9 +4,12 @@ const darkGrey = "#707070";
 const green = "#74e195";
 const red = "#b90735";
 const turquoise = "#38aecc";
-const lightTurquoise = "#E3F4F8";
 const darkBlue = "#0c1a2b";
 const graphite = "#132F43";
+
+const rgb = {
+  turquoise: "56, 174, 204",
+};
 
 export default {
   white,
@@ -15,10 +18,10 @@ export default {
   green,
   red,
   turquoise,
-  lightTurquoise,
   darkBlue,
   graphite,
   primary: turquoise,
   secondary: darkBlue,
   default: darkGrey,
+  rgb,
 };

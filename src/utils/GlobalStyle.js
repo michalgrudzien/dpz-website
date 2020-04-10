@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import { reset } from "styled-reset";
+import { media } from "styled-bootstrap-grid";
 
 import colors from "./colors";
 import fonts from "./fonts";
@@ -10,11 +11,24 @@ const GlobalStyle = createGlobalStyle`
   ${fonts}
    
   html, body {
+    font-size: 12px;
+
+    ${media.md`
+      font-size: 14px;
+    `}
+
+    ${media.lg`
+      font-size: 16px;
+    `}
+
     color: ${colors.default};
     font-family: 'Poppins', sans-serif;
-    font-size: 16px;
     font-weight: 300;
-    height: 4000px;
+    box-sizing: border-box;
+
+    * {
+      box-sizing: border-box;
+    }
 
     p, h1, h2, h3, h4, h5, h6 {
       line-height: 1.65;

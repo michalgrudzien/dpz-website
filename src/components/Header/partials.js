@@ -4,15 +4,21 @@ import Headroom from "react-headroom";
 import { Container } from "styled-bootstrap-grid";
 
 import colors from "utils/colors";
+import { boxShadow } from "utils/styles";
 
 export const StyledHeadroom = styled(Headroom)`
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   z-index: 500;
 
   ${({ isMenuOpen }) =>
     isMenuOpen &&
     `
       position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
     `}
 
@@ -20,8 +26,9 @@ export const StyledHeadroom = styled(Headroom)`
     padding: 1em 0;
     height: 64px;
     background-color: ${colors.white};
+    box-sizing: content-box;
     transition: height 350ms ease-out, padding 350ms ease-out;
-    box-shadow: 0px 3px 11px -8px rgba(0, 0, 0, 0.25);
+    ${boxShadow};
 
     ${({ isShrinked }) =>
       isShrinked &&

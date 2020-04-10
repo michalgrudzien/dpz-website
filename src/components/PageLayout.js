@@ -20,7 +20,7 @@ const PageLayout = ({ children, colorTheme, isUnderConstruction }) => {
       <GlobalStyle />
       <Header colorTheme={colorTheme} />
       {children}
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
