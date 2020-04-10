@@ -22,4 +22,3 @@ export default {
   secondary: darkBlue,
   default: darkGrey,
 };
-

@@ -8,8 +8,8 @@ import LogosSection from "../components/AboutUs/LogosSection";
 const AboutUsPage = () => (
   <PageLayout colorTheme="dark">
     <InfoSection />
-    <StatuteSection />
-    <LogosSection />
+    {/* <StatuteSection />
+    <LogosSection /> */}
   </PageLayout>
 );
 
