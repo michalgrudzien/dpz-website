@@ -3,18 +3,26 @@ import styled from "styled-components";
 import { Container, Row, Col, media } from "styled-bootstrap-grid";
 
 import CircleFile from "components/shared/CircleFile";
+import ScrollAnchor from "components/shared/ScrollAnchor";
 import colors from "utils/colors";
 
 import documentIconImg from "assets/images/document_icon.svg";
+import logoBg from "assets/images/logo_w_partial.svg";
 
 const Section = styled.section`
   background-color: ${colors.darkBlue};
   color: ${colors.white};
   padding-top: 92px;
+  padding-bottom: 24px;
   margin-top: -64px;
 
   ${media.md`
     padding-top: 120px;
+    background-image: url(${logoBg});
+    background-repeat: no-repeat;
+    background-position-y: bottom;
+    background-position-x: 75%;
+    background-size: 15%;
   `}
 `;
 
@@ -54,12 +62,21 @@ const DocumentsListItemLink = styled.a`
   }
 
   text-decoration: none;
+  font-size: 0.88em;
   line-height: 1.2;
   color: ${colors.white};
 
   :hover {
     text-decoration: underline;
   }
+`;
+
+const LogoScrollAnchor = styled(ScrollAnchor)`
+  margin-top: 3em;
+
+  ${media.md`
+    align-items: start;
+  `}
 `;
 
 const StatuteSection = () => {
@@ -144,6 +161,15 @@ const StatuteSection = () => {
                 </DocumentsListItemLink>
               </DocumentsListItem>
             </DocumentsList>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <LogoScrollAnchor
+              align="center"
+              hash="#"
+              label="Logo i barwy klubowe"
+            />
           </Col>
         </Row>
       </Container>

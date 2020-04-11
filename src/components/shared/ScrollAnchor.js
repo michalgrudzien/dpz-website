@@ -1,0 +1,45 @@
+import React from "react";
+import styled, { keyframes } from "styled-components";
+
+import colors from "utils/colors";
+
+import arrowDownImg from "assets/images/arrow_down.svg";
+
+const animation = keyframes`0%{transform:translateY(0)}100%{transform:translateY(8px)}`;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0;
+  align-items: ${({ align }) => align};
+`;
+
+const Label = styled.span`
+  display: inline-block;
+  color: ${colors.white};
+  font-family: "Bebas Neue Regular", sans-serif;
+  font-size: 1.2em;
+  margin-bottom: 0.5em;
+`;
+
+const ArrowImg = styled.img`
+  width: 32px;
+  height: 32px;
+
+  animation: ${animation} 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite
+    alternate both;
+`;
+
+const ScrollAnchor = ({ hash, label, align, className }) => (
+  <Wrapper className={className} align={align}>
+    <Label>{label}</Label>
+    <ArrowImg src={arrowDownImg} alt="Przejdź dalej" />
+  </Wrapper>
+);
+
+ScrollAnchor.defaultProps = {
+  align: "start",
+  hash: "#",
+};
+
+export default ScrollAnchor;
