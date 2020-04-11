@@ -12,6 +12,7 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   transition: all 300ms cubic-bezier(0.855, -0.41, 0.275, 1.65);
 
   ${media.md`
@@ -29,7 +30,7 @@ const Wrapper = styled.div`
     `
     cursor: pointer;
     :hover{
-      transform: scale(1.2);
+      transform: scale(1.1);
     }
   `}
 `;
