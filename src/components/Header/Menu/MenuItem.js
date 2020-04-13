@@ -49,6 +49,10 @@ const StyledSubmenuListItem = styled.li`
 `;
 
 const MenuLink = styled(Link)`
+  &.is-active {
+    color: ${colors.primary};
+  }
+
   ${({ hasSubmenu, isSubmenuOpen }) =>
     hasSubmenu &&
     `&::after {
@@ -91,6 +95,7 @@ const MenuItem = ({
         to={linkTo}
         isSubmenuOpen={isHovered && hasSubmenu}
         hasSubmenu={hasSubmenu}
+        activeClassName="is-active"
         {...linkAttrs}
       >
         {label}

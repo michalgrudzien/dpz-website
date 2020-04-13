@@ -21,7 +21,9 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 
   transition: color 100ms ease-out;
-  &:hover {
+
+  &:hover,
+  &.is-active {
     color: ${colors.primary};
   }
 `;
@@ -39,13 +41,19 @@ const MenuItemMobile = ({ label, linkTo, submenu }) => {
 
   return (
     <StyledListItem hasSubmenu={hasSubmenu}>
-      {!hasSubmenu && <StyledLink to={linkTo}>{label}</StyledLink>}
+      {!hasSubmenu && (
+        <StyledLink to={linkTo} activeClassName="is-active">
+          {label}
+        </StyledLink>
+      )}
       {hasSubmenu && label}
       {hasSubmenu && (
         <SubmenuList>
           {submenu.map((item, index) => (
             <StyledListItem key={index}>
-              <StyledLink linkTo={item.linkTo}>{item.label}</StyledLink>
+              <StyledLink linkTo={item.linkTo} activeClassName="is-active">
+                {item.label}
+              </StyledLink>
             </StyledListItem>
           ))}
         </SubmenuList>
