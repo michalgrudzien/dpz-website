@@ -21,7 +21,7 @@ const GlobalStyle = createGlobalStyle`
       font-size: 16px;
     `}
 
-    color: ${colors.default} !default;
+    color: ${colors.default};
     font-family: 'Poppins', sans-serif;
     font-weight: 300;
     box-sizing: border-box;
@@ -35,12 +35,14 @@ const GlobalStyle = createGlobalStyle`
     line-height: 1.65;
   }
 
-  p {margin-bottom: 1.15rem;}
+  p {
+    margin-bottom: 1.15rem;
+  }
 
   h1, h2, h3, h4, h5 {
     margin: 2.75rem 0 1.05rem;
     font-family: 'Bebas Neue Regular', sans-serif;
-    color: ${colors.secondary} !default;
+    color: ${colors.secondary};
     font-weight: 300;
     line-height: 1.15;
   }
