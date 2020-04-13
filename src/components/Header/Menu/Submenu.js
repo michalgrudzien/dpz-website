@@ -9,7 +9,7 @@ const SubmenuList = styled.ul`
   top: 2em;
   padding: 0 1em;
   right: -1em;
-  width: 120px;
+  width: 140px;
 
   transition: all 50ms ease-in;
 
@@ -41,7 +41,7 @@ const SubmenuWrapper = styled.div`
   position: absolute;
   top: 0;
   right: 0;
-  width: 120px;
+  width: 140px;
 
   transition: all 150ms ease-in;
   opacity: 0;
