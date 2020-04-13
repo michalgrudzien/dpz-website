@@ -30,6 +30,8 @@ const MobileNavWrapper = styled.div`
   `}
 `;
 
+const getKey = item => `${item.label}_${item.linkTo}`;
+
 const Menu = ({ isMenuOpen, setMenuOpen, colorTheme, isShrinked }) => {
   return (
     <>
@@ -37,6 +39,7 @@ const Menu = ({ isMenuOpen, setMenuOpen, colorTheme, isShrinked }) => {
         <MenuList>
           {structure.map(item => (
             <MenuItem
+              key={getKey(item)}
               label={item.label}
               linkTo={item.linkTo}
               submenu={item.submenu}
@@ -57,6 +60,7 @@ const Menu = ({ isMenuOpen, setMenuOpen, colorTheme, isShrinked }) => {
             <MenuList>
               {structure.map(item => (
                 <MenuItemMobile
+                  key={getKey(item)}
                   label={item.label}
                   linkTo={item.linkTo}
                   submenu={item.submenu}

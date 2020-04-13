@@ -30,7 +30,7 @@ PageLayout.defaultProps = {
 };
 
 PageLayout.propTypes = {
-  children: PropTypes.object,
+  children: PropTypes.node,
   colorTheme: PropTypes.oneOf(["light", "dark"]),
   isUnderConstruction: PropTypes.bool,
 };

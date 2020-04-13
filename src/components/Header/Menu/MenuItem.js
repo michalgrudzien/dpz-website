@@ -101,8 +101,8 @@ const MenuItem = ({
           colorTheme={colorTheme}
           isShrinked={isShrinked}
         >
-          {submenu.map(item => (
-            <StyledSubmenuListItem colorTheme={colorTheme}>
+          {submenu.map((item, index) => (
+            <StyledSubmenuListItem key={index} colorTheme={colorTheme}>
               <Link to={item.linkTo}>{item.label}</Link>
             </StyledSubmenuListItem>
           ))}

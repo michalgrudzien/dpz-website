@@ -43,8 +43,8 @@ const MenuItemMobile = ({ label, linkTo, submenu }) => {
       {hasSubmenu && label}
       {hasSubmenu && (
         <SubmenuList>
-          {submenu.map(item => (
-            <StyledListItem>
+          {submenu.map((item, index) => (
+            <StyledListItem key={index}>
               <StyledLink linkTo={item.linkTo}>{item.label}</StyledLink>
             </StyledListItem>
           ))}

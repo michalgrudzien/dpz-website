@@ -9,15 +9,15 @@
   },
   {
     "label": "Rejsy",
-    "linkTo": null,
+    "linkTo": "/rejsy/dpz-world-tour",
     "submenu": [
       {
         "label": "DPŻ World Tour",
-        "linkTo": null
+        "linkTo": "/rejsy/dpz-world-tour"
       },
       {
         "label": "DPŻ We Shall Sea",
-        "linkTo": null
+        "linkTo": "/rejsy/dpz-we-shall-sea"
       }
     ]
   },
