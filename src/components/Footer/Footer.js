@@ -55,10 +55,12 @@ const LogoMobileImg = styled.img`
 
 const MobileSocialLinksWrapper = styled.div`
   margin: 2.5em 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 `;
 
 const MobileSocialLink = styled(SocialLink)`
-  float: right;
   margin-bottom: 1.5em;
 `;
 
