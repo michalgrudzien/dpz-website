@@ -10,7 +10,9 @@ import documentIconImg from "assets/images/document_icon.svg";
 import logoBg from "assets/images/logo_w_partial.svg";
 
 const Section = styled.section`
-  * {
+  h1,
+  h2,
+  p {
     color: ${colors.white};
   }
   background-color: ${colors.darkBlue};
