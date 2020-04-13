@@ -20,7 +20,7 @@ const Section = styled.section`
     padding-top: 120px;
     background-image: url(${logoBg});
     background-repeat: no-repeat;
-    background-position-y: bottom;
+    background-position-y: 100.1%;
     background-position-x: 75%;
     background-size: 15%;
   `}
@@ -167,7 +167,7 @@ const StatuteSection = () => {
           <Col>
             <LogoScrollAnchor
               align="center"
-              hash="#"
+              scrollTo="#logo"
               label="Logo i barwy klubowe"
             />
           </Col>

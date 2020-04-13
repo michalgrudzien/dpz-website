@@ -1,5 +1,6 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
+import scrollTo from "gatsby-plugin-smoothscroll";
 
 import colors from "utils/colors";
 
@@ -7,11 +8,12 @@ import arrowDownImg from "assets/images/arrow_down.svg";
 
 const animation = keyframes`0%{transform:translateY(0)}100%{transform:translateY(8px)}`;
 
-const Wrapper = styled.div`
+const Wrapper = styled.a`
   display: flex;
   flex-direction: column;
   padding: 8px 0;
   align-items: ${({ align }) => align};
+  cursor: pointer;
 `;
 
 const Label = styled.span`
@@ -30,8 +32,12 @@ const ArrowImg = styled.img`
     alternate both;
 `;
 
-const ScrollAnchor = ({ hash, label, align, className }) => (
-  <Wrapper className={className} align={align}>
+const ScrollAnchor = ({ scrollTo: scrollToParam, label, align, className }) => (
+  <Wrapper
+    className={className}
+    align={align}
+    onClick={() => scrollTo(scrollToParam)}
+  >
     <Label>{label}</Label>
     <ArrowImg src={arrowDownImg} alt="Przejdź dalej" />
   </Wrapper>
@@ -39,7 +45,7 @@ const ScrollAnchor = ({ hash, label, align, className }) => (
 
 ScrollAnchor.defaultProps = {
   align: "start",
-  hash: "#",
+  scrollTo: "#",
 };
 
 export default ScrollAnchor;
