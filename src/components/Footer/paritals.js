@@ -116,4 +116,8 @@ export const FooterMenuListItem = styled.li`
 
 export const FooterMenuLink = styled(Link)`
   color: ${colors.white};
+
+  :hover {
+    text-decoration: none;
+  }
 `;
