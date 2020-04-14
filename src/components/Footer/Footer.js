@@ -1,24 +1,16 @@
 import React from "react";
-import styled from "styled-components";
-import { Container, Row, Col, media } from "styled-bootstrap-grid";
-import Wave from "react-wavify";
+import { Container, Row, Col } from "styled-bootstrap-grid";
 import { Link } from "gatsby";
+import * as P from "./paritals";
 
 import colors from "utils/colors";
 
 import logoMobile from "assets/images/logo_full_w.svg";
+import logoDesktop from "assets/images/logo_w_vertical.svg";
 import facebookIcon from "assets/images/facebook_w.svg";
 import youtubeIcon from "assets/images/youtube_w.svg";
 import instagramIcon from "assets/images/instagram_w.svg";
 import messengerIcon from "assets/images/messenger_w.svg";
-
-import SocialLink from "./SocialLink";
-
-const FooterBody = styled.div`
-  background-color: ${colors.darkBlue};
-  color: ${colors.white};
-  padding: 0.5em 0 2em;
-`;
 
 const waveOptions = {
   height: 100,
@@ -27,100 +19,154 @@ const waveOptions = {
   points: 3,
 };
 
-const WavesWrapper = styled.div`
-  height: 80px;
+const addressInfo = (
+  <>
+    <p>
+      Stowarzyszenie
+      <br />
+      Dobra Praktyka Żeglarska <br />
+      ul. Dworska 23/21 <br />
+      30-314 Kraków
+    </p>
+    <p>
+      NIP: 12345678
+      <br /> REGON: 12345678
+      <br /> KRS: 12345678
+    </p>
+  </>
+);
 
-  position: relative;
-  top: 5px;
-  overflow: hidden;
-`;
-
-const TurqoiseWave = styled(Wave)`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: 0;
-`;
-
-const DarkBlueWave = styled(Wave)`
-  position: absolute;
-  bottom: 0;
-  z-index: 10;
-`;
-
-const LogoMobileImg = styled.img`
-  width: 180px;
-  margin-bottom: 2em;
-`;
-
-const MobileSocialLinksWrapper = styled.div`
-  margin: 2.5em 0;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-`;
-
-const MobileSocialLink = styled(SocialLink)`
-  margin-bottom: 1.5em;
-`;
+const copyright = <p>© Dobra Praktyka Żeglarska {new Date().getFullYear()}</p>;
 
 const Footer = () => (
   <footer>
-    <WavesWrapper>
-      <TurqoiseWave
+    <P.WavesWrapper>
+      <P.TurqoiseWave
         fill={colors.turquoise}
         options={{ ...waveOptions, speed: 0.15, points: 3 }}
       />
-      <DarkBlueWave fill={colors.darkBlue} options={waveOptions} />
-    </WavesWrapper>
-    <FooterBody>
+      <P.DarkBlueWave fill={colors.darkBlue} options={waveOptions} />
+    </P.WavesWrapper>
+    <P.FooterBody>
       <Container>
         <Row>
-          <Col col={9}>
+          <Col col={9} md={3} lg={2}>
             <Link to="/">
-              <LogoMobileImg src={logoMobile} alt="Dobra Praktyka Żeglarska" />
+              <P.LogoMobileImg
+                src={logoMobile}
+                alt="Dobra Praktyka Żeglarska"
+              />
+              <P.LogoDesktopImg
+                src={logoDesktop}
+                alt="Dobra Praktyka Żeglarska"
+              />
             </Link>
-            <p>
-              Stowarzyszenie
-              <br />
-              Dobra Praktyka Żeglarska <br />
-              ul. Dworska 23/21 <br />
-              30-314 Kraków
-            </p>
-            <p>
-              NIP: 12345678
-              <br /> REGON: 12345678
-              <br /> KRS: 12345678
-            </p>
-            <p>© Dobra Praktyka Żeglarska {new Date().getFullYear()}</p>
+            <P.MobileAddressWrapper>
+              {addressInfo}
+              {copyright}
+            </P.MobileAddressWrapper>
           </Col>
-          <Col col={3}>
-            <MobileSocialLinksWrapper>
-              <MobileSocialLink
+          <Col className="hidden-md-down" md={3}>
+            {addressInfo}
+          </Col>
+          <Col className="hidden-md-down" md={6}>
+            <P.SocialMediaHeading>Social media</P.SocialMediaHeading>
+            <P.DesktopSocialLinksWrapper>
+              <P.DesktopSocialLink
                 url="https://facebook.com/dobrapraktykazeglarska"
                 title="Facebook: Dobra Praktyka Żeglarska"
                 icon={facebookIcon}
               />
-              <MobileSocialLink
+              <P.DesktopSocialLink
                 url="https://www.youtube.com/channel/UCku8IcZT7gwCDSfonuduBew"
                 title="Youtube: Dobra Praktyka Żeglarska"
                 icon={youtubeIcon}
               />
-              <MobileSocialLink
+              <P.DesktopSocialLink
                 url="https://www.instagram.com/de_pe_zet/"
                 title="Instagram: Dobra Praktyka Żeglarska"
                 icon={instagramIcon}
               />
-              <MobileSocialLink
+              <P.DesktopSocialLink
                 url="https://m.me/dobrapraktykazeglarska"
                 title="Messenger: Dobra Praktyka Żeglarska"
                 icon={messengerIcon}
               />
-            </MobileSocialLinksWrapper>
+            </P.DesktopSocialLinksWrapper>
+            {copyright}
+          </Col>
+          <Col hiddenMdUp col={3}>
+            <P.MobileSocialLinksWrapper>
+              <P.MobileSocialLink
+                url="https://facebook.com/dobrapraktykazeglarska"
+                title="Facebook: Dobra Praktyka Żeglarska"
+                icon={facebookIcon}
+              />
+              <P.MobileSocialLink
+                url="https://www.youtube.com/channel/UCku8IcZT7gwCDSfonuduBew"
+                title="Youtube: Dobra Praktyka Żeglarska"
+                icon={youtubeIcon}
+              />
+              <P.MobileSocialLink
+                url="https://www.instagram.com/de_pe_zet/"
+                title="Instagram: Dobra Praktyka Żeglarska"
+                icon={instagramIcon}
+              />
+              <P.MobileSocialLink
+                url="https://m.me/dobrapraktykazeglarska"
+                title="Messenger: Dobra Praktyka Żeglarska"
+                icon={messengerIcon}
+              />
+            </P.MobileSocialLinksWrapper>
+          </Col>
+        </Row>
+        <Row>
+          <Col className="hidden-md-down">
+            <nav>
+              <P.FooterMenuList>
+                <P.FooterMenuListItem>
+                  <P.FooterMenuLink to="/">Home</P.FooterMenuLink>
+                </P.FooterMenuListItem>
+                <P.FooterMenuListItem>
+                  <P.FooterMenuLink to="/o-nas">O nas</P.FooterMenuLink>
+                </P.FooterMenuListItem>
+                <P.FooterMenuListItem>
+                  <P.FooterMenuLink to="/">Rejs z DPŻ</P.FooterMenuLink>
+                </P.FooterMenuListItem>
+                <P.FooterMenuListItem>
+                  <P.FooterMenuLink to="/rejsy/dpz-world-tour">
+                    DPŻ World Tour
+                  </P.FooterMenuLink>
+                </P.FooterMenuListItem>
+                <P.FooterMenuListItem>
+                  <P.FooterMenuLink to="/rejsy/dpz-world-tour">
+                    DPŻ We Shall Sea
+                  </P.FooterMenuLink>
+                </P.FooterMenuListItem>
+                <P.FooterMenuListItem>
+                  <P.FooterMenuLink to="/produkty">Produkty</P.FooterMenuLink>
+                </P.FooterMenuListItem>
+                <P.FooterMenuListItem>
+                  <P.FooterMenuLink to="/blog">Blog</P.FooterMenuLink>
+                </P.FooterMenuListItem>
+                <P.FooterMenuListItem>
+                  <P.FooterMenuLink to="/">Śpiewnik</P.FooterMenuLink>
+                </P.FooterMenuListItem>
+                <P.FooterMenuListItem>
+                  <P.FooterMenuLink to="/">Dołącz do nas</P.FooterMenuLink>
+                </P.FooterMenuListItem>
+                <P.FooterMenuListItem>
+                  <P.FooterMenuLink to="/">Trudne sprawy</P.FooterMenuLink>
+                </P.FooterMenuListItem>
+                <P.FooterMenuListItem>
+                  <P.FooterMenuLink to="/">Kontakt</P.FooterMenuLink>
+                </P.FooterMenuListItem>
+              </P.FooterMenuList>
+            </nav>
           </Col>
         </Row>
       </Container>
-    </FooterBody>
+    </P.FooterBody>
   </footer>
 );
 
