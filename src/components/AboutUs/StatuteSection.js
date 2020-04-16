@@ -27,6 +27,9 @@ const Section = styled.section`
     background-position-y: 100.1%;
     background-position-x: 75%;
     background-size: 15%;
+
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
   `}
 `;
 
