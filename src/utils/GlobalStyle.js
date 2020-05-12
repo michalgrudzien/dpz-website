@@ -36,6 +36,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   p {
+    font-size: 1.1em;
     margin-bottom: 1.15rem;
   }
 
