@@ -1,20 +1,44 @@
 import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import styled from "styled-components";
-import { media } from "styled-bootstrap-grid";
+import { Container, Row, Col, media } from "styled-bootstrap-grid";
 
 import PageLayout from "components/PageLayout";
 import BrandCard from "components/Products/BrandCard";
 import PhotoHero from "components/shared/PhotoHero";
+import colors from "utils/colors";
 
 import nosDpzLogoImg from "assets/images/nos_dpz_logo.svg";
 import spozycieLogoImg from "assets/images/dpz_spozycie_logo.svg";
+import Button from "components/shared/Button";
 
 const BrandsSection = styled.section`
   padding-top: 6em;
 
   ${media.md`
     padding-top: 10em;
+  `}
+`;
+
+const ShopTeaser = styled.div`
+  background: ${colors.gradient};
+  color: ${colors.white};
+  position: relative;
+  bottom: -64px;
+  padding: 4em 0 92px 0;
+
+  h1 {
+    color: ${colors.white};
+  }
+`;
+
+const ShopButton = styled(Button)`
+  margin-top: 2em;
+  width: 100%;
+
+  ${media.md`
+    float: right;
+    width: auto;
   `}
 `;
 
@@ -94,6 +118,23 @@ const ProductsPage = () => {
           </p>
         </BrandCard>
       </BrandsSection>
+      <ShopTeaser>
+        <Container>
+          <Row>
+            <Col md="8">
+              <h1>Podoba się? No to zamów!</h1>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam.
+              </p>
+            </Col>
+            <Col md="12">
+              <ShopButton>Przejdź do zamawialni</ShopButton>
+            </Col>
+          </Row>
+        </Container>
+      </ShopTeaser>
     </PageLayout>
   );
 };

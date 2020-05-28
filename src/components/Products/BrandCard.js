@@ -15,6 +15,10 @@ const Wrapper = styled.div`
   ${media.md`
     padding-bottom: 10em;
   `}
+
+  &:last-child {
+    padding-bottom: 2em;
+  }
 `;
 
 const Heading = styled.h1`
