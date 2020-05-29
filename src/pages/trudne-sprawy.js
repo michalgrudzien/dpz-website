@@ -10,7 +10,7 @@ import { boxShadow } from "utils/styles";
 const StyledSection = styled.section`
   padding: 8em 0 2em;
   ${media.md`
-    padding: 16em 0 4em;
+    padding: 12em 0 4em;
   `}
 `;
 
