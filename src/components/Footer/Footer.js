@@ -156,7 +156,9 @@ const Footer = () => (
                   <P.FooterMenuLink to="/">Dołącz do nas</P.FooterMenuLink>
                 </P.FooterMenuListItem>
                 <P.FooterMenuListItem>
-                  <P.FooterMenuLink to="/">Trudne sprawy</P.FooterMenuLink>
+                  <P.FooterMenuLink to="/trudne-sprawy">
+                    Trudne sprawy
+                  </P.FooterMenuLink>
                 </P.FooterMenuListItem>
                 <P.FooterMenuListItem>
                   <P.FooterMenuLink to="/">Kontakt</P.FooterMenuLink>
