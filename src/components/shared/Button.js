@@ -11,6 +11,7 @@ export const buttonStyles = css`
   font-size: 1.1em;
   border: none;
   cursor: pointer;
+  text-decoration: none;
   transition: all 150ms ease-in;
 
   :focus {
