@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import UnderConstruction from "components/UnderConstruction";
 import Header from "components/Header";
 import Footer from "components/Footer";
+import CookiesModal from "components/CookiesModal";
 
 import GlobalStyle from "utils/GlobalStyle";
 
@@ -12,7 +13,12 @@ import GlobalStyle from "utils/GlobalStyle";
  * website elements such as header, footer, widgets,
  * cookie consent etc.
  */
-const PageLayout = ({ children, colorTheme, isUnderConstruction }) => {
+const PageLayout = ({
+  children,
+  colorTheme,
+  isUnderConstruction,
+  withCookiesModal,
+}) => {
   if (isUnderConstruction) return <UnderConstruction />;
 
   return (
@@ -21,6 +27,7 @@ const PageLayout = ({ children, colorTheme, isUnderConstruction }) => {
       <Header colorTheme={colorTheme} />
       {children}
       <Footer />
+      <CookiesModal enabledOnPage={withCookiesModal} />
     </>
   );
 };
@@ -29,12 +36,14 @@ PageLayout.defaultProps = {
   children: null,
   colorTheme: "dark",
   isUnderConstruction: false,
+  withCookiesModal: true,
 };
 
 PageLayout.propTypes = {
   children: PropTypes.node,
   colorTheme: PropTypes.oneOf(["light", "dark"]),
   isUnderConstruction: PropTypes.bool,
+  withCookiesModal: PropTypes.bool,
 };
 
 export default PageLayout;
