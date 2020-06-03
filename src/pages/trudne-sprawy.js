@@ -4,7 +4,7 @@ import { Container, Row, Col, media } from "styled-bootstrap-grid";
 import Youtube from "react-youtube-embed";
 
 import PageLayout from "components/PageLayout";
-import Card, { CardSidePadding } from "components/shared/Card";
+import Card from "components/shared/Card";
 import { boxShadow } from "utils/styles";
 
 const StyledSection = styled.section`
@@ -23,7 +23,7 @@ const YoutubeWrapper = styled.div`
 `;
 
 const CookiesPage = () => (
-  <PageLayout colorTheme="dark">
+  <PageLayout colorTheme="dark" withCookiesModal={false}>
     <StyledSection>
       <Container>
         <Row>

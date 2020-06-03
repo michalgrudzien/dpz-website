@@ -1,7 +1,7 @@
 import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import styled from "styled-components";
-import { Container, Row, Col, media } from "styled-bootstrap-grid";
+import { media } from "styled-bootstrap-grid";
 
 import PageLayout from "components/PageLayout";
 import BrandCard from "components/Products/BrandCard";
