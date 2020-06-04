@@ -8,6 +8,7 @@ import PhotoHero from "components/shared/PhotoHero";
 import Card, { CardSidePadding } from "components/shared/Card";
 
 import logoImg from "assets/images/dpz_world_tour_logo.svg";
+import TourShowcase from "components/Tours/TourShowcase";
 
 const imagesQuery = graphql`
   query {
@@ -82,6 +83,10 @@ const WorldTour = () => {
           </Card>
         </Container>
       </AboutTour>
+      <TourShowcase />
+      <TourShowcase />
+      <TourShowcase />
+      <TourShowcase />
     </PageLayout>
   );
 };
