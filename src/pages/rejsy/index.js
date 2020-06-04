@@ -1,6 +1,6 @@
-import React from "react";
-import { Redirect } from "@reach/router";
+import isWindowDefined from "helpers/isWindowDefined";
 
-const IndexPage = () => <Redirect to={`/rejsy/dpz-world-tour`} />;
+const IndexPage = () =>
+  isWindowDefined() && window.location.replace("/rejsy/dpz-world-tour");
 
 export default IndexPage;

@@ -51,7 +51,7 @@ const MenuItemMobile = ({ label, linkTo, submenu }) => {
         <SubmenuList>
           {submenu.map((item, index) => (
             <StyledListItem key={index}>
-              <StyledLink linkTo={item.linkTo} activeClassName="is-active">
+              <StyledLink to={item.linkTo} activeClassName="is-active">
                 {item.label}
               </StyledLink>
             </StyledListItem>

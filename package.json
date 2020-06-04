@@ -6,7 +6,7 @@
   "author": "Michał Grudzień <michal.grudzien@depezet.com>",
   "dependencies": {
     "babel-plugin-styled-components": "1.10.0",
-    "gatsby": "2.19.7",
+    "gatsby": "2.19.12",
     "gatsby-background-image": "1.1.1",
     "gatsby-image": "2.2.39",
     "gatsby-plugin-manifest": "2.2.39",

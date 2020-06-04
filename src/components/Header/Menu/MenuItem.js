@@ -96,6 +96,7 @@ const MenuItem = ({
         isSubmenuOpen={isHovered && hasSubmenu}
         hasSubmenu={hasSubmenu}
         activeClassName="is-active"
+        partiallyActive={hasSubmenu}
         {...linkAttrs}
       >
         {label}
