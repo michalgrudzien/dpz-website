@@ -7,7 +7,6 @@ import "react-awesome-slider/dist/styles.css";
 import colors from "utils/colors";
 import YouTube from "react-youtube-embed";
 
-import mockImg from "assets/images/brand_photo.jpg";
 import { boxShadow } from "utils/styles";
 
 const Wrapper = styled.section`
@@ -34,13 +33,13 @@ const SliderWrapper = styled.div`
     --organic-arrow-thickness: 4px;
     --organic-arrow-border-radius: 0px;
     --organic-arrow-height: 32px;
-    --organic-arrow-color: #38aecc;
+    --organic-arrow-color: ${colors.primary};
     --control-button-width: 8%;
     --control-button-height: 25%;
     --control-button-background: transparent;
     --control-bullet-color: #62a4fa;
     --control-bullet-active-color: #538bd5;
-    --loader-bar-color: #38aecc;
+    --loader-bar-color: ${colors.primary};
     --loader-bar-height: 4px;
   }
 `;
@@ -64,37 +63,28 @@ const TextWrapper = styled.div`
   `}
 `;
 
-const TourShowcase = () => (
+const TourShowcase = ({ year, gallery, youtubeId, children }) => (
   <Wrapper>
     <Container>
       <Row alignItems="center" justifyContent="center">
         <Col md={4}>
-          <YearTitle>2019</YearTitle>
+          <YearTitle>{year}</YearTitle>
         </Col>
         <Col md={4} mdOrder={4} mdAlignSelf="start">
-          <TextWrapper>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation
-            </p>
-          </TextWrapper>
+          <TextWrapper>{children}</TextWrapper>
         </Col>
         <Col md={8} mdOrder={2}>
           <SliderWrapper>
             <AwesomeSlider>
-              <div data-src={mockImg} />
-              <div data-src={mockImg} />
-              <div data-src={mockImg} />
-              <div data-src={mockImg} />
-              <div data-src={mockImg} />
-              <div data-src={mockImg} />
+              {gallery.map(galleryItem => (
+                <div data-src={galleryItem} />
+              ))}
             </AwesomeSlider>
           </SliderWrapper>
         </Col>
         <Col md={8} mdOrder={3}>
           <YouTubeWrapper>
-            <YouTube id="BEImUEpgPi4" aspectRatio="60%" />
+            <YouTube id={youtubeId} aspectRatio="60%" />
           </YouTubeWrapper>
         </Col>
       </Row>

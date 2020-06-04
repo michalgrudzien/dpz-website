@@ -6,9 +6,12 @@ import { Container, Row, Col, media } from "styled-bootstrap-grid";
 import PageLayout from "components/PageLayout";
 import PhotoHero from "components/shared/PhotoHero";
 import Card, { CardSidePadding } from "components/shared/Card";
-
-import logoImg from "assets/images/dpz_world_tour_logo.svg";
 import TourShowcase from "components/Tours/TourShowcase";
+
+import colors from "utils/colors";
+
+import mockImg from "assets/images/brand_photo.jpg";
+import logoImg from "assets/images/dpz_world_tour_logo.svg";
 
 const imagesQuery = graphql`
   query {
@@ -30,6 +33,10 @@ const AboutTour = styled.section`
     padding-top: 10em;
     padding-bottom: 4em;
   `}
+`;
+
+const AboutTitle = styled.h1`
+  color: ${colors.primary};
 `;
 
 const LogoImg = styled.img`
@@ -60,7 +67,7 @@ const WorldTour = () => {
       <AboutTour id="o-rejsie">
         <Container>
           <CardSidePadding>
-            <h1>Na na na na Mazury spoko</h1>
+            <AboutTitle>Na na na na Mazury spoko</AboutTitle>
           </CardSidePadding>
           <Card>
             <Container fluid>
@@ -83,10 +90,50 @@ const WorldTour = () => {
           </Card>
         </Container>
       </AboutTour>
-      <TourShowcase />
-      <TourShowcase />
-      <TourShowcase />
-      <TourShowcase />
+      <TourShowcase
+        year="2019"
+        gallery={[mockImg, mockImg, mockImg]}
+        youtubeId="scOuCXapnm4"
+      >
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam
+        </p>
+      </TourShowcase>
+      <TourShowcase
+        year="2018"
+        gallery={[mockImg, mockImg, mockImg]}
+        youtubeId="scOuCXapnm4"
+      >
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam
+        </p>
+      </TourShowcase>
+      <TourShowcase
+        year="2017"
+        gallery={[mockImg, mockImg, mockImg]}
+        youtubeId="scOuCXapnm4"
+      >
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam
+        </p>
+      </TourShowcase>
+      <TourShowcase
+        year="2016"
+        gallery={[mockImg, mockImg, mockImg]}
+        youtubeId="scOuCXapnm4"
+      >
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam
+        </p>
+      </TourShowcase>
     </PageLayout>
   );
 };
