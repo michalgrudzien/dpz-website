@@ -139,7 +139,7 @@ const Footer = () => (
                   </P.FooterMenuLink>
                 </P.FooterMenuListItem>
                 <P.FooterMenuListItem>
-                  <P.FooterMenuLink to="/rejsy/dpz-world-tour">
+                  <P.FooterMenuLink to="/rejsy/dpz-we-shall-sea">
                     DPŻ We Shall Sea
                   </P.FooterMenuLink>
                 </P.FooterMenuListItem>
