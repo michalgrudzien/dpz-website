@@ -50,7 +50,7 @@ const DocumentsList = styled.ul`
 `;
 
 const DocumentsListItem = styled.li`
-  margin-bottom: 2em;
+  margin-bottom: 3em;
   margin-right: 1em;
 `;
 
