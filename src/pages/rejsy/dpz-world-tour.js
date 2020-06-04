@@ -12,6 +12,7 @@ import colors from "utils/colors";
 
 import mockImg from "assets/images/brand_photo.jpg";
 import logoImg from "assets/images/dpz_world_tour_logo.svg";
+import TourNumbers from "components/Tours/TourNumbers";
 
 const imagesQuery = graphql`
   query {
@@ -31,12 +32,20 @@ const AboutTour = styled.section`
 
   ${media.md`
     padding-top: 10em;
-    padding-bottom: 4em;
+    padding-bottom: 6em;
   `}
 `;
 
 const AboutTitle = styled.h1`
   color: ${colors.primary};
+`;
+
+const NumbersTitle = styled.h1`
+  color: ${colors.primary};
+
+  ${media.md`
+    text-align: right;
+  `}
 `;
 
 const LogoImg = styled.img`
@@ -90,6 +99,25 @@ const WorldTour = () => {
           </Card>
         </Container>
       </AboutTour>
+      <Container>
+        <Row>
+          <Col>
+            <CardSidePadding>
+              <NumbersTitle>Świat w liczbach</NumbersTitle>
+            </CardSidePadding>
+            <TourNumbers
+              numbers={[
+                { number: "3", label: "gitary" },
+                { number: "3", label: "gitary" },
+                { number: "3", label: "gitary" },
+                { number: "3", label: "gitary" },
+                { number: "3", label: "gitary" },
+                { number: "3", label: "gitary" },
+              ]}
+            />
+          </Col>
+        </Row>
+      </Container>
       <TourShowcase
         year="2019"
         gallery={[mockImg, mockImg, mockImg]}
