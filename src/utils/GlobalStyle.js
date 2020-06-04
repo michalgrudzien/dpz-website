@@ -29,6 +29,11 @@ const GlobalStyle = createGlobalStyle`
     * {
       box-sizing: border-box;
     }
+
+    *::selection {
+      background: ${colors.primary};
+      color: ${colors.white};
+    }
   }
 
   p, h1, h2, h3, h4, h5, h6 {
