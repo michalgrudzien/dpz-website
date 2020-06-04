@@ -9,11 +9,11 @@ const StyledListItem = styled.li`
   display: block;
   text-align: center;
   font-family: "Bebas Neue Book", sans-serif;
-  font-size: 1.66rem;
-  margin-bottom: 1.66rem;
+  font-size: 2rem;
+  margin-bottom: 3rem;
 
   ${({ hasSubmenu }) =>
-    hasSubmenu && `font-size: 1.2rem; color: ${colors.secondary}`}
+    hasSubmenu && `font-size: 1.5rem; color: ${colors.secondary};`}
 `;
 
 const StyledLink = styled(Link)`
@@ -32,7 +32,7 @@ const SubmenuList = styled.ul`
   margin-top: 12px;
 
   ${StyledListItem} {
-    margin-bottom: 0.32rem;
+    margin-bottom: 1rem;
   }
 `;
 
