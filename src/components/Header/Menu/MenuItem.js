@@ -108,7 +108,9 @@ const MenuItem = ({
         >
           {submenu.map((item, index) => (
             <StyledSubmenuListItem key={index} colorTheme={colorTheme}>
-              <Link to={item.linkTo}>{item.label}</Link>
+              <MenuLink to={item.linkTo} activeClassName="is-active">
+                {item.label}
+              </MenuLink>
             </StyledSubmenuListItem>
           ))}
         </Submenu>
