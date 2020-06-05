@@ -5,7 +5,7 @@ import { Link } from "gatsby";
 
 import colors from "utils/colors";
 
-import SocialLink from "./SocialLink";
+import SocialLink from "components/shared/SocialLink";
 
 export const FooterBody = styled.div`
   background-color: ${colors.darkBlue};

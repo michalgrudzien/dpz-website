@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { media } from "styled-bootstrap-grid";
 
+import SocialLink from "components/shared/SocialLink";
 import colors from "utils/colors";
 import { boxShadow } from "utils/styles";
 
@@ -49,8 +50,11 @@ export const Header = styled.div`
   }
 
   ${media.md`
-width: 33%;
-transform: translate(-100%, 0);
+    width: 33%;
+    transform: translate(-100%, 0);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 `}
 
   ${({ isOpen }) =>
@@ -121,5 +125,24 @@ export const CloseButton = styled.button`
     `
     opacity: 1;
     transition: opacity 200ms ease-out 500ms;
+  `}
+`;
+
+export const SocialIconsWrapper = styled.div`
+  margin-top: 4em;
+  display: flex;
+  justify-content: flex-end;
+
+  ${media.md`
+    margin-top: 1em;
+    justify-content: center;
+  `}
+`;
+
+export const ContactSocialLink = styled(SocialLink)`
+  margin-left: 1em;
+
+  ${media.md`
+    margin: 0 0.5em;
   `}
 `;
