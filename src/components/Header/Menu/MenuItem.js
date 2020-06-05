@@ -26,7 +26,9 @@ const listItemCommonStyles = css`
     ${({ colorTheme }) => {
       switch (colorTheme) {
         case "light":
-          return `color: ${colors.white}`;
+          return `
+            color: ${colors.white};
+            text-shadow: 0px 1px 3px rgba(0,0,0,0.35);`;
         default:
           return `color: ${colors.secondary}`;
       }
@@ -51,6 +53,7 @@ const StyledSubmenuListItem = styled.li`
 const MenuLink = styled(Link)`
   &.is-active {
     color: ${colors.primary};
+    font-family: "Bebas Neue Bold", sans-serif;
   }
 
   ${({ hasSubmenu, isSubmenuOpen }) =>

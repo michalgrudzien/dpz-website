@@ -6,12 +6,19 @@ import { Link } from "gatsby";
 
 import logoWhite from "assets/images/dpz_logo_white.svg";
 import logoBlue from "assets/images/dpz_logo_blue.svg";
+import { boxShadow } from "utils/styles";
 
 const StyledImg = styled.img`
   width: 40px;
   height: 40px;
   transition: all 150ms ease-out;
   transform-origin: 50% 50%;
+
+  ${({ hasShadow }) =>
+    hasShadow &&
+    `
+    ${boxShadow};
+  `}
 
   ${media.md`
     ${({ isShrinked }) => isShrinked && `transform: scale(0.625);`};
@@ -31,6 +38,7 @@ const Logo = ({ colorTheme, isShrinked }) => (
       src={colorTheme === "light" ? logoWhite : logoBlue}
       alt="Dobra Praktyka Żeglarska"
       isShrinked={isShrinked}
+      hasShadow={colorTheme === "light"}
     />
   </Link>
 );

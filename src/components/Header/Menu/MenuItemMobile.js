@@ -26,6 +26,10 @@ const StyledLink = styled(Link)`
   &.is-active {
     color: ${colors.primary};
   }
+
+  &.is-active {
+    font-family: "Bebas Neue Bold", sans-serif;
+  }
 `;
 
 const SubmenuList = styled.ul`
