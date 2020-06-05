@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "gatsby";
 import PropTypes from "prop-types";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import colors from "utils/colors";
 
@@ -16,7 +16,7 @@ const StyledListItem = styled.li`
     hasSubmenu && `font-size: 1.5rem; color: ${colors.secondary};`}
 `;
 
-const StyledLink = styled(Link)`
+const linkStyles = css`
   color: ${colors.secondary};
   text-decoration: none;
 
@@ -32,6 +32,15 @@ const StyledLink = styled(Link)`
   }
 `;
 
+const StyledLink = styled(Link)`
+  ${linkStyles}
+`;
+
+const ClickLink = styled.a`
+  ${linkStyles};
+  cursor: pointer;
+`;
+
 const SubmenuList = styled.ul`
   margin-top: 12px;
 
@@ -40,24 +49,33 @@ const SubmenuList = styled.ul`
   }
 `;
 
-const MenuItemMobile = ({ label, linkTo, submenu }) => {
+const MenuItemMobile = ({ label, linkTo, onClick, isClickLink, submenu }) => {
   const hasSubmenu = submenu.length > 0;
-
   return (
     <StyledListItem hasSubmenu={hasSubmenu}>
       {!hasSubmenu && (
-        <StyledLink to={linkTo} activeClassName="is-active">
-          {label}
-        </StyledLink>
+        <>
+          {isClickLink ? (
+            <ClickLink onClick={onClick}>{label}</ClickLink>
+          ) : (
+            <StyledLink to={linkTo} activeClassName="is-active">
+              {label}
+            </StyledLink>
+          )}
+        </>
       )}
       {hasSubmenu && label}
       {hasSubmenu && (
         <SubmenuList>
           {submenu.map((item, index) => (
             <StyledListItem key={index}>
-              <StyledLink to={item.linkTo} activeClassName="is-active">
-                {item.label}
-              </StyledLink>
+              {isClickLink ? (
+                <ClickLink onClick={onClick}>{label}</ClickLink>
+              ) : (
+                <StyledLink to={item.linkTo} activeClassName="is-active">
+                  {item.label}
+                </StyledLink>
+              )}
             </StyledListItem>
           ))}
         </SubmenuList>

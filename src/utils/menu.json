@@ -28,9 +28,5 @@
   {
     "label": "Blog",
     "linkTo": "/blog"
-  },
-  {
-    "label": "Kontakt",
-    "linkTo": "/kontakt"
   }
 ]

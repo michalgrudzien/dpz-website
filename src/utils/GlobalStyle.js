@@ -13,6 +13,12 @@ const GlobalStyle = createGlobalStyle`
   html, body {
     font-size: 12px;
 
+    ${({ isContactOpen }) =>
+      isContactOpen &&
+      `
+      overflow: hidden;
+    `}
+
     ${media.md`
       font-size: 14px;
     `}

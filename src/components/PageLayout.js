@@ -1,12 +1,18 @@
-import React from "react";
+import React, { createContext, useState } from "react";
 import PropTypes from "prop-types";
 
 import UnderConstruction from "components/UnderConstruction";
 import Header from "components/Header";
 import Footer from "components/Footer";
+import Contact from "components/Contact";
 import CookiesModal from "components/CookiesModal";
 
 import GlobalStyle from "utils/GlobalStyle";
+
+export const ContactContext = createContext({
+  isContactOpen: false,
+  setContactOpen: () => {},
+});
 
 /**
  * Page layout component including constant
@@ -19,16 +25,18 @@ const PageLayout = ({
   isUnderConstruction,
   withCookiesModal,
 }) => {
+  const [isContactOpen, setContactOpen] = useState(false);
   if (isUnderConstruction) return <UnderConstruction />;
 
   return (
-    <>
-      <GlobalStyle />
+    <ContactContext.Provider value={{ isContactOpen, setContactOpen }}>
+      <GlobalStyle isContactOpen={isContactOpen} />
       <Header colorTheme={colorTheme} />
       {children}
       <Footer />
+      <Contact />
       <CookiesModal enabledOnPage={withCookiesModal} />
-    </>
+    </ContactContext.Provider>
   );
 };
 

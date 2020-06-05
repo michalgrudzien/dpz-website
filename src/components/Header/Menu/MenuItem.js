@@ -17,6 +17,7 @@ const listItemCommonStyles = css`
 
   a {
     text-decoration: none;
+    cursor: pointer;
     font-size: 1.2em;
     transition: color 100ms ease-out;
     &:hover {
@@ -71,11 +72,15 @@ const MenuLink = styled(Link)`
   }`}
 `;
 
+const ClickLink = styled.a``;
+
 //TODO: implement using anchors, add default props
 const MenuItem = ({
   children,
   label,
   linkTo,
+  onClick,
+  isClickLink,
   submenu,
   colorTheme,
   isShrinked,
@@ -94,16 +99,20 @@ const MenuItem = ({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <MenuLink
-        to={linkTo}
-        isSubmenuOpen={isHovered && hasSubmenu}
-        hasSubmenu={hasSubmenu}
-        activeClassName="is-active"
-        partiallyActive={hasSubmenu}
-        {...linkAttrs}
-      >
-        {label}
-      </MenuLink>
+      {isClickLink ? (
+        <ClickLink onClick={onClick}>{label}</ClickLink>
+      ) : (
+        <MenuLink
+          to={linkTo}
+          isSubmenuOpen={isHovered && hasSubmenu}
+          hasSubmenu={hasSubmenu}
+          activeClassName="is-active"
+          partiallyActive={hasSubmenu}
+          {...linkAttrs}
+        >
+          {label}
+        </MenuLink>
+      )}
       {hasSubmenu && (
         <Submenu
           isOpen={isHovered}

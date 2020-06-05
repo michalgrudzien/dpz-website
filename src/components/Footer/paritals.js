@@ -121,3 +121,13 @@ export const FooterMenuLink = styled(Link)`
     text-decoration: none;
   }
 `;
+
+export const FooterContactLink = styled.a`
+  color: ${colors.white};
+  text-decoration: underline;
+  cursor: pointer;
+
+  :hover {
+    text-decoration: none;
+  }
+`;
