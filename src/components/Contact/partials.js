@@ -37,7 +37,7 @@ export const Header = styled.div`
   z-index: 1200;
   background-color: ${colors.darkBlue};
   padding: 3em 2em;
-  transform: translate(0, -100%);
+  transform: translate(0, -102%);
   transition: all 400ms cubic-bezier(0.86, 0, 0.07, 1);
   ${boxShadow};
 
@@ -70,15 +70,17 @@ export const Content = styled.div`
   position: relative;
   top: 0;
   left: 0;
+  padding: 3em 2em;
+  height: 500px;
   background-color: ${colors.white};
-  height: 600px;
   transform: translate(0, -200%);
   transition: all 400ms cubic-bezier(0.86, 0, 0.07, 1);
 
   ${media.md`
-width: 67%;
-min-height: 100%;
-transform: translate(-200%, 0);
+    padding: 6em 4em;
+    width: 67%;
+    min-height: 100%;
+    transform: translate(-200%, 0);
 `}
 
   ${({ isOpen }) =>
