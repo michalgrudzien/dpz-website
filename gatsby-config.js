@@ -15,6 +15,7 @@ module.exports = {
         path: `${__dirname}/src/assets/images`,
       },
     },
+    `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-plugin-portal`,
       options: {
@@ -22,7 +23,6 @@ module.exports = {
         id: "portal",
       },
     },
-    `gatsby-plugin-styled-components`,
     `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-plugin-sharp`,

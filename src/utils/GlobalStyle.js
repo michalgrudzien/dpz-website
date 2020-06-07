@@ -40,6 +40,28 @@ const GlobalStyle = createGlobalStyle`
       background: ${colors.primary};
       color: ${colors.white};
     }
+
+    .ContactWrapper {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index 1200;
+      pointer-events: none;
+      overflow: hidden;
+
+      ${({ isOpen }) =>
+        isOpen &&
+        `
+        overflow: auto;
+        pointer-events: all;
+        `};
+
+      ${media.md`
+        display: flex;
+      `}
+    }
   }
 
   p, h1, h2, h3, h4, h5, h6 {
