@@ -10,5 +10,5 @@ export default (method, url, data, success, error) => {
       error(xhr.status, xhr.response, xhr.responseType);
     }
   };
-  xhr.send(data);
+  xhr.send(JSON.stringify(data));
 };
