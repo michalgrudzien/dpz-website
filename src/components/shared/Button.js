@@ -67,6 +67,14 @@ export const buttonStyles = css`
       box-shadow: inset 0 -2px ${white ? colors.white : colors.turquoise};
     }
   `}
+
+  ${({ disabled }) =>
+    disabled &&
+    `
+    pointer-events: none;
+    background-color: ${colors.lightGrey};
+    color: ${colors.darkGrey};
+  `}
 `;
 
 const StyledButton = styled.button`

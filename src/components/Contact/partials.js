@@ -2,9 +2,11 @@ import styled from "styled-components";
 import { media } from "styled-bootstrap-grid";
 
 import SocialLink from "components/shared/SocialLink";
+import Button from "components/shared/Button";
 import colors from "utils/colors";
 import { boxShadow } from "utils/styles";
 
+import tickIconImg from "assets/images/tick_icon.svg";
 import closeIconImg from "assets/images/close_icon.svg";
 import closeIconImgW from "assets/images/close_icon_w.svg";
 
@@ -71,7 +73,6 @@ export const Content = styled.div`
   top: 0;
   left: 0;
   padding: 3em 2em;
-  height: 500px;
   background-color: ${colors.white};
   transform: translate(0, -200%);
   transition: all 400ms cubic-bezier(0.86, 0, 0.07, 1);
@@ -147,4 +148,79 @@ export const ContactSocialLink = styled(SocialLink)`
   ${media.md`
     margin: 0 0.5em;
   `}
+`;
+
+export const FormControl = styled.div`
+  display: block;
+  position: relative;
+  margin-bottom: 3em;
+  &::after {
+    display: block;
+    content: "";
+    width: 1.25em;
+    height: 1.25em;
+    background-image: url(${tickIconImg});
+    background-size: cover;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    transition: all 100ms ease-out;
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  ${({ valid }) =>
+    valid &&
+    `
+    &::after{
+        opacity: 1;
+        transform: none;
+    }
+  `}
+`;
+
+export const ErrorLabel = styled.span`
+  color: ${colors.red};
+  display: inline-block;
+  font-size: 0.85rem;
+  padding: 1em;
+`;
+
+export const SubmitButton = styled(Button)`
+  width: 100%;
+
+  ${media.md`
+    width: auto;
+    float: right;
+  `}
+`;
+
+export const AgreementText = styled.small`
+  display: inline-block;
+  margin-bottom: 1.5em;
+  line-height: 1.35;
+`;
+
+export const ErrorText = styled.small`
+  display: inline-block;
+  margin-top: 1em;
+  color: ${colors.red};
+  line-height: 1.35;
+`;
+
+export const LoaderWrapper = styled.div`
+  min-height: 400px;
+  margin: 4em 0;
+  display: flex;
+  justify-content: space-around;
+`;
+
+export const SuccessButton = styled(Button)`
+  margin-top: 1em;
+  width: 100%;
+
+  ${media.md`
+        width: auto;
+        float: right;
+    `}
 `;

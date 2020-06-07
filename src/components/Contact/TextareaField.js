@@ -5,7 +5,7 @@ import colors from "utils/colors";
 
 import { FormControl, ErrorLabel } from "./partials";
 
-const Input = styled.input`
+const Textarea = styled.textarea`
   display: block;
   position: relative;
   width: 100%;
@@ -13,20 +13,21 @@ const Input = styled.input`
   font-size: 1.2rem;
   font-family: "Poppins", sans-serif;
   font-weight: 300;
+  resize: none;
   padding: 1em 2em 1em 1em;
-  border-bottom: 1px ${colors.darkBlue} solid;
+  border: 1px ${colors.darkBlue} solid;
   transition: all 100ms ease-in;
 
   :focus {
     outline: none;
-    border-bottom: 1px ${colors.turquoise} solid;
+    border: 1px ${colors.turquoise} solid;
   }
 
   ${({ error }) =>
     error &&
     `
     &&{
-        border-bottom: 1px ${colors.red} solid;
+        border: 1px ${colors.red} solid;
     }
   `}
 
@@ -34,13 +35,12 @@ const Input = styled.input`
     valid &&
     `
     &&{
-        border-bottom: 1px ${colors.green} solid;
+        border: 1px ${colors.green} solid;
     }
   `}
 `;
 
-const TextField = ({
-  type,
+const TextareaField = ({
   name,
   label,
   onChange,
@@ -54,20 +54,20 @@ const TextField = ({
 
   return (
     <FormControl valid={isValid}>
-      <Input
+      <Textarea
         id={name}
         name={name}
-        type={type}
         onChange={onChange}
         onBlur={onBlur}
         value={value}
         placeholder={label}
         error={hasError}
         valid={isValid}
+        rows={5}
       />
       {hasError && <ErrorLabel>{error}</ErrorLabel>}
     </FormControl>
   );
 };
 
-export default TextField;
+export default TextareaField;
