@@ -22,6 +22,7 @@ const Label = styled.span`
   font-family: "Bebas Neue Regular", sans-serif;
   font-size: 1.2em;
   margin-bottom: 0.5em;
+  text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.35);
 `;
 
 const ArrowImg = styled.img`
