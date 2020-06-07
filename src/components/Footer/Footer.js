@@ -173,6 +173,22 @@ const Footer = () => (
                   </P.FooterMenuList>
                 </nav>
               </Col>
+              <Col hiddenMdUp>
+                <nav>
+                  <P.FooterMenuList>
+                    <P.FooterMenuListItem>
+                      <P.FooterMenuLink to="/trudne-sprawy">
+                        Trudne sprawy
+                      </P.FooterMenuLink>
+                    </P.FooterMenuListItem>
+                    <P.FooterMenuListItem>
+                      <P.FooterContactLink onClick={() => setContactOpen(true)}>
+                        Kontakt
+                      </P.FooterContactLink>
+                    </P.FooterMenuListItem>
+                  </P.FooterMenuList>
+                </nav>
+              </Col>
             </Row>
           </Container>
         </P.FooterBody>

@@ -103,15 +103,23 @@ export const DesktopSocialLink = styled(SocialLink)`
 `;
 
 export const FooterMenuList = styled.ul`
-  margin-top: 2em;
   display: flex;
   width: 100%;
-  max-width: 820px;
-  justify-content: space-between;
+
+  ${media.md`
+  margin-top: 2em;
+    max-width: 820px;
+    justify-content: space-between;
+  `}
 `;
 
 export const FooterMenuListItem = styled.li`
   display: inline-block;
+  margin-right: 2em;
+
+  ${media.md`
+    margin-right: 0;
+  `}
 `;
 
 export const FooterMenuLink = styled(Link)`
