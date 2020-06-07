@@ -74,6 +74,7 @@ export const buttonStyles = css`
     pointer-events: none;
     background-color: ${colors.lightGrey};
     color: ${colors.darkGrey};
+    cursor: not-allowed;
   `}
 `;
 
