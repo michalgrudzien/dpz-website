@@ -65,7 +65,6 @@ const WorldTour = () => {
     <PageLayout colorTheme="light">
       <PhotoHero
         fluidImage={images.heroImage.childImageSharp.fluid}
-        backgroundPosition="10%"
         overlayOpacity="0.25"
         title="DPŻ World Tour"
         anchor={{

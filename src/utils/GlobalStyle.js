@@ -69,8 +69,12 @@ const GlobalStyle = createGlobalStyle`
   }
 
   p {
-    font-size: 1.1em;
+    font-size: 1em;
     margin-bottom: 1.15rem;
+
+    a {
+      color: ${colors.primary};
+    }
   }
 
   h1, h2, h3, h4, h5 {

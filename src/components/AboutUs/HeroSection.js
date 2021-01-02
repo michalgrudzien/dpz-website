@@ -63,7 +63,7 @@ const HeroSection = () => {
                 <HeroPretitle>Stowarzyszenie</HeroPretitle>
                 <HeroTitle>Dobra Praktyka Żeglarska</HeroTitle>
               </HeroHeading>
-              <MembersCount number={30} label="członków" />
+              <MembersCount number={34} label="członków" />
             </Col>
           </Row>
           <Row>

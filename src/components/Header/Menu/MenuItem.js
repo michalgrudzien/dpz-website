@@ -12,7 +12,7 @@ const listItemCommonStyles = css`
   padding-top: 4px;
 
   &:hover > a {
-    color: ${colors.primary};
+    text-decoration: underline;
   }
 
   a {
@@ -21,7 +21,7 @@ const listItemCommonStyles = css`
     font-size: 1.2em;
     transition: color 100ms ease-out;
     &:hover {
-      color: ${colors.primary};
+      text-decoration: underline;
     }
 
     ${({ colorTheme }) => {
@@ -53,7 +53,6 @@ const StyledSubmenuListItem = styled.li`
 
 const MenuLink = styled(Link)`
   &.is-active {
-    color: ${colors.primary};
     font-family: "Bebas Neue Bold", sans-serif;
   }
 

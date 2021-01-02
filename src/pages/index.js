@@ -1,35 +1,46 @@
 import React from "react";
+import { useStaticQuery } from "gatsby";
 
 import PageLayout from "components/PageLayout";
 
-const IndexPage = () => (
-  <PageLayout colorTheme="dark">
-    {/* <h1>H1 text</h1>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-      est laborum.
-    </p>
-    <h2>Heading text</h2>
-    <h3>Heading text</h3>
-    <h4>Heading text</h4>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-      est laborum.
-    </p>
-    <small>Small text.</small>
-    <h5>Heading text</h5>
-    <h6>Heading text</h6> */}
-  </PageLayout>
-);
+import HomeHero from "components/Home/HomeHero";
+import WhoWeAre from "components/Home/WhoWeAre";
+import News from "components/Home/News";
+
+const imagesQuery = graphql`
+  query {
+    heroImage1: file(relativePath: { eq: "home_hero_1.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 1920) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    heroImage2: file(relativePath: { eq: "home_hero_2.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 1920) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+  }
+`;
+
+const IndexPage = () => {
+  const images = useStaticQuery(imagesQuery);
+
+  const heroImages = [
+    images.heroImage1.childImageSharp.fluid,
+    images.heroImage2.childImageSharp.fluid,
+  ];
+
+  return (
+    <PageLayout colorTheme="light">
+      <HomeHero images={heroImages} />
+      <WhoWeAre />
+      <News />
+    </PageLayout>
+  );
+};
 
 export default IndexPage;

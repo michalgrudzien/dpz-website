@@ -92,10 +92,10 @@ const PhotoHero = ({
         <ContentWrapper>
           <Container>
             <Row>
-              <Col col={6} sm={4} md={3}>
+              <Col col={6} sm={4} md={2}>
                 <StyledScrollAnchor {...anchor} />
               </Col>
-              <Col col={6} sm={8} md={9}>
+              <Col col={6} sm={8} md={10}>
                 <Title>{title}</Title>
               </Col>
             </Row>
