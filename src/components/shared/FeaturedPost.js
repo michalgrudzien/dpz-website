@@ -43,7 +43,14 @@ const ReadMoreLink = styled(Link)`
   }
 `;
 
-const Date = styled.small``;
+const CategoryLink = styled(Link)`
+  font-family: "Bebas Neue Bold";
+  text-decoration: none;
+  color: ${colors.white};
+  padding: 0.35em 0.7em 0.15em 0.7em;
+  border-radius: 10px;
+  background-color: ${colors.primary};
+`;
 
 const FeaturedPost = () => (
   <Container>
@@ -55,7 +62,9 @@ const FeaturedPost = () => (
       </Col>
       <Col md="6">
         <div>
-          <Date>24 września 2020</Date>
+          <small>
+            24 września 2020 | <CategoryLink to="/">Aktualności</CategoryLink>
+          </small>
           <HeadingLink to="/">
             Lorem ipsum post title Lorem ipsum post title Lorem ipsum post title
           </HeadingLink>

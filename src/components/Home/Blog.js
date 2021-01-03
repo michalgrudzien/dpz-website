@@ -7,7 +7,6 @@ import FeaturedPost from "components/shared/FeaturedPost";
 
 import colors from "utils/colors";
 import PostCard from "components/shared/PostCard";
-import Button from "components/shared/Button";
 import LinkButton from "components/shared/LinkButton";
 
 const StyledSection = styled.section`
@@ -20,10 +19,6 @@ const StyledSection = styled.section`
 
 const Heading = styled.h1`
   color: ${colors.primary};
-
-  ${media.md`
-    margin-bottom: 1em;
-  `}
 `;
 
 const ButtonWrapper = styled.div`
@@ -31,13 +26,17 @@ const ButtonWrapper = styled.div`
   text-align: center;
 `;
 
-const News = () => (
-  <StyledSection id="kim-jestesmy">
+const Blog = () => (
+  <StyledSection>
     <Container>
       <Row>
-        <Col>
+        <Col lg="6">
           <CardSidePadding>
-            <Heading>Co słychać w klubie?</Heading>
+            <Heading>Blog</Heading>
+            <p>
+              Blogerzy ich nienawidzą. Piszą o żeglarstwie nie wychodząc z domu
+              i nic nie zarabiając. Zobacz jak to zrobili…
+            </p>
           </CardSidePadding>
         </Col>
       </Row>
@@ -65,8 +64,8 @@ const News = () => (
       <Row>
         <Col>
           <ButtonWrapper>
-            <LinkButton internal to="/">
-              Więcej aktualności
+            <LinkButton internal to="/blog">
+              Przeglądaj bloga
             </LinkButton>
           </ButtonWrapper>
         </Col>
@@ -75,4 +74,4 @@ const News = () => (
   </StyledSection>
 );
 
-export default News;
+export default Blog;

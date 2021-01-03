@@ -72,6 +72,15 @@ const ReadMoreLink = styled(Link)`
   }
 `;
 
+const CategoryLink = styled(Link)`
+  font-family: "Bebas Neue Bold";
+  text-decoration: none;
+  color: ${colors.white};
+  padding: 0.35em 0.7em 0.1em 0.7em;
+  border-radius: 8px;
+  background-color: ${colors.primary};
+`;
+
 const PostCard = ({ text }) => (
   <PaddingWrapper>
     <Wrapper>
@@ -79,7 +88,9 @@ const PostCard = ({ text }) => (
         <PostImg src={mockImg} alt={"post title"} />
       </Link>
       <TextWrapper>
-        <small>24 września 2020</small>
+        <small>
+          24 września 2020 | <CategoryLink to="/">Aktualności</CategoryLink>
+        </small>
         <HeadingLink to="/">
           Lorem ipsum post title Lorem ipsum post title Lorem ipsum post title
         </HeadingLink>

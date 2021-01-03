@@ -13,6 +13,7 @@ import WhatWeDo from "components/Home/WhatWeDo";
 import JoinUs from "components/Home/JoinUs";
 import useWindowSize from "hooks/useWindowSize";
 import Tours from "components/Home/Tours";
+import Blog from "components/Home/Blog";
 
 const MOBILE_BREAKPOINT = 768;
 
@@ -57,6 +58,7 @@ const IndexPage = () => {
         <WhatWeDo isOnMobile={isOnMobile} />
         <JoinUs />
         <Tours />
+        <Blog />
       </ParallaxProvider>
     </PageLayout>
   );

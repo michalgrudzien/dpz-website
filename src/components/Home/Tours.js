@@ -12,7 +12,7 @@ import LinkButton from "components/shared/LinkButton";
 import { boxShadow } from "utils/styles";
 
 const Wrapper = styled.section`
-  margin: 6em 0;
+  margin-top: 6em;
 `;
 
 const Title = styled.h1`
