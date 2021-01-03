@@ -14,6 +14,7 @@ import JoinUs from "components/Home/JoinUs";
 import useWindowSize from "hooks/useWindowSize";
 import Tours from "components/Home/Tours";
 import Blog from "components/Home/Blog";
+import Instagram from "components/Home/Instagram";
 
 const MOBILE_BREAKPOINT = 768;
 
@@ -59,6 +60,7 @@ const IndexPage = () => {
         <JoinUs />
         <Tours />
         <Blog />
+        <Instagram />
       </ParallaxProvider>
     </PageLayout>
   );
