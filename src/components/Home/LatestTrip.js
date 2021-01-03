@@ -25,7 +25,7 @@ const BackgroundWrapper = styled.div`
 
 const VideoWrapper = styled.div`
   margin-top: -200px;
-  margin-bottom: 250px;
+  margin-bottom: 4em;
 `;
 
 const VideoTitle = styled.h2`

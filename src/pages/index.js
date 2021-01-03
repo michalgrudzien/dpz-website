@@ -7,6 +7,7 @@ import HomeHero from "components/Home/HomeHero";
 import WhoWeAre from "components/Home/WhoWeAre";
 import News from "components/Home/News";
 import LatestTrip from "components/Home/LatestTrip";
+import ProductsTeaser from "components/Home/ProductsTeaser";
 
 const imagesQuery = graphql`
   query {
@@ -41,6 +42,7 @@ const IndexPage = () => {
       <WhoWeAre />
       <News />
       <LatestTrip />
+      <ProductsTeaser />
     </PageLayout>
   );
 };
