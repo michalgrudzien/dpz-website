@@ -38,6 +38,12 @@ const FileLink = styled.a`
   color: ${colors.white};
   text-decoration: none;
 
+  ${({ dark }) =>
+    dark &&
+    `color: ${
+      colors.primary
+    }; ${Icon} {background-image: url(${iconImgActive});}`}
+
   :hover {
     color: ${colors.primary};
     ${Icon} {
@@ -56,10 +62,10 @@ const Label = styled.span`
   line-height: 1.2;
 `;
 
-const CircleFile = ({ url, label, linkProps, className, ...rest }) => (
+const CircleFile = ({ url, label, dark, linkProps, className, ...rest }) => (
   <ExternalWrapper className={className}>
     <StyledCircle hoverable {...rest}>
-      <FileLink href={url} {...linkProps}>
+      <FileLink href={url} dark={dark} {...linkProps}>
         <Wrapper>
           <Icon />
           <Label>{label}</Label>

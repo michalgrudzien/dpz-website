@@ -12,7 +12,7 @@ const Section = styled.section`
 `;
 
 const Wrapper = styled.div`
-  padding: 4em 0;
+  padding: 4em 0 232px;
   background-color: rgba(${colors.rgb.turquoise}, 0.075);
   color: ${colors.secondary};
 `;

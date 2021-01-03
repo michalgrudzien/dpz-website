@@ -10,6 +10,7 @@ import News from "components/Home/News";
 import LatestTrip from "components/Home/LatestTrip";
 import ProductsTeaser from "components/Home/ProductsTeaser";
 import WhatWeDo from "components/Home/WhatWeDo";
+import JoinUs from "components/Home/JoinUs";
 
 const imagesQuery = graphql`
   query {
@@ -47,6 +48,7 @@ const IndexPage = () => {
         <LatestTrip />
         <ProductsTeaser />
         <WhatWeDo />
+        <JoinUs />
       </ParallaxProvider>
     </PageLayout>
   );
