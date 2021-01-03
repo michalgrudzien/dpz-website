@@ -11,6 +11,9 @@ import LatestTrip from "components/Home/LatestTrip";
 import ProductsTeaser from "components/Home/ProductsTeaser";
 import WhatWeDo from "components/Home/WhatWeDo";
 import JoinUs from "components/Home/JoinUs";
+import useWindowSize from "hooks/useWindowSize";
+
+const MOBILE_BREAKPOINT = 768;
 
 const imagesQuery = graphql`
   query {
@@ -33,6 +36,9 @@ const imagesQuery = graphql`
 
 const IndexPage = () => {
   const images = useStaticQuery(imagesQuery);
+  const [windowWidth] = useWindowSize();
+
+  const isOnMobile = windowWidth < MOBILE_BREAKPOINT;
 
   const heroImages = [
     images.heroImage1.childImageSharp.fluid,
@@ -45,9 +51,9 @@ const IndexPage = () => {
         <HomeHero images={heroImages} />
         <WhoWeAre />
         <News />
-        <LatestTrip />
-        <ProductsTeaser />
-        <WhatWeDo />
+        <LatestTrip isOnMobile={isOnMobile} />
+        <ProductsTeaser isOnMobile={isOnMobile} />
+        <WhatWeDo isOnMobile={isOnMobile} />
         <JoinUs />
       </ParallaxProvider>
     </PageLayout>

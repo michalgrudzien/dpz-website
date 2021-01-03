@@ -55,7 +55,7 @@ const LogoImg = styled.img`
   max-width: 300px;
 `;
 
-const LatestTrip = () => (
+const LatestTrip = ({ isOnMobile }) => (
   <Wrapper>
     <BackgroundWrapper>
       <Container>
@@ -79,7 +79,7 @@ const LatestTrip = () => (
         </Row>
       </Container>
     </BackgroundWrapper>
-    <Parallax y={[10, -10]}>
+    <Parallax y={[10, -10]} disabled={isOnMobile}>
       <VideoWrapper>
         <Container>
           <VideoTitle>

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Container, Row, Col } from "styled-bootstrap-grid";
+import { Container, Row, Col, media } from "styled-bootstrap-grid";
 import { Link } from "gatsby";
 
 import CircleFile from "components/shared/CircleFile";
@@ -19,12 +19,16 @@ const Wrapper = styled.section`
 const ContentCard = styled.div`
   ${boxShadow}
   background-color: ${colors.white};
-  background-image: url(${logoCornerImg});
-  background-size: 240px;
-  background-repeat: no-repeat;
-  background-position: bottom left;
   color: ${colors.secondary};
   padding: 4em 0 3em;
+
+  ${media.lg`
+    padding: 4em 0 3em;
+    background-image: url(${logoCornerImg});
+    background-size: 240px;
+    background-repeat: no-repeat;
+    background-position: bottom left;
+  `}
 `;
 
 const Title = styled.h1`
@@ -41,9 +45,15 @@ const GroupPhotoImg = styled.img`
 
 const FilesWrapper = styled.div`
   display: grid;
-  grid-template-rows: auto auto;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto;
   grid-row-gap: 24px;
-  width: 100%;
+
+  ${media.lg`
+    grid-template-rows: auto auto;
+    grid-template-columns: auto;
+    width: 100%;
+  `};
 `;
 
 const StyledCircleFile = styled(CircleFile)`
@@ -51,7 +61,10 @@ const StyledCircleFile = styled(CircleFile)`
 `;
 
 const SecondaryText = styled.div`
-  padding-bottom: 200px;
+  padding-bottom: 1.5em;
+  ${media.lg`
+    padding-bottom: 200px;
+  `}
 `;
 
 const JoinUs = () => (

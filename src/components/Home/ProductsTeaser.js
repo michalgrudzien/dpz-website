@@ -53,28 +53,28 @@ const StyledLinkButton = styled(LinkButton)`
   margin: 0.5em;
 `;
 
-const ProductsTeaser = () => (
+const ProductsTeaser = ({ isOnMobile }) => (
   <section>
     <Container>
       <Row alignItems="center">
         <Col lg="4">
-          <Parallax x={[-5, 0]}>
+          <Parallax disabled={isOnMobile} x={[-5, 0]}>
             <Title>Nasze produkty</Title>
           </Parallax>
         </Col>
         <Col lg="4" xs="4" sm="4">
-          <Parallax y={[-5, 0]}>
+          <Parallax disabled={isOnMobile} y={[-5, 0]}>
             <Photo src={mockPhoto} />
           </Parallax>
         </Col>
         <Col lg="4" xs="4" sm="4">
-          <Parallax x={[5, 0]}>
+          <Parallax disabled={isOnMobile} x={[5, 0]}>
             <Photo src={mockPhoto} />
           </Parallax>
         </Col>
 
         <Col lg="4" xs="4" sm="4">
-          <Parallax x={[-5, 0]}>
+          <Parallax disabled={isOnMobile} x={[-5, 0]}>
             <Photo src={mockPhoto} />
           </Parallax>
         </Col>

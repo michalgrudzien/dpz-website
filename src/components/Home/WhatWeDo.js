@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Container, Row } from "styled-bootstrap-grid";
+import { Col, Container, Row, media } from "styled-bootstrap-grid";
 import styled from "styled-components";
 import { Parallax } from "react-scroll-parallax";
 
@@ -12,9 +12,15 @@ const Section = styled.section`
 `;
 
 const Wrapper = styled.div`
-  padding: 4em 0 232px;
+  padding: 4em 0 180px;
   background-color: rgba(${colors.rgb.turquoise}, 0.075);
   color: ${colors.secondary};
+  overflow-x: hidden;
+  position: relative;
+
+  ${media.lg`
+    padding: 4em 0 232px;
+  `}
 `;
 
 const Title = styled.h1`
@@ -24,15 +30,17 @@ const Title = styled.h1`
 const List = styled.ul`
   margin: 2em 0 2em 32px;
   list-style-image: url(${bulletImg});
-  list-style-position: outside;
-  position: relative;
-  display: grid;
-  grid-gap: 36px;
-  grid-template-columns: auto auto;
+
+  ${media.lg`
+    display: grid;
+    grid-column-gap: 36px;
+    grid-template-columns: auto auto;
+  `}
 `;
 
 const ListItem = styled.li`
   line-height: 1.33;
+  margin-bottom: 2em;
 `;
 
 const ListItemTitle = styled.span`
@@ -55,21 +63,27 @@ const Subtitle = styled.h2`
 `;
 
 const BoatImg = styled.img`
-  width: 50vw;
-  position: absolute;
-  right: -80px;
+  display: none;
+
+  ${media.lg`
+    width: 50vw;
+    position: absolute;
+    display: block;
+    top: 48px;
+    right: -80px;
+  `}
 `;
 
-const WhatWeDo = () => (
+const WhatWeDo = ({ isOnMobile }) => (
   <Section>
     <Wrapper>
-      <Parallax x={[5, 0]}>
+      <Parallax disabled={isOnMobile} x={[5, 0]}>
         <BoatImg src={boatImg} />
       </Parallax>
       <Container>
         <Row>
           <Col lg="8">
-            <Title>Nasza działalność i cele</Title>
+            <Title>Działalność klubu i&nbsp;nasze cele</Title>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
