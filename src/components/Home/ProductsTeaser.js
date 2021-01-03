@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Container, Row, Col, media } from "styled-bootstrap-grid";
+import { Parallax } from "react-scroll-parallax";
 
 import mockPhoto from "assets/images/nos_dpz_teaser.jpg";
 import nosLogoImg from "assets/images/nos_dpz_logo.svg";
@@ -57,17 +58,25 @@ const ProductsTeaser = () => (
     <Container>
       <Row alignItems="center">
         <Col lg="4">
-          <Title>Nasze produkty</Title>
+          <Parallax x={[-5, 0]}>
+            <Title>Nasze produkty</Title>
+          </Parallax>
         </Col>
         <Col lg="4" xs="4" sm="4">
-          <Photo src={mockPhoto} />
+          <Parallax y={[-5, 0]}>
+            <Photo src={mockPhoto} />
+          </Parallax>
         </Col>
         <Col lg="4" xs="4" sm="4">
-          <Photo src={mockPhoto} />
+          <Parallax x={[5, 0]}>
+            <Photo src={mockPhoto} />
+          </Parallax>
         </Col>
 
         <Col lg="4" xs="4" sm="4">
-          <Photo src={mockPhoto} />
+          <Parallax x={[-5, 0]}>
+            <Photo src={mockPhoto} />
+          </Parallax>
         </Col>
         <Col lg="8">
           <TextWrapper>

@@ -7,6 +7,7 @@ import colors from "utils/colors";
 import { animatedGradientBg, boxShadow } from "utils/styles";
 
 import wtLogoImg from "assets/images/dpz_world_tour_logo_w.svg";
+import { Parallax } from "react-scroll-parallax";
 
 const Wrapper = styled.section`
   padding: 2em 0;
@@ -78,29 +79,31 @@ const LatestTrip = () => (
         </Row>
       </Container>
     </BackgroundWrapper>
-    <VideoWrapper>
-      <Container>
-        <VideoTitle>
-          DPŻ World Tour: Mazury 2019 - Miuosh & Bajm - Miasto szczęścia
-        </VideoTitle>
-        <YoutubeWrapper>
-          <Youtube id="scOuCXapnm4" aspectRatio="56.25%" />
-        </YoutubeWrapper>
-        <YoutubeTeaser>
-          <span>
-            Więcej znajdziesz na naszym{" "}
-            <YoutubeLink
-              href="https://www.youtube.com/channel/UCku8IcZT7gwCDSfonuduBew"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              kanale YouTube
-            </YoutubeLink>
-            .
-          </span>
-        </YoutubeTeaser>
-      </Container>
-    </VideoWrapper>
+    <Parallax y={[10, -10]}>
+      <VideoWrapper>
+        <Container>
+          <VideoTitle>
+            DPŻ World Tour: Mazury 2019 - Miuosh & Bajm - Miasto szczęścia
+          </VideoTitle>
+          <YoutubeWrapper>
+            <Youtube id="scOuCXapnm4" aspectRatio="56.25%" />
+          </YoutubeWrapper>
+          <YoutubeTeaser>
+            <span>
+              Więcej znajdziesz na naszym{" "}
+              <YoutubeLink
+                href="https://www.youtube.com/channel/UCku8IcZT7gwCDSfonuduBew"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                kanale YouTube
+              </YoutubeLink>
+              .
+            </span>
+          </YoutubeTeaser>
+        </Container>
+      </VideoWrapper>
+    </Parallax>
   </Wrapper>
 );
 

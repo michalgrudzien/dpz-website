@@ -1,5 +1,6 @@
 import React from "react";
 import { useStaticQuery } from "gatsby";
+import { ParallaxProvider } from "react-scroll-parallax";
 
 import PageLayout from "components/PageLayout";
 
@@ -8,6 +9,7 @@ import WhoWeAre from "components/Home/WhoWeAre";
 import News from "components/Home/News";
 import LatestTrip from "components/Home/LatestTrip";
 import ProductsTeaser from "components/Home/ProductsTeaser";
+import WhatWeDo from "components/Home/WhatWeDo";
 
 const imagesQuery = graphql`
   query {
@@ -38,11 +40,14 @@ const IndexPage = () => {
 
   return (
     <PageLayout colorTheme="light">
-      <HomeHero images={heroImages} />
-      <WhoWeAre />
-      <News />
-      <LatestTrip />
-      <ProductsTeaser />
+      <ParallaxProvider>
+        <HomeHero images={heroImages} />
+        <WhoWeAre />
+        <News />
+        <LatestTrip />
+        <ProductsTeaser />
+        <WhatWeDo />
+      </ParallaxProvider>
     </PageLayout>
   );
 };
