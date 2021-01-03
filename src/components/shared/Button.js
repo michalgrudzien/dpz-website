@@ -9,7 +9,7 @@ export const buttonStyles = css`
   font-family: "Bebas Neue Book", sans-serif;
   color: ${colors.white};
   background-color: ${colors.turquoise};
-  padding: 0.75em 2.5em 0.65em;
+  padding: 0.75em 2.25em 0.65em;
   font-size: 1.5em;
   border: none;
   cursor: pointer;

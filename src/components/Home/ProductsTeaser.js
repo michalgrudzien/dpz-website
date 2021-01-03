@@ -48,6 +48,10 @@ const ButtonWrapper = styled.div`
   padding-top: 3em;
 `;
 
+const StyledLinkButton = styled(LinkButton)`
+  margin: 0.5em;
+`;
+
 const ProductsTeaser = () => (
   <section>
     <Container>
@@ -85,10 +89,12 @@ const ProductsTeaser = () => (
               </Col>
             </Row>
             <ButtonWrapper>
-              <LinkButton internal to="/">
+              <StyledLinkButton internal to="/produkty">
                 Więcej o produktach DPŻ
-              </LinkButton>
-              <LinkButton href="/">Przejdź do zamawialni</LinkButton>
+              </StyledLinkButton>
+              <StyledLinkButton href="https://zamow.depezet.com">
+                Przejdź do zamawialni
+              </StyledLinkButton>
             </ButtonWrapper>
           </TextWrapper>
         </Col>
