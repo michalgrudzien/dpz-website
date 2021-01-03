@@ -15,7 +15,7 @@ const Wrapper = styled.div`
   padding: 4em 0 180px;
   background-color: rgba(${colors.rgb.turquoise}, 0.075);
   color: ${colors.secondary};
-  overflow-x: hidden;
+  overflow: hidden;
   position: relative;
 
   ${media.lg`
@@ -66,7 +66,7 @@ const BoatImg = styled.img`
   display: none;
 
   ${media.lg`
-    width: 50vw;
+    height: 720px;
     position: absolute;
     display: block;
     top: 48px;

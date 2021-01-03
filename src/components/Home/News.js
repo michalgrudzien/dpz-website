@@ -20,7 +20,6 @@ const StyledSection = styled.section`
 
 const Heading = styled.h1`
   color: ${colors.primary};
-  font-size: 2.5em;
 
   ${media.md`
     margin-bottom: 1em;
