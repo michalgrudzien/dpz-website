@@ -120,7 +120,7 @@ const AccountInfoWrapper = styled.div`
 
 const AccountLink = styled.a`
   display: block;
-  font-size: 4em;
+  font-size: 3em;
   color: ${colors.primary};
   font-family: "Bebas Neue Bold";
   text-decoration: none;
@@ -217,7 +217,7 @@ const Instagram = () => {
     <Wrapper>
       <Container>
         <Row>
-          <Col lg="5" lgOrder="last">
+          <Col lg="5" md="4" mdOrder="last">
             <AccountInfoWrapper>
               <AccountLink
                 href="https://www.instagram.com/de_pe_zet/"
@@ -262,7 +262,7 @@ const Instagram = () => {
               </Hashtags>
             </AccountInfoWrapper>
           </Col>
-          <Col lg="5" lgOffset="1">
+          <Col lg="5" md="8" lgOffset="1">
             <SlidersWrapper>
               <StyledSlider {...sliderSettings}>
                 {renderPhotos(data)}
