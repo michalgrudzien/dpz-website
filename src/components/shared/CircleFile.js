@@ -58,7 +58,7 @@ const Wrapper = styled.div`
 `;
 
 const Label = styled.span`
-  font-size: 1em;
+  font-size: 1rem;
   line-height: 1.2;
 `;
 
