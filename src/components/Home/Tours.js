@@ -4,11 +4,11 @@ import styled from "styled-components";
 import YoutubeBackground from "react-youtube-background";
 
 import WindowCheck from "components/WindowCheck";
+import LinkButton from "components/shared/LinkButton";
 
 import wtLogoImg from "assets/images/dpz_world_tour_logo_w.svg";
 import wssLogoImg from "assets/images/dpz_wss_logo_w.svg";
 import colors from "utils/colors";
-import LinkButton from "components/shared/LinkButton";
 import { boxShadow } from "utils/styles";
 
 const Wrapper = styled.section`
@@ -20,7 +20,9 @@ const Title = styled.h1`
   margin-bottom: 0.5em;
 `;
 
-const StyledYoutubeBackground = styled(YoutubeBackground)`
+const StyledYoutubeBackground = styled(props => (
+  <YoutubeBackground {...props} />
+))`
   border-radius: 40px;
 `;
 

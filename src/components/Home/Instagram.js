@@ -34,6 +34,35 @@ const SlidersWrapper = styled.div`
     li button:before {
       font-size: 12px;
     }
+
+    ${media.lg`
+      display: none;
+    `}
+  }
+
+  .slick-arrow {
+    display: none;
+    width: 32px;
+    height: 64px;
+    top: 30%;
+
+    ::before{
+      content: "";
+      display: block;
+      width: 32px;
+      height 64px;
+      background-image: url(${leftChevronIcon});
+      background-size: contain;
+    }
+
+    &.slick-next{
+      transform: scale(-1);
+      transform-origin: 50% 25%;
+      right: -48px;
+    }
+    &.slick-prev{
+      left: -48px;
+    }
   }
 `;
 
@@ -102,11 +131,14 @@ const Hashtags = styled.div`
 `;
 
 const HashtagLink = styled.a`
-  display: block;
   font-family: "Bebas Neue Bold";
   text-decoration: none;
   color: ${colors.secondary};
   font-size: 2em;
+
+  :hover {
+    color: ${colors.primary};
+  }
 `;
 
 const renderPhotos = data => {
@@ -148,13 +180,22 @@ const getFollowedByCount = data =>
 
 const sliderSettings = {
   lazyLoad: true,
-  dots: true,
-  arrows: false,
+  dots: false,
   infinite: true,
   autoplay: true,
   autoplaySpeed: 5000,
   pauseOnHover: true,
   fade: true,
+  arrows: true,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        dots: true,
+        arrows: false,
+      },
+    },
+  ],
 };
 
 const Instagram = () => {
@@ -194,6 +235,7 @@ const Instagram = () => {
                 >
                   #dpzworldtour
                 </HashtagLink>
+                <br />
                 <HashtagLink
                   href="https://www.instagram.com/explore/tags/dpzweshallsea/"
                   target="_blank"
@@ -201,6 +243,7 @@ const Instagram = () => {
                 >
                   #dpzweshallsea
                 </HashtagLink>
+                <br />
                 <HashtagLink
                   href="https://www.instagram.com/explore/tags/nosdpz/"
                   target="_blank"
@@ -208,6 +251,7 @@ const Instagram = () => {
                 >
                   #nosdpz
                 </HashtagLink>
+                <br />
                 <HashtagLink
                   href="https://www.instagram.com/explore/tags/dpzspozycie/"
                   target="_blank"
