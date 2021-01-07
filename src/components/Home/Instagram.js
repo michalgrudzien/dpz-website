@@ -199,7 +199,7 @@ const sliderSettings = {
 };
 
 const Instagram = () => {
-  const [data, setData] = useState({});
+  const [data, setData] = useState(null);
 
   useEffect(() => {
     ajax(
