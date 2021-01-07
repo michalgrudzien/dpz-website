@@ -10,7 +10,7 @@ import colors from "utils/colors";
 import { boxShadow } from "utils/styles";
 
 const Wrapper = styled.section`
-  padding: 6em 0;
+  padding: 8em 0;
   margin-top: -100px;
   background-image: url(${spotifyBgImg});
   background-size: 600px 600px;

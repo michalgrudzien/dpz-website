@@ -54,10 +54,10 @@ const News = () => (
           <Col md="6" lg="4">
             <PostCard text="aaaaasdasd asasd asd asd as dasd adasdad as dasdsad asd ddas a asd asdd dsadasdasd as da a das" />
           </Col>
-          <Col md="6" lg="4">
+          <Col md="6" lg="4" hiddenXsDown>
             <PostCard />
           </Col>
-          <Col md="6" lg="4">
+          <Col md="6" lg="4" hiddenXsDown>
             <PostCard />
           </Col>
         </Row>
