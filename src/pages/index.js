@@ -16,6 +16,7 @@ import Tours from "components/Home/Tours";
 import Blog from "components/Home/Blog";
 import Instagram from "components/Home/Instagram";
 import Songbook from "components/Home/Songbook";
+import Spotify from "components/Home/Spotify";
 
 const MOBILE_BREAKPOINT = 768;
 
@@ -63,6 +64,7 @@ const IndexPage = () => {
         <Blog />
         <Instagram />
         <Songbook />
+        <Spotify />
       </ParallaxProvider>
     </PageLayout>
   );

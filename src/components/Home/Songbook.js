@@ -14,6 +14,9 @@ const Wrapper = styled.section`
   background-image: url(${songbookBgImg});
   border-radius: 0 0 40px 40px;
   color: ${colors.white};
+
+  position: relative;
+  z-index: 10;
 `;
 
 const Heading = styled.h1`
