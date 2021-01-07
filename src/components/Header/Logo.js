@@ -14,12 +14,6 @@ const StyledImg = styled.img`
   transition: all 150ms ease-out;
   transform-origin: 50% 50%;
 
-  ${({ hasShadow }) =>
-    hasShadow &&
-    `
-    ${boxShadow};
-  `}
-
   ${media.md`
     ${({ isShrinked }) => isShrinked && `transform: scale(0.625);`};
     width: 64px;
