@@ -36,7 +36,7 @@ const GalleryWrapper = styled.div`
 
   ${media.md`
   padding: 0 1em 0 0;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: 33% 33%;
 `}
 `;
 
@@ -81,7 +81,6 @@ const WhoWeAre = () => (
         <Col>
           <CardSidePadding>
             <GalleryWrapper>
-              <GalleryImg src={mockImg} />
               <GalleryImg src={mockImg} />
               <GalleryImg src={mockImg} />
             </GalleryWrapper>
