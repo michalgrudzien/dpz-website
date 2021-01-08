@@ -26,7 +26,7 @@ const AccountLink = styled.a`
   display: block;
   font-size: 3em;
   color: ${colors.primary};
-  font-family: "Bebas Neue Bold";
+  font-family: "Bebas Neue";
   text-decoration: none;
 `;
 
@@ -35,7 +35,7 @@ const Hashtags = styled.div`
 `;
 
 const HashtagLink = styled.a`
-  font-family: "Bebas Neue Bold";
+  font-family: "Bebas Neue";
   text-decoration: none;
   color: ${colors.secondary};
   font-size: 2em;

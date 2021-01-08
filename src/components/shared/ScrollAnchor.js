@@ -19,7 +19,7 @@ const Wrapper = styled.a`
 const Label = styled.span`
   display: inline-block;
   color: ${colors.white};
-  font-family: "Bebas Neue Regular", sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   font-size: 1.2em;
   margin-bottom: 0.5em;
   text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.35);

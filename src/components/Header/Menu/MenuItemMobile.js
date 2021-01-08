@@ -8,7 +8,7 @@ import colors from "utils/colors";
 const StyledListItem = styled.li`
   display: block;
   text-align: center;
-  font-family: "Bebas Neue Book", sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   font-size: 2rem;
   margin-bottom: 3rem;
 
@@ -28,7 +28,7 @@ const linkStyles = css`
   }
 
   &.is-active {
-    font-family: "Bebas Neue Bold", sans-serif;
+    color: ${colors.primary};
   }
 `;
 

@@ -47,7 +47,7 @@ const ListItemTitle = styled.span`
   display: inline-block;
   position: relative;
   top: -8px;
-  font-family: "Bebas Neue Bold";
+  font-family: "Bebas Neue";
   font-size: 1.5em;
   padding: 0 8px;
 `;

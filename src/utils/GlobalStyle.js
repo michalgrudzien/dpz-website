@@ -79,9 +79,9 @@ const GlobalStyle = createGlobalStyle`
 
   h1, h2, h3, h4, h5 {
     margin: 2.75rem 0 1.05rem;
-    font-family: 'Bebas Neue Regular', sans-serif;
+    font-family: 'Bebas Neue', sans-serif;
     color: ${colors.secondary};
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.15;
   }
 

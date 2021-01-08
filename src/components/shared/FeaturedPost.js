@@ -35,7 +35,7 @@ const ReadMoreLink = styled(Link)`
   padding: 0.5em 1em;
   color: ${colors.primary};
   font-size: 1.2em;
-  font-family: "Bebas Neue Bold";
+  font-family: "Bebas Neue";
   text-decoration: none;
 
   &:hover {
@@ -44,7 +44,7 @@ const ReadMoreLink = styled(Link)`
 `;
 
 const CategoryLink = styled(Link)`
-  font-family: "Bebas Neue Bold";
+  font-family: "Bebas Neue";
   text-decoration: none;
   color: ${colors.white};
   padding: 0.35em 0.7em 0.15em 0.7em;

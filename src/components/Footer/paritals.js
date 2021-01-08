@@ -88,7 +88,7 @@ export const MobileAddressWrapper = styled.div`
 
 export const SocialMediaHeading = styled.h2`
   color: ${colors.white};
-  font-family: "Bebas Neue Book", sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   margin-top: 0;
 `;
 

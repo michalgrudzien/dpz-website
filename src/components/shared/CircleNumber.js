@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   display: block;
   text-align: center;
   color: ${colors.primary};
-  font-family: "Bebas Neue Bold", sans-serif;
+  font-family: "Bebas Neue", sans-serif;
 `;
 
 const Number = styled.span`

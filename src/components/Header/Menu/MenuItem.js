@@ -8,7 +8,7 @@ import colors from "utils/colors";
 
 const listItemCommonStyles = css`
   position: relative;
-  font-family: "Bebas Neue Book", sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   padding-top: 4px;
 
   &:hover > a {
@@ -53,7 +53,7 @@ const StyledSubmenuListItem = styled.li`
 
 const MenuLink = styled(Link)`
   &.is-active {
-    font-family: "Bebas Neue Bold", sans-serif;
+    text-decoration: underline;
   }
 
   ${({ hasSubmenu, isSubmenuOpen }) =>

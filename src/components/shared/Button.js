@@ -6,7 +6,7 @@ import colors from "utils/colors";
 
 export const buttonStyles = css`
   display: inline-block;
-  font-family: "Bebas Neue Book", sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   color: ${colors.white};
   background-color: ${colors.turquoise};
   padding: 0.75em 2.25em 0.65em;
