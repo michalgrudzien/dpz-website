@@ -1,12 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { Col, Container, media, Row } from "styled-bootstrap-grid";
+import { media } from "styled-bootstrap-grid";
 import { Link } from "gatsby";
 
 import colors from "utils/colors";
 
 import mockImg from "assets/images/brand_photo.jpg";
-import Card, { CardSidePadding } from "components/shared/Card";
 import { boxShadow } from "utils/styles";
 
 const PaddingWrapper = styled.div`
@@ -107,32 +106,6 @@ const PostCard = ({ text }) => (
       </TextWrapper>
     </Wrapper>
   </PaddingWrapper>
-  //   <Container>
-  //     <Row alignItems="center">
-  //       <Col md="6">
-  //         <Link to="/">
-  //           <PostImg src={mockImg} alt={"post title"} />
-  //         </Link>
-  //       </Col>
-  //       <Col md="6">
-  //         <div>
-  //           <Date>24 września 2020</Date>
-  //           <HeadingLink to="/">
-  //             Lorem ipsum post title Lorem ipsum post title Lorem ipsum post title
-  //           </HeadingLink>
-
-  //           <p>
-  //             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-  //             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-  //             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-  //             aliquip ex ea commodo consequat. Duis aute irure dolor in
-  //             reprehenderit in voluptate velit esse cillum
-  //           </p>
-  //           <ReadMoreLink to="/">Czytaj dalej</ReadMoreLink>
-  //         </div>
-  //       </Col>
-  //     </Row>
-  //   </Container>
 );
 
 export default PostCard;
