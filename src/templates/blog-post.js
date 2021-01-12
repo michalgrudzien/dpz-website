@@ -125,7 +125,7 @@ const serializers = {
   },
 };
 
-const BlogPost = ({ data: { sanityPost: post } }) => {
+const BlogPost = ({ data: { sanityPost: post, placeholderImage } }) => {
   return (
     <PageLayout colorTheme="dark">
       <Wrapper>
@@ -140,13 +140,19 @@ const BlogPost = ({ data: { sanityPost: post } }) => {
             </Col>
             <Col lg="10" lgOffset="1">
               <MainImg
-                fluid={post.mainImage.asset.fluid}
+                fluid={get(
+                  post,
+                  "mainImage.asset.fluid",
+                  placeholderImage.childImageSharp.fluid
+                )}
                 alt={`Blog DPŻ: ${post.title}`}
               />
             </Col>
             <Col lg="10" lgOffset="1">
               <StyledCard>
-                <Date>Data publikacji: {post.publishedAt}</Date>
+                {post.publishedAt && (
+                  <Date>Data publikacji: {post.publishedAt}</Date>
+                )}
                 <PostContentWrapper>
                   <BlockContent
                     projectId="850bz552"
@@ -182,6 +188,13 @@ export default BlogPost;
 
 export const pageQuery = graphql`
   query PostQuery($id: String) {
+    placeholderImage: file(relativePath: { eq: "blog_placeholder.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 1024) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
     sanityPost(id: { eq: $id }) {
       id
       _rawBody
@@ -189,7 +202,7 @@ export const pageQuery = graphql`
       mainImage {
         asset {
           fluid {
-            ...GatsbySanityImageFluid_noBase64
+            ...GatsbySanityImageFluid
           }
         }
       }
