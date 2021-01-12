@@ -45,6 +45,7 @@ const Menu = ({ isMenuOpen, setMenuOpen, colorTheme, isShrinked }) => {
                   key={getKey(item)}
                   label={item.label}
                   linkTo={item.linkTo}
+                  exact={item.exact}
                   submenu={item.submenu}
                   colorTheme={colorTheme}
                   isShrinked={isShrinked}
@@ -73,6 +74,7 @@ const Menu = ({ isMenuOpen, setMenuOpen, colorTheme, isShrinked }) => {
                       key={getKey(item)}
                       label={item.label}
                       linkTo={item.linkTo}
+                      exact={item.exact}
                       submenu={item.submenu}
                     />
                   ))}

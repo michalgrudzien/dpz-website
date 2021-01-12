@@ -78,6 +78,7 @@ const MenuItem = ({
   children,
   label,
   linkTo,
+  exact,
   onClick,
   isClickLink,
   submenu,
@@ -106,7 +107,7 @@ const MenuItem = ({
           isSubmenuOpen={isHovered && hasSubmenu}
           hasSubmenu={hasSubmenu}
           activeClassName="is-active"
-          partiallyActive={hasSubmenu}
+          partiallyActive={!exact}
           {...linkAttrs}
         >
           {label}

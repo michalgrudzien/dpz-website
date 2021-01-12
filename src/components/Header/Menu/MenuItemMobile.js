@@ -49,7 +49,14 @@ const SubmenuList = styled.ul`
   }
 `;
 
-const MenuItemMobile = ({ label, linkTo, onClick, isClickLink, submenu }) => {
+const MenuItemMobile = ({
+  label,
+  linkTo,
+  exact,
+  onClick,
+  isClickLink,
+  submenu,
+}) => {
   const hasSubmenu = submenu.length > 0;
   return (
     <StyledListItem hasSubmenu={hasSubmenu}>
@@ -58,7 +65,11 @@ const MenuItemMobile = ({ label, linkTo, onClick, isClickLink, submenu }) => {
           {isClickLink ? (
             <ClickLink onClick={onClick}>{label}</ClickLink>
           ) : (
-            <StyledLink to={linkTo} activeClassName="is-active">
+            <StyledLink
+              to={linkTo}
+              activeClassName="is-active"
+              partiallyActive={!exact}
+            >
               {label}
             </StyledLink>
           )}

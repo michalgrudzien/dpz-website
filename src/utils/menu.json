@@ -1,7 +1,8 @@
 [
   {
     "label": "Home",
-    "linkTo": "/"
+    "linkTo": "/",
+    "exact": true
   },
   {
     "label": "O nas",
@@ -27,6 +28,6 @@
   },
   {
     "label": "Blog",
-    "linkTo": "/blog"
+    "linkTo": "/blog/"
   }
 ]

@@ -41,6 +41,11 @@ exports.createPages = async ({ graphql, actions }) => {
           slug {
             current
           }
+          category {
+            slug {
+              current
+            }
+          }
         }
       }
     }
@@ -53,7 +58,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const posts = get(postsData, "data.allSanityPost.nodes", []);
 
   posts.forEach(post => {
-    const path = `/blog/${post.slug.current}`;
+    const path = `/blog/${post.category.slug.current}/${post.slug.current}`;
 
     createPage({
       path,
