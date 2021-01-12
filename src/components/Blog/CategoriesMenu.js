@@ -1,4 +1,4 @@
-import { Link } from "gatsby";
+import { graphql, Link, useStaticQuery } from "gatsby";
 import React from "react";
 import { Col, Container, Row, media } from "styled-bootstrap-grid";
 import styled from "styled-components";
@@ -36,24 +36,49 @@ const CategoryLink = styled(Link)`
 const renderCategoriesListItems = categories =>
   categories.map(category => (
     <CategoriesListItem>
-      <CategoryLink to={category.url} activeClassName="is-active">
-        {category.label}
+      <CategoryLink
+        to={`/blog/${category.slug.current}`}
+        activeClassName="is-active"
+      >
+        {category.title}
       </CategoryLink>
     </CategoriesListItem>
   ));
 
-const CategoriesMenu = ({ categories, className }) => (
-  <div className={className}>
-    <Container>
-      <Row>
-        <Col>
-          <CategoriesList>
-            {renderCategoriesListItems(categories)}
-          </CategoriesList>
-        </Col>
-      </Row>
-    </Container>
-  </div>
-);
+const CategoriesMenu = ({ className }) => {
+  const {
+    allSanityCategory: { nodes: categories },
+  } = useStaticQuery(graphql`
+    query CategoriesQuery {
+      allSanityCategory {
+        nodes {
+          slug {
+            current
+          }
+          title
+        }
+      }
+    }
+  `);
+
+  return (
+    <div className={className}>
+      <Container>
+        <Row>
+          <Col>
+            <CategoriesList>
+              <CategoriesListItem>
+                <CategoryLink to="/blog" activeClassName="is-active">
+                  Wszystkie kategorie
+                </CategoryLink>
+              </CategoriesListItem>
+              {renderCategoriesListItems(categories)}
+            </CategoriesList>
+          </Col>
+        </Row>
+      </Container>
+    </div>
+  );
+};
 
 export default CategoriesMenu;
