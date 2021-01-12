@@ -1,6 +1,7 @@
 import React from "react";
 import { Col, Container, Row } from "styled-bootstrap-grid";
 import styled from "styled-components";
+import { Link } from "gatsby";
 
 import colors from "utils/colors";
 
@@ -13,6 +14,13 @@ const Title = styled.h1`
 const Subtitle = styled.h2`
   margin-top: 0;
   color: ${colors.secondary};
+  a {
+    color: ${colors.secondary};
+
+    :hover {
+      color: ${colors.primary};
+    }
+  }
 `;
 
 const Heading = ({ title, subtitle, className }) => (

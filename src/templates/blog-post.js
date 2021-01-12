@@ -1,5 +1,5 @@
 import React from "react";
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 import Img from "gatsby-image";
 import styled from "styled-components";
 import { Col, Container, Row } from "styled-bootstrap-grid";
@@ -126,6 +126,7 @@ const serializers = {
 };
 
 const BlogPost = ({ data: { sanityPost: post, placeholderImage } }) => {
+  console.log(post);
   return (
     <PageLayout colorTheme="dark">
       <Wrapper>
@@ -134,7 +135,14 @@ const BlogPost = ({ data: { sanityPost: post, placeholderImage } }) => {
             <Col lg="10" lgOffset="1">
               <StyledHeading
                 title={post.title}
-                subtitle="Blog / Felietony"
+                subtitle={
+                  <span>
+                    <Link to="/blog">Blog</Link> /{" "}
+                    <Link to={`/blog/${post.category.slug.current}`}>
+                      {post.category.title}
+                    </Link>
+                  </span>
+                }
                 date={post.publishedAt}
               />
             </Col>
@@ -206,9 +214,11 @@ export const pageQuery = graphql`
           }
         }
       }
-      categories {
-        id
+      category {
         title
+        slug {
+          current
+        }
       }
       publishedAt(formatString: "DD.MM.YYYY")
       author {
