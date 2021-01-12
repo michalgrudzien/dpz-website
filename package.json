@@ -5,7 +5,9 @@
   "version": "0.1.0",
   "author": "Michał Grudzień <michal.grudzien@depezet.com>",
   "dependencies": {
+    "@sanity/block-content-to-react": "^2.0.7",
     "babel-plugin-styled-components": "1.10.0",
+    "commentbox.io": "^2.0.0",
     "formik": "^2.1.4",
     "gatsby": "2.20.24",
     "gatsby-background-image": "1.1.1",
@@ -18,6 +20,7 @@
     "gatsby-plugin-smoothscroll": "^1.1.0",
     "gatsby-plugin-styled-components": "3.0.7",
     "gatsby-source-filesystem": "2.1.46",
+    "gatsby-source-sanity": "^6.0.4",
     "gatsby-transformer-sharp": "2.3.13",
     "lodash.get": "^4.4.2",
     "prop-types": "^15.7.2",

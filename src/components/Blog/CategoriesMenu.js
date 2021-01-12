@@ -42,14 +42,18 @@ const renderCategoriesListItems = categories =>
     </CategoriesListItem>
   ));
 
-const CategoriesMenu = ({ categories }) => (
-  <Container>
-    <Row>
-      <Col>
-        <CategoriesList>{renderCategoriesListItems(categories)}</CategoriesList>
-      </Col>
-    </Row>
-  </Container>
+const CategoriesMenu = ({ categories, className }) => (
+  <div className={className}>
+    <Container>
+      <Row>
+        <Col>
+          <CategoriesList>
+            {renderCategoriesListItems(categories)}
+          </CategoriesList>
+        </Col>
+      </Row>
+    </Container>
+  </div>
 );
 
 export default CategoriesMenu;

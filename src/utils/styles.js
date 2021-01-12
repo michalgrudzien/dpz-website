@@ -44,3 +44,76 @@ export const animatedGradientBg = css`
     }
   }
 `;
+
+export const portableTextStyles = css`
+  line-height: 1.85;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 1em 0 0.5em;
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  p {
+    line-height: 1.85;
+  }
+
+  ul {
+    list-style-type: disc;
+  }
+
+  ol {
+    list-style-type: decimal;
+  }
+
+  ol,
+  ul {
+    list-style-position: inside;
+  }
+
+  strong,
+  b {
+    font-weight: 400;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  blockquote {
+    display: block;
+    padding: 1em;
+    margin: 1em 0;
+    border-radius: 16px;
+    background-color: ${colors.lightGrey};
+    color: ${colors.darkGrey};
+    font-style: italic;
+
+    * {
+      margin: 0;
+    }
+  }
+
+  table {
+    margin: 1.5em 0;
+    width: 100% !important;
+  }
+
+  td {
+    border: 1px ${colors.lightGrey} solid;
+    padding: 0.25em 0.5em;
+    max-width: 100%;
+  }
+
+  img {
+    max-width: 100%;
+    border-radius: 1.5em;
+    ${boxShadow}
+  }
+`;

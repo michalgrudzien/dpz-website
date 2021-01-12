@@ -1,5 +1,3 @@
-const path = require("path");
-
 module.exports = {
   siteMetadata: {
     title: `Dobra Praktyka Żeglarska`,
@@ -28,6 +26,16 @@ module.exports = {
       resolve: `gatsby-plugin-sharp`,
       options: {
         defaultQuality: 100,
+      },
+    },
+    {
+      resolve: "gatsby-source-sanity",
+      options: {
+        projectId: "850bz552",
+        dataset: "production",
+        watchMode: true,
+        token:
+          "sksJyei4hmtYtS9T4eCGqnbxs2hDqzkWhDMat4wn57jDPS0z1vfe9yOkjXsLz9FXQApy8sWll22lCR44Z99Pqxyccgh9QW1fgLj96hjA4bePRirknJBJe3Lj0zxaHjGHwND8ZS2VfN4JAUO6RWSrMQr0Vqlq4sXkjUJxOFfA1ukUrmt8CJU4",
       },
     },
     `gatsby-plugin-smoothscroll`,

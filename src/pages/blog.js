@@ -1,27 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-import { Col, Container, Row, media } from "styled-bootstrap-grid";
+import { Container, media } from "styled-bootstrap-grid";
 
 import PageLayout from "components/PageLayout";
-import CategoriesMenu from "components/Blog";
+import { CategoriesMenu, Heading } from "components/Blog";
 
-import colors from "utils/colors";
 import FeaturedPost from "components/shared/FeaturedPost";
 import PostCard from "components/shared/PostCard";
 
 const Wrapper = styled.div`
   padding: 8em 0;
-`;
-
-const Heading = styled.h1`
-  color: ${colors.primary};
-  font-size: 4em;
-  margin: 0.5em 0 0;
-`;
-
-const Subheading = styled.h2`
-  margin-top: 0;
-  color: ${colors.secondary};
 `;
 
 const CardsWrapper = styled.div`
@@ -63,14 +51,7 @@ const categories = [
 const Blog = () => (
   <PageLayout colorTheme="dark">
     <Wrapper>
-      <Container>
-        <Row>
-          <Col>
-            <Heading>Blog</Heading>
-            <Subheading>Wszystkie posty</Subheading>
-          </Col>
-        </Row>
-      </Container>
+      <Heading title="Blog" subtitle="Wszystkie posty" />
       <CategoriesMenu categories={categories} />
       <FeaturedPost />
       <Container>
