@@ -1,21 +1,24 @@
 import React from "react";
 import styled from "styled-components";
 import { media } from "styled-bootstrap-grid";
-import { Link } from "gatsby";
+import { graphql, Link, useStaticQuery } from "gatsby";
+import BackgroundImage from "gatsby-background-image";
+import get from "lodash.get";
 
 import colors from "utils/colors";
 
-import mockImg from "assets/images/brand_photo.jpg";
 import { boxShadow } from "utils/styles";
+import { getPostCategoryUrl, getPostUrl } from "helpers/linkGenerators";
 
 const PaddingWrapper = styled.div`
   padding-top: 2.5em;
 `;
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+  display: grid;
+  grid-template-rows: 270px 325px;
+  grid-gap: 5px;
+  height: 600px;
   ${boxShadow}
 `;
 
@@ -31,14 +34,16 @@ const TextWrapper = styled.div`
   `}
 `;
 
-const PostImg = styled.img`
+const PostImgBackgroundWrapper = styled.div`
+  height: 100%;
   width: 100%;
   border-radius: 0 0 1em 1em;
-  margin-bottom: 1em;
+  overflow: hidden;
+`;
 
-  ${media.md`
-    margin-bottom: 0;
-  `}
+const PostImgBackground = styled(BackgroundImage)`
+  width: 100%;
+  height: 100%;
 `;
 
 const HeadingLink = styled(Link)`
@@ -55,7 +60,8 @@ const HeadingLink = styled(Link)`
 `;
 
 const Content = styled.p`
-  height: 100%;
+  height: 215px;
+  overflow: hidden;
 `;
 
 const ReadMoreLink = styled(Link)`
@@ -75,37 +81,62 @@ const CategoryLink = styled(Link)`
   font-family: "Bebas Neue";
   text-decoration: none;
   color: ${colors.white};
-  padding: 0.35em 0.7em 0.1em 0.7em;
+  padding: 0.25em 0.7em 0.1em 0.7em;
   border-radius: 8px;
   background-color: ${colors.primary};
+  letter-spacing: 0.2px;
+  transition: background-color 100ms ease-in;
+
+  :hover {
+    background-color: ${colors.secondary};
+  }
 `;
 
-const PostCard = ({ text }) => (
-  <PaddingWrapper>
-    <Wrapper>
-      <Link to="/">
-        <PostImg src={mockImg} alt={"post title"} />
-      </Link>
-      <TextWrapper>
-        <small>
-          24 września 2020 | <CategoryLink to="/">Aktualności</CategoryLink>
-        </small>
-        <HeadingLink to="/">
-          Lorem ipsum post title Lorem ipsum post title Lorem ipsum post title
-        </HeadingLink>
-        <Content>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum
-        </Content>
-        <div>
-          <ReadMoreLink to="/">Czytaj dalej</ReadMoreLink>
-        </div>
-      </TextWrapper>
-    </Wrapper>
-  </PaddingWrapper>
-);
+const PostCard = ({ post }) => {
+  const localData = useStaticQuery(graphql`
+    query PlaceholderImageQuery {
+      placeholderImage: file(relativePath: { eq: "blog_placeholder.jpg" }) {
+        childImageSharp {
+          fluid(maxWidth: 1024) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+    }
+  `);
+
+  const postUrl = getPostUrl(post);
+  const categoryUrl = getPostCategoryUrl(post);
+
+  return (
+    <PaddingWrapper>
+      <Wrapper>
+        <Link to={postUrl}>
+          <PostImgBackgroundWrapper>
+            <PostImgBackground
+              fluid={get(
+                post,
+                "mainImage.asset.fluid",
+                localData.placeholderImage.childImageSharp.fluid
+              )}
+              alt={`DPŻ Blog: ${post.title}`}
+            />
+          </PostImgBackgroundWrapper>
+        </Link>
+        <TextWrapper>
+          <small>
+            {post.publishedAt} |{" "}
+            <CategoryLink to={categoryUrl}>{post.category.title}</CategoryLink>
+          </small>
+          <HeadingLink to={postUrl}>{post.title}</HeadingLink>
+          <Content>{post.excerpt}</Content>
+          <div>
+            <ReadMoreLink to={postUrl}>Czytaj dalej</ReadMoreLink>
+          </div>
+        </TextWrapper>
+      </Wrapper>
+    </PaddingWrapper>
+  );
+};
 
 export default PostCard;

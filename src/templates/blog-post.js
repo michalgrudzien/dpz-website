@@ -2,7 +2,7 @@ import React from "react";
 import { graphql, Link } from "gatsby";
 import Img from "gatsby-image";
 import styled from "styled-components";
-import { Col, Container, Row } from "styled-bootstrap-grid";
+import { Col, Container, Row, media } from "styled-bootstrap-grid";
 import BlockContent from "@sanity/block-content-to-react";
 import { getFluidGatsbyImage } from "gatsby-source-sanity";
 
@@ -13,6 +13,7 @@ import Card from "components/shared/Card";
 import colors from "utils/colors";
 import { boxShadow, portableTextStyles } from "utils/styles";
 import get from "lodash.get";
+import PostCard from "components/shared/PostCard";
 
 const Wrapper = styled.div`
   padding: 8em 0;
@@ -36,7 +37,7 @@ const MainImg = styled(Img)`
 
 const Date = styled.span`
   display: block;
-  margin: 0.5em 0;
+  padding: 1.5em 0;
   font-weight: 500;
 `;
 
@@ -76,32 +77,24 @@ const AuthorAvatarImg = styled(Img)`
   ${boxShadow}
 `;
 
+const RelatedPostsTitle = styled.h3`
+  margin: 2em 0 0;
+`;
+
+const RelatedPostsWrapper = styled.div`
+  display: grid;
+  width: 100%;
+
+  ${media.sm`
+    grid-template-columns: 50% 50%;
+    grid-gap: 1em;
+    margin-left: -0.5em;
+  `}
+`;
+
 const StyledCategoriesMenu = styled(CategoriesMenu)`
   margin-top: 2em;
 `;
-
-const categories = [
-  {
-    label: "Wszystkie posty",
-    url: "/blog/wszystkie-posty",
-  },
-  {
-    label: "Felietony",
-    url: "/blog/felietony",
-  },
-  {
-    label: "Jak zorganizowac rejs?",
-    url: "/blog/jak-zorganizowac-rejs",
-  },
-  {
-    label: "Dla nowicjuszy",
-    url: "/blog/dla-nowicjuszy",
-  },
-  {
-    label: "Piekielny kambuz",
-    url: "/blog/piekielny-kambuz",
-  },
-];
 
 const serializers = {
   types: {
@@ -147,6 +140,11 @@ const BlogPost = ({ data: { sanityPost: post, placeholderImage } }) => {
               />
             </Col>
             <Col lg="10" lgOffset="1">
+              <Col>
+                <p>{post.excerpt}</p>
+              </Col>
+            </Col>
+            <Col lg="10" lgOffset="1">
               <MainImg
                 fluid={get(
                   post,
@@ -185,8 +183,20 @@ const BlogPost = ({ data: { sanityPost: post, placeholderImage } }) => {
               </StyledCard>
             </Col>
           </Row>
+          <Row>
+            <Col lg="10" lgOffset="1">
+              <RelatedPostsTitle>
+                Nie żałuj sobie, przeczytaj coś jeszcze:
+              </RelatedPostsTitle>
+              <RelatedPostsWrapper>
+                {post.relatedPosts.map(post => (
+                  <PostCard post={post} />
+                ))}
+              </RelatedPostsWrapper>
+            </Col>
+          </Row>
         </Container>
-        <StyledCategoriesMenu categories={categories} />
+        <StyledCategoriesMenu />
       </Wrapper>
     </PageLayout>
   );
@@ -207,6 +217,7 @@ export const pageQuery = graphql`
       id
       _rawBody
       title
+      excerpt
       mainImage {
         asset {
           fluid {
@@ -230,6 +241,32 @@ export const pageQuery = graphql`
               ...GatsbySanityImageFluid_noBase64
             }
           }
+        }
+      }
+      relatedPosts {
+        title
+        publishedAt(formatString: "DD.MM.YYYY")
+        excerpt
+        category {
+          title
+          slug {
+            current
+          }
+        }
+        mainImage {
+          asset {
+            fluid {
+              ...GatsbySanityImageFluid
+            }
+          }
+        }
+        category {
+          slug {
+            current
+          }
+        }
+        slug {
+          current
         }
       }
     }
