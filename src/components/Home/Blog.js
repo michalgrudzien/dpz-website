@@ -8,6 +8,9 @@ import FeaturedPost from "components/shared/FeaturedPost";
 import colors from "utils/colors";
 import PostCard from "components/shared/PostCard";
 import LinkButton from "components/shared/LinkButton";
+import { graphql, useStaticQuery } from "gatsby";
+import { getHomepageSingleNode } from "helpers/nodeExtractors";
+import SanityBlockContent from "@sanity/block-content-to-react";
 
 const StyledSection = styled.section`
   padding: 3em 0 3em;
@@ -26,52 +29,92 @@ const ButtonWrapper = styled.div`
   text-align: center;
 `;
 
-const Blog = () => (
-  <StyledSection>
-    <Container>
-      <Row>
-        <Col lg="6">
-          <CardSidePadding>
-            <Heading>Blog</Heading>
-            <p>
-              Blogerzy ich nienawidzą. Piszą o żeglarstwie nie wychodząc z domu
-              i nic nie zarabiając. Zobacz jak to zrobili…
-            </p>
-          </CardSidePadding>
-        </Col>
-      </Row>
-      <Row>
-        <Col hiddenLgDown>
-          <FeaturedPost />
-        </Col>
-      </Row>
+const Blog = () => {
+  const response = useStaticQuery(graphql`
+    query BlogTeaserQuery {
+      allSanityHomepage {
+        nodes {
+          content {
+            _rawBlogBody
+          }
+        }
+      }
+      allSanityPost(sort: { fields: publishedAt, order: DESC }, limit: 4) {
+        nodes {
+          title
+          excerpt
+          publishedAt
+          slug {
+            current
+          }
+          category {
+            slug {
+              current
+            }
+            title
+          }
+          mainImage {
+            asset {
+              fluid(maxWidth: 1200) {
+                ...GatsbySanityImageFluid
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  const data = getHomepageSingleNode(response);
+
+  const {
+    allSanityPost: { nodes: posts },
+  } = response;
+
+  return (
+    <StyledSection>
       <Container>
         <Row>
-          <Col md="6" hiddenLgUp>
-            <PostCard text="aaaaasdasd asasd asd asd as dasd adasdad as dasdsad asd ddas a asd asdd dsadasdasd as da a das" />
+          <Col lg="6">
+            <CardSidePadding>
+              <Heading>Blog</Heading>
+              <SanityBlockContent blocks={data._rawBlogBody} />
+            </CardSidePadding>
           </Col>
-          <Col md="6" lg="4">
-            <PostCard text="aaaaasdasd asasd asd asd as dasd adasdad as dasdsad asd ddas a asd asdd dsadasdasd as da a das" />
+        </Row>
+        <Row>
+          <Col hiddenLgDown>
+            <FeaturedPost post={posts[0]} />
           </Col>
-          <Col md="6" lg="4" hiddenXsDown>
-            <PostCard />
-          </Col>
-          <Col md="6" lg="4" hiddenXsDown>
-            <PostCard />
+        </Row>
+        <Container>
+          <Row>
+            <Col md="6" hiddenLgUp>
+              <PostCard post={posts[0]} />
+            </Col>
+            <Col md="6" lg="4">
+              <PostCard post={posts[1]} />
+            </Col>
+            <Col md="6" lg="4" hiddenXsDown>
+              <PostCard post={posts[2]} />
+            </Col>
+            <Col md="6" lg="4" hiddenXsDown>
+              <PostCard post={posts[3]} />
+            </Col>
+          </Row>
+        </Container>
+        <Row>
+          <Col>
+            <ButtonWrapper>
+              <LinkButton internal to="/blog">
+                Przeglądaj bloga
+              </LinkButton>
+            </ButtonWrapper>
           </Col>
         </Row>
       </Container>
-      <Row>
-        <Col>
-          <ButtonWrapper>
-            <LinkButton internal to="/blog">
-              Przeglądaj bloga
-            </LinkButton>
-          </ButtonWrapper>
-        </Col>
-      </Row>
-    </Container>
-  </StyledSection>
-);
+    </StyledSection>
+  );
+};
 
 export default Blog;

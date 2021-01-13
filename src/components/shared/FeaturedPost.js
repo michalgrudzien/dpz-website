@@ -1,13 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { Col, Container, media, Row } from "styled-bootstrap-grid";
-import { Link } from "gatsby";
+import { graphql, Link, useStaticQuery } from "gatsby";
+import Img from "gatsby-image";
+import get from "lodash.get";
 
 import colors from "utils/colors";
+import { getPostCategoryUrl, getPostUrl } from "helpers/linkGenerators";
 
-import mockImg from "assets/images/brand_photo.jpg";
-
-const PostImg = styled.img`
+const PostImg = styled(Img)`
   width: 100%;
   border-radius: 1em;
   margin-bottom: 2em;
@@ -52,35 +53,53 @@ const CategoryLink = styled(Link)`
   background-color: ${colors.primary};
 `;
 
-const FeaturedPost = () => (
-  <Container>
-    <Row alignItems="center">
-      <Col md="6">
-        <Link to="/">
-          <PostImg src={mockImg} alt={"post title"} />
-        </Link>
-      </Col>
-      <Col md="6">
-        <div>
-          <small>
-            24 września 2020 | <CategoryLink to="/">Aktualności</CategoryLink>
-          </small>
-          <HeadingLink to="/">
-            Lorem ipsum post title Lorem ipsum post title Lorem ipsum post title
-          </HeadingLink>
+const FeaturedPost = ({ post }) => {
+  const localData = useStaticQuery(graphql`
+    query PlaceholderFeaturedImageQuery {
+      placeholderImage: file(relativePath: { eq: "blog_placeholder.jpg" }) {
+        childImageSharp {
+          fluid(maxWidth: 1024) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+    }
+  `);
 
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum
-          </p>
-          <ReadMoreLink to="/">Czytaj dalej</ReadMoreLink>
-        </div>
-      </Col>
-    </Row>
-  </Container>
-);
+  const postUrl = getPostUrl(post);
+  const categoryUrl = getPostCategoryUrl(post);
+
+  return (
+    <Container>
+      <Row alignItems="center">
+        <Col md="6">
+          <Link to={postUrl}>
+            <PostImg
+              fluid={get(
+                post,
+                "mainImage.asset.fluid",
+                localData.placeholderImage.childImageSharp.fluid
+              )}
+              alt={`DPŻ Blog: ${post.title}`}
+            />
+          </Link>
+        </Col>
+        <Col md="6">
+          <div>
+            <small>
+              {post.publishedAt} |{" "}
+              <CategoryLink to={categoryUrl}>
+                {post.category.title}
+              </CategoryLink>
+            </small>
+            <HeadingLink to={postUrl}>{post.title}</HeadingLink>
+            <p>{post.excerpt}</p>
+            <ReadMoreLink to={postUrl}>Czytaj dalej</ReadMoreLink>
+          </div>
+        </Col>
+      </Row>
+    </Container>
+  );
+};
 
 export default FeaturedPost;
