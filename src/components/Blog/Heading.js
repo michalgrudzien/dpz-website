@@ -1,7 +1,6 @@
 import React from "react";
 import { Col, Container, Row } from "styled-bootstrap-grid";
 import styled from "styled-components";
-import { Link } from "gatsby";
 
 import colors from "utils/colors";
 

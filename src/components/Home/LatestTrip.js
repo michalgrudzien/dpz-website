@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Container, Row, Col, media } from "styled-bootstrap-grid";
+import { Container, Row, Col } from "styled-bootstrap-grid";
 import Youtube from "react-youtube-embed";
 
 import colors from "utils/colors";

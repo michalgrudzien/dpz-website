@@ -33,6 +33,7 @@ exports.onCreateWebpackConfig = ({ actions, stage, loaders }) => {
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage, createRedirect } = actions;
 
+  //Create redirection for cruises root
   createRedirect({
     fromPath: `/rejsy`,
     toPath: `/rejsy/dpz-world-tour`,
@@ -40,6 +41,7 @@ exports.createPages = async ({ graphql, actions }) => {
     statusCode: 200,
   });
 
+  //Fetch data needed for pages generation
   const data = await graphql(`
     {
       allSanityCategory {
@@ -71,9 +73,11 @@ exports.createPages = async ({ graphql, actions }) => {
     throw data.errors;
   }
 
+  //Get categories, posts from fetched datae
   const categories = get(data, "data.allSanityCategory.nodes", []);
   const posts = get(data, "data.allSanityPost.nodes", []);
 
+  //Posts per page for categories pages
   const postsPerPage = 10;
 
   //Create categories pages (empty and redirects)

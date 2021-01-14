@@ -64,7 +64,6 @@ const CommonPageWrapper = ({ category, children }) => (
 );
 
 const BlogCategory = ({ data, pageContext }) => {
-  console.log(data, pageContext);
   const posts = get(data, "allSanityPost.nodes", []);
   const { pageNumber, pagesCount, category } = pageContext;
 

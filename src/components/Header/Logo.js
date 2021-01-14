@@ -6,7 +6,6 @@ import { Link } from "gatsby";
 
 import logoWhite from "assets/images/dpz_logo_white.svg";
 import logoBlue from "assets/images/dpz_logo_blue.svg";
-import { boxShadow } from "utils/styles";
 
 const StyledImg = styled.img`
   width: 40px;

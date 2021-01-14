@@ -1,13 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { Container, Row, Col, media } from "styled-bootstrap-grid";
+import { Container, Row, Col } from "styled-bootstrap-grid";
 
 import spotifyBgImg from "assets/images/spotify_bg.svg";
 import turboblogoscImg from "assets/images/turboblogosc.jpg";
 import hardbassImg from "assets/images/hardbass.jpg";
 import singalongImg from "assets/images/singalong.jpg";
 import colors from "utils/colors";
-import { boxShadow } from "utils/styles";
 
 const Wrapper = styled.section`
   padding: 8em 0;

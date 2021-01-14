@@ -5,15 +5,15 @@ import styled from "styled-components";
 import { Col, Container, Row, media } from "styled-bootstrap-grid";
 import BlockContent from "@sanity/block-content-to-react";
 import { getFluidGatsbyImage } from "gatsby-source-sanity";
+import get from "lodash.get";
 
 import PageLayout from "components/PageLayout";
 import { CategoriesMenu, Heading } from "components/Blog";
 import Card from "components/shared/Card";
+import PostCard from "components/shared/PostCard";
 
 import colors from "utils/colors";
 import { boxShadow, portableTextStyles } from "utils/styles";
-import get from "lodash.get";
-import PostCard from "components/shared/PostCard";
 
 const Wrapper = styled.div`
   padding: 8em 0;
