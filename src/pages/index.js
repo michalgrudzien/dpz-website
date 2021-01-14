@@ -1,5 +1,5 @@
 import React from "react";
-import { useStaticQuery } from "gatsby";
+import { graphql, useStaticQuery } from "gatsby";
 import { ParallaxProvider } from "react-scroll-parallax";
 
 import PageLayout from "components/PageLayout";

@@ -54,8 +54,8 @@ const News = () => {
           }
           mainImage {
             asset {
-              fluid {
-                src
+              fluid(maxWidth: 1200) {
+                ...GatsbySanityImageFluid
               }
             }
           }

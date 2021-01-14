@@ -118,89 +118,86 @@ const serializers = {
   },
 };
 
-const BlogPost = ({ data: { sanityPost: post, placeholderImage } }) => {
-  console.log(post);
-  return (
-    <PageLayout colorTheme="dark">
-      <Wrapper>
-        <Container>
-          <Row>
-            <Col lg="10" lgOffset="1">
-              <StyledHeading
-                title={post.title}
-                subtitle={
-                  <span>
-                    <Link to="/blog">Blog</Link> /{" "}
-                    <Link to={`/blog/${post.category.slug.current}`}>
-                      {post.category.title}
-                    </Link>
-                  </span>
-                }
-                date={post.publishedAt}
-              />
+const BlogPost = ({ data: { sanityPost: post, placeholderImage } }) => (
+  <PageLayout colorTheme="dark">
+    <Wrapper>
+      <Container>
+        <Row>
+          <Col lg="10" lgOffset="1">
+            <StyledHeading
+              title={post.title}
+              subtitle={
+                <span>
+                  <Link to="/blog">Blog</Link> /{" "}
+                  <Link to={`/blog/${post.category.slug.current}`}>
+                    {post.category.title}
+                  </Link>
+                </span>
+              }
+              date={post.publishedAt}
+            />
+          </Col>
+          <Col lg="10" lgOffset="1">
+            <Col>
+              <p>{post.excerpt}</p>
             </Col>
-            <Col lg="10" lgOffset="1">
-              <Col>
-                <p>{post.excerpt}</p>
-              </Col>
-            </Col>
-            <Col lg="10" lgOffset="1">
-              <MainImg
-                fluid={get(
-                  post,
-                  "mainImage.asset.fluid",
-                  placeholderImage.childImageSharp.fluid
-                )}
-                alt={`Blog DPŻ: ${post.title}`}
-              />
-            </Col>
-            <Col lg="10" lgOffset="1">
-              <StyledCard>
-                {post.publishedAt && (
-                  <Date>Data publikacji: {post.publishedAt}</Date>
-                )}
-                <PostContentWrapper>
-                  <BlockContent
-                    projectId="850bz552"
-                    dataset="production"
-                    blocks={post._rawBody}
-                    imageOptions={{ w: 920, fit: "max" }}
-                    serializers={serializers}
+          </Col>
+          <Col lg="10" lgOffset="1">
+            <MainImg
+              fluid={get(
+                post,
+                "mainImage.asset.fluid",
+                placeholderImage.childImageSharp.fluid
+              )}
+              alt={`Blog DPŻ: ${post.title}`}
+            />
+          </Col>
+          <Col lg="10" lgOffset="1">
+            <StyledCard>
+              {post.publishedAt && (
+                <Date>Data publikacji: {post.publishedAt}</Date>
+              )}
+              <PostContentWrapper>
+                <BlockContent
+                  projectId="850bz552"
+                  dataset="production"
+                  blocks={post._rawBody}
+                  imageOptions={{ w: 920, fit: "max" }}
+                  serializers={serializers}
+                />
+              </PostContentWrapper>
+              <Col sm="8" md="7" smOffset="4" mdOffset="5">
+                <AuthorInfoWrapper>
+                  <div>
+                    <AuthorName>{post.author.name}</AuthorName>
+                    <AuthorBio>{post.author.bio}</AuthorBio>
+                  </div>
+                  <AuthorAvatarImg
+                    fluid={post.author.image.asset.fluid}
+                    alt={post.author.name}
                   />
-                </PostContentWrapper>
-                <Col sm="8" md="7" smOffset="4" mdOffset="5">
-                  <AuthorInfoWrapper>
-                    <div>
-                      <AuthorName>{post.author.name}</AuthorName>
-                      <AuthorBio>{post.author.bio}</AuthorBio>
-                    </div>
-                    <AuthorAvatarImg
-                      fluid={post.author.image.asset.fluid}
-                      alt={post.author.name}
-                    />
-                  </AuthorInfoWrapper>
-                </Col>
-              </StyledCard>
-            </Col>
-          </Row>
-          <Row>
-            <Col lg="10" lgOffset="1">
-              <RelatedPostsTitle>
-                Nie żałuj sobie, przeczytaj coś jeszcze:
-              </RelatedPostsTitle>
-              <RelatedPostsWrapper>
-                {post.relatedPosts.map(post => (
-                  <PostCard post={post} />
-                ))}
-              </RelatedPostsWrapper>
-            </Col>
-          </Row>
-        </Container>
-        <StyledCategoriesMenu />
-      </Wrapper>
-    </PageLayout>
-  );
-};
+                </AuthorInfoWrapper>
+              </Col>
+            </StyledCard>
+          </Col>
+        </Row>
+        <Row>
+          <Col lg="10" lgOffset="1">
+            <RelatedPostsTitle>
+              Nie żałuj sobie, przeczytaj coś jeszcze:
+            </RelatedPostsTitle>
+            <RelatedPostsWrapper>
+              {post.relatedPosts.map(post => (
+                <PostCard post={post} />
+              ))}
+            </RelatedPostsWrapper>
+          </Col>
+        </Row>
+      </Container>
+      <StyledCategoriesMenu />
+    </Wrapper>
+  </PageLayout>
+);
 
 export default BlogPost;
 
@@ -238,7 +235,7 @@ export const pageQuery = graphql`
         image {
           asset {
             fluid {
-              ...GatsbySanityImageFluid_noBase64
+              ...GatsbySanityImageFluid
             }
           }
         }

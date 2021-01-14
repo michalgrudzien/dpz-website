@@ -31,10 +31,26 @@ exports.onCreateWebpackConfig = ({ actions, stage, loaders }) => {
 };
 
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions;
+  const { createPage, createRedirect } = actions;
 
-  const postsData = await graphql(`
+  createRedirect({
+    fromPath: `/rejsy`,
+    toPath: `/rejsy/dpz-world-tour`,
+    isPermanent: true,
+    statusCode: 200,
+  });
+
+  const data = await graphql(`
     {
+      allSanityCategory {
+        nodes {
+          id
+          slug {
+            current
+          }
+          title
+        }
+      }
       allSanityPost {
         nodes {
           id
@@ -42,6 +58,7 @@ exports.createPages = async ({ graphql, actions }) => {
             current
           }
           category {
+            id
             slug {
               current
             }
@@ -51,12 +68,101 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `);
 
-  if (postsData.errors) {
-    throw postsData.errors;
+  if (data.errors) {
+    throw data.errors;
   }
 
-  const posts = get(postsData, "data.allSanityPost.nodes", []);
+  const categories = get(data, "data.allSanityCategory.nodes", []);
+  const posts = get(data, "data.allSanityPost.nodes", []);
 
+  const postsPerPage = 10;
+
+  //Create categories pages (empty and redirects)
+  categories.forEach(category => {
+    const path = `/blog/${category.slug.current}/1`;
+
+    createRedirect({
+      fromPath: `/blog/${category.slug.current}`,
+      toPath: path,
+      isPermanent: true,
+    });
+    createPage({
+      path,
+      component: require.resolve("./src/templates/blog-category.js"),
+      context: {
+        category,
+        pagesCount: 0,
+        postsPerPage,
+        pageNumber: 1,
+        skip: 0,
+        categoryId: category.id,
+      },
+    });
+  });
+
+  //Create categories pages (paginated)
+  categories.forEach(category => {
+    const postsCount = posts.filter(post => post.category.id === category.id)
+      .length;
+    const pagesCount = Math.ceil(postsCount / postsPerPage);
+
+    for (let i = 1; i <= pagesCount; i++) {
+      const path = `/blog/${category.slug.current}/${i}`;
+
+      createPage({
+        path,
+        component: require.resolve("./src/templates/blog-category.js"),
+        context: {
+          category,
+          pagesCount,
+          postsPerPage,
+          pageNumber: i,
+          skip: postsPerPage * (i - 1),
+          categoryId: category.id,
+        },
+      });
+    }
+  });
+
+  //Create all categories pseudo category
+  const pagesCount = Math.ceil(posts.length / postsPerPage);
+  const allPostsCategory = {
+    title: "Wszystkie kategorie",
+    slug: {
+      current: "wszystkie-kategorie",
+    },
+  };
+
+  createRedirect({
+    fromPath: `/blog`,
+    toPath: `/blog/wszystkie-kategorie/1`,
+    isPermanent: true,
+  });
+
+  createRedirect({
+    fromPath: `/blog/wszystkie-kategorie`,
+    toPath: `/blog/wszystkie-kategorie/1`,
+    isPermanent: true,
+  });
+
+  for (let i = 1; i <= pagesCount; i++) {
+    const path = `/blog/wszystkie-kategorie/${i}`;
+
+    createPage({
+      path,
+      component: require.resolve("./src/templates/blog-category.js"),
+      context: {
+        category: allPostsCategory,
+        pagesCount,
+        postsPerPage,
+        pageNumber: i,
+        skip: postsPerPage * (i - 1),
+        categoryId: "",
+      },
+    });
+  }
+
+  //Create single posts` pages
   posts.forEach(post => {
     const path = `/blog/${post.category.slug.current}/${post.slug.current}`;
 

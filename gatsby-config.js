@@ -22,6 +22,7 @@ module.exports = {
       },
     },
     `gatsby-transformer-sharp`,
+    `gatsby-plugin-meta-redirect`,
     {
       resolve: `gatsby-plugin-sharp`,
       options: {

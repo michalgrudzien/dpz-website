@@ -10,7 +10,7 @@ const CategoriesList = styled.ul`
 
   ${media.md`
     text-align: center;
-    padding: 2em 0 3em;
+    padding-top: 4em;
   `}
 `;
 
@@ -39,6 +39,7 @@ const renderCategoriesListItems = categories =>
       <CategoryLink
         to={`/blog/${category.slug.current}`}
         activeClassName="is-active"
+        partiallyActive
       >
         {category.title}
       </CategoryLink>
@@ -68,7 +69,11 @@ const CategoriesMenu = ({ className }) => {
           <Col>
             <CategoriesList>
               <CategoriesListItem>
-                <CategoryLink to="/blog" activeClassName="is-active">
+                <CategoryLink
+                  to="/blog/wszystkie-kategorie"
+                  activeClassName="is-active"
+                  partiallyActive
+                >
                   Wszystkie kategorie
                 </CategoryLink>
               </CategoriesListItem>

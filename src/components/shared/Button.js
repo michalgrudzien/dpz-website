@@ -16,6 +16,7 @@ export const buttonStyles = css`
   text-align: center;
   text-decoration: none;
   transition: all 150ms ease-in;
+  border-radius: 0.5em;
 
   :focus {
     outline: none;
