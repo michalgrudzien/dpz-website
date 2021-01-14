@@ -44,7 +44,6 @@ exports.createPages = async ({ graphql, actions }) => {
     {
       allSanityCategory {
         nodes {
-          id
           slug {
             current
           }
@@ -95,7 +94,7 @@ exports.createPages = async ({ graphql, actions }) => {
         postsPerPage,
         pageNumber: 1,
         skip: 0,
-        categoryId: category.id,
+        categorySlugs: [category.slug.current],
       },
     });
   });
@@ -118,7 +117,7 @@ exports.createPages = async ({ graphql, actions }) => {
           postsPerPage,
           pageNumber: i,
           skip: postsPerPage * (i - 1),
-          categoryId: category.id,
+          categorySlugs: [category.slug.current],
         },
       });
     }
@@ -157,7 +156,7 @@ exports.createPages = async ({ graphql, actions }) => {
         postsPerPage,
         pageNumber: i,
         skip: postsPerPage * (i - 1),
-        categoryId: "",
+        categorySlugs: categories.map(category => category.slug.current),
       },
     });
   }

@@ -64,7 +64,7 @@ const CommonPageWrapper = ({ category, children }) => (
 );
 
 const BlogCategory = ({ data, pageContext }) => {
-  console.log(data, pageContext.categoryIds);
+  console.log(data, pageContext);
   const posts = get(data, "allSanityPost.nodes", []);
   const { pageNumber, pagesCount, category } = pageContext;
 
@@ -127,16 +127,14 @@ const BlogCategory = ({ data, pageContext }) => {
   );
 };
 
-export default BlogCategory;
-
 export const pageQuery = graphql`
   # prettier-ignore
-  query CategoryPostsQuery($skip: Int!, $postsPerPage: Int!, $categoryId: String!) {
+  query CategoryPostsQuery($skip: Int, $postsPerPage: Int, $categorySlugs: [String]) {
     allSanityPost(
-      limit: $postsPerPage,
-      skip: $skip,
-      sort: { fields: publishedAt, order: DESC },
-      filter: { category: { id: { eq: $categoryId } } }
+      limit: $postsPerPage
+      skip: $skip
+      filter: { category: {slug: { current: { in: $categorySlugs } } } }
+      sort: { fields: publishedAt, order: DESC }
     ) {
       nodes {
         title
@@ -146,7 +144,6 @@ export const pageQuery = graphql`
           current
         }
         category {
-          id
           slug {
             current
           }
@@ -164,16 +161,15 @@ export const pageQuery = graphql`
   }
 `;
 
+export default BlogCategory;
+
 // export const pageQuery = graphql`
-//   query CategoryPostsQuery(
-//     $skip: Int!
-//     $postsPerPage: Int!
-//     $categoryId: String!
-//   ) {
+//   # prettier-ignore
+//   query CategoryPostsQuery($skip: Int, $postsPerPage: Int, $categoryId: String) {
 //     allSanityPost(
-//       limit: $postsPerPage
-//       skip: $skip
-//       sort: { fields: publishedAt, order: DESC }
+//       limit: $postsPerPage,
+//       skip: $skip,
+//       sort: { fields: publishedAt, order: DESC },
 //       filter: { category: { id: { eq: $categoryId } } }
 //     ) {
 //       nodes {
@@ -184,6 +180,7 @@ export const pageQuery = graphql`
 //           current
 //         }
 //         category {
+//           id
 //           slug {
 //             current
 //           }
