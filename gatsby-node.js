@@ -59,7 +59,6 @@ exports.createPages = async ({ graphql, actions }) => {
             current
           }
           category {
-            id
             slug {
               current
             }
@@ -105,8 +104,9 @@ exports.createPages = async ({ graphql, actions }) => {
 
   //Create categories pages (paginated)
   categories.forEach(category => {
-    const postsCount = posts.filter(post => post.category.id === category.id)
-      .length;
+    const postsCount = posts.filter(
+      post => post.category.slug.current === category.slug.current
+    ).length;
     const pagesCount = Math.ceil(postsCount / postsPerPage);
 
     for (let i = 1; i <= pagesCount; i++) {

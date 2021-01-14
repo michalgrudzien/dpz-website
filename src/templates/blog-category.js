@@ -19,14 +19,14 @@ const Wrapper = styled.div`
 
 const CardsWrapper = styled.div`
   display: grid;
-  grid-gap: 2em;
+  grid-column-gap: 2em;
 
   ${media.sm`
-    grid-template-columns: repeat(2, 50%);
+    grid-template-columns: repeat(2, 1fr);
   `}
 
   ${({ hasFeaturedPost }) =>
-    hasFeaturedPost && media.lg`grid-template-columns: repeat(3, 33%);`}
+    hasFeaturedPost && media.lg`grid-template-columns: repeat(3, 1fr);`}
 `;
 
 const NoPostsWrapper = styled.div`
