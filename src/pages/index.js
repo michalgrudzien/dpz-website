@@ -71,3 +71,79 @@ const IndexPage = () => {
 };
 
 export default IndexPage;
+
+// export const pageQuery = graphql`
+// query MyQuery {
+//   allSanityHomepage {
+//     nodes {
+//       content {
+//         aboutUs_title
+//         latestCruise_title
+//         latestCruise_youtubeTitle
+//         latestCruise_youtubeUrl
+//         whatWeDo_title
+//         whatWeDo_bottomTitle
+//         joinUs_title
+//         cruises_wtText
+//         cruises_wssText
+//         songbook_title
+//         songbook_number
+//         songbook_numberCaption
+//         _rawAboutUsBody
+//         _rawBlogBody
+//         _rawJoinUsBody
+//         _rawJoinUsBottomBody
+//         _rawLatestCruiseBody
+//         _rawProductsBody
+//         _rawSongbookBody
+//         _rawSpotifyBody
+//         _rawWhatWeDoBody
+//         _rawWhatWeDoBottomBody
+//         aboutUs_images {
+//           asset {
+//             fluid {
+//               src
+//             }
+//           }
+//         }
+//         whatWeDo_list {
+//           text
+//           title
+//         }
+//         spotify_playlists {
+//           name
+//           spotifyUrl
+//           coverImage {
+//             asset {
+//               fixed(width: 400) {
+//                 src
+//               }
+//             }
+//           }
+//         }
+//         products_images {
+//           asset {
+//             fluid {
+//               src
+//             }
+//           }
+//         }
+//         joinUs_photo {
+//           asset {
+//             fluid {
+//               src
+//             }
+//           }
+//         }
+//         latestCruise_cruiseLogo {
+//           asset {
+//             fluid {
+//               src
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+// `

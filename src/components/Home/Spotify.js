@@ -1,12 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { Container, Row, Col } from "styled-bootstrap-grid";
+import { graphql, useStaticQuery } from "gatsby";
+import Img from "gatsby-image";
+import SanityBlockContent from "@sanity/block-content-to-react";
+
+import colors from "utils/colors";
+import { getHomepageSingleNode } from "helpers/nodeExtractors";
 
 import spotifyBgImg from "assets/images/spotify_bg.svg";
-import turboblogoscImg from "assets/images/turboblogosc.jpg";
-import hardbassImg from "assets/images/hardbass.jpg";
-import singalongImg from "assets/images/singalong.jpg";
-import colors from "utils/colors";
 
 const Wrapper = styled.section`
   padding: 8em 0;
@@ -30,63 +32,77 @@ const CoverLink = styled.a`
   transition: box-shadow 150ms ease-in;
   border-radius: 16px;
 
-  img {
-    width: 100%;
-    border-radius: 16px;
-    position: relative;
-    top: 0px;
-    transition: all 150ms ease-in;
-  }
-
   :hover {
     box-shadow: inset 0px 0px 0px 8px ${colors.turquoise};
-    img {
-      top: -2px;
-    }
   }
 `;
 
-const Spotify = () => (
-  <Wrapper>
-    <Container>
-      <Row>
-        <Col lg="4">
-          <h1>Spotify</h1>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
-          </p>
-        </Col>
-        <Col lg="7" lgOffset="1">
-          <CoversWrapper>
-            <CoverLink
-              href="spotify:user:styczen_mg:playlist:61x7lyAvTQII7oTAZFQxqQ"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              <img src={turboblogoscImg} alt="DPŻ Turbobłogość" />
-            </CoverLink>
-            <CoverLink
-              href="spotify:user:styczen_mg:playlist:36JcgyVD7XZEPTXbVMpS9t"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              <img src={hardbassImg} alt="DPŻ Hardbass Megaparty" />
-            </CoverLink>
-            <CoverLink
-              href="spotify:user:styczen_mg:playlist:5eV4fOpXpLd6KdDzH9c7VA"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              <img src={singalongImg} alt="DPŻ Sing-along" />
-            </CoverLink>
-          </CoversWrapper>
-        </Col>
-      </Row>
-    </Container>
-  </Wrapper>
-);
+const CoverImg = styled(Img)`
+  width: 100%;
+  border-radius: 16px;
+  position: relative;
+  top: 0px;
+  transition: all 150ms ease-in;
+
+  :hover {
+    top: -4px;
+  }
+`;
+
+const Spotify = () => {
+  const response = useStaticQuery(graphql`
+    query SpotifyQuery {
+      allSanityHomepage {
+        nodes {
+          content {
+            _rawSpotifyBody
+            spotify_playlists {
+              name
+              spotifyUrl
+              coverImage {
+                asset {
+                  fluid(maxWidth: 500) {
+                    ...GatsbySanityImageFluid
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  const data = getHomepageSingleNode(response);
+
+  return (
+    <Wrapper>
+      <Container>
+        <Row>
+          <Col lg="4">
+            <h1>Spotify</h1>
+            <SanityBlockContent blocks={data._rawSpotifyBody} />
+          </Col>
+          <Col lg="7" lgOffset="1">
+            <CoversWrapper>
+              {data.spotify_playlists.map(playlist => (
+                <CoverLink
+                  href={playlist.spotifyUrl}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  <CoverImg
+                    fluid={playlist.coverImage.asset.fluid}
+                    alt={playlist.name}
+                  />
+                </CoverLink>
+              ))}
+            </CoversWrapper>
+          </Col>
+        </Row>
+      </Container>
+    </Wrapper>
+  );
+};
 
 export default Spotify;

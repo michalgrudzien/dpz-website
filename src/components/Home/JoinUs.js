@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { Container, Row, Col, media } from "styled-bootstrap-grid";
-import { Link } from "gatsby";
+import { graphql, Link, useStaticQuery } from "gatsby";
+import SanityBlockContent from "@sanity/block-content-to-react";
+import Img from "gatsby-image";
 
 import CircleFile from "components/shared/CircleFile";
 import { CardSidePadding } from "components/shared/Card";
@@ -9,8 +11,8 @@ import { CardSidePadding } from "components/shared/Card";
 import { boxShadow } from "utils/styles";
 import colors from "utils/colors";
 
-import groupPhotoImg from "assets/images/group_photo.jpg";
 import logoCornerImg from "assets/images/logo_corner.svg";
+import { getHomepageSingleNode } from "helpers/nodeExtractors";
 
 const Wrapper = styled.section`
   margin-top: -200px;
@@ -37,7 +39,7 @@ const Title = styled.h1`
   margin-bottom: 1.5em;
 `;
 
-const GroupPhotoImg = styled.img`
+const GroupPhotoImg = styled(Img)`
   border-radius: 0 0 40px 40px;
   width: 100%;
   margin: 3em 0;
@@ -62,67 +64,79 @@ const StyledCircleFile = styled(CircleFile)`
 
 const SecondaryText = styled.div`
   padding-bottom: 1.5em;
+  a {
+    color: ${colors.primary};
+  }
   ${media.lg`
     padding-bottom: 200px;
   `}
 `;
 
-const JoinUs = () => (
-  <Wrapper>
-    <Container>
-      <Row>
-        <Col lg="10" lgOffset="1">
-          <ContentCard>
-            <CardSidePadding>
-              <Title>Jeszcze ci mało? Dołącz do nas na stałe!</Title>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
-              </p>
-            </CardSidePadding>
-            <GroupPhotoImg src={groupPhotoImg} />
-            <CardSidePadding>
-              <Row>
-                <Col lg="6">
-                  <SecondaryText>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.{" "}
+const JoinUs = () => {
+  const response = useStaticQuery(graphql`
+    query JoinUsQuery {
+      allSanityHomepage {
+        nodes {
+          content {
+            joinUs_title
+            joinUs_photo {
+              asset {
+                fluid(maxWidth: 1200) {
+                  ...GatsbySanityImageFluid
+                }
+              }
+            }
+            _rawJoinUsBody
+            _rawJoinUsBottomBody
+          }
+        }
+      }
+    }
+  `);
+
+  const data = getHomepageSingleNode(response);
+
+  return (
+    <Wrapper>
+      <Container>
+        <Row>
+          <Col lg="10" lgOffset="1">
+            <ContentCard>
+              <CardSidePadding>
+                <Title>{data.joinUs_title}</Title>
+                <SanityBlockContent blocks={data._rawJoinUsBody} />
+              </CardSidePadding>
+              <GroupPhotoImg fluid={data.joinUs_photo.asset.fluid} />
+              <CardSidePadding>
+                <Row>
+                  <Col lg="6">
+                    <SecondaryText>
+                      <SanityBlockContent blocks={data._rawJoinUsBottomBody} />
                       <Link to="/o-nas">Więcej o Stowarzyszeniu</Link>
-                    </p>
-                  </SecondaryText>
-                </Col>
-                <Col lg="6">
-                  <FilesWrapper>
-                    <StyledCircleFile
-                      url="/"
-                      label="Deklaracja członkowska"
-                      dark
-                    />
-                    <StyledCircleFile
-                      url="/"
-                      label="Statut Stowarzyszenia"
-                      dark
-                    />
-                  </FilesWrapper>
-                </Col>
-              </Row>
-            </CardSidePadding>
-          </ContentCard>
-        </Col>
-      </Row>
-    </Container>
-  </Wrapper>
-);
+                    </SecondaryText>
+                  </Col>
+                  <Col lg="6">
+                    <FilesWrapper>
+                      <StyledCircleFile
+                        url="/"
+                        label="Deklaracja członkowska"
+                        dark
+                      />
+                      <StyledCircleFile
+                        url="/"
+                        label="Statut Stowarzyszenia"
+                        dark
+                      />
+                    </FilesWrapper>
+                  </Col>
+                </Row>
+              </CardSidePadding>
+            </ContentCard>
+          </Col>
+        </Row>
+      </Container>
+    </Wrapper>
+  );
+};
 
 export default JoinUs;

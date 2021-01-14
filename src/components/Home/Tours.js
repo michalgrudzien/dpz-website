@@ -2,14 +2,17 @@ import React from "react";
 import { Container, media } from "styled-bootstrap-grid";
 import styled from "styled-components";
 import YoutubeBackground from "react-youtube-background";
+import { graphql, useStaticQuery } from "gatsby";
 
 import WindowCheck from "components/WindowCheck";
 import LinkButton from "components/shared/LinkButton";
 
-import wtLogoImg from "assets/images/dpz_world_tour_logo_w.svg";
-import wssLogoImg from "assets/images/dpz_wss_logo_w.svg";
+import { getHomepageSingleNode } from "helpers/nodeExtractors";
 import colors from "utils/colors";
 import { boxShadow } from "utils/styles";
+
+import wtLogoImg from "assets/images/dpz_world_tour_logo_w.svg";
+import wssLogoImg from "assets/images/dpz_wss_logo_w.svg";
 
 const Wrapper = styled.section`
   margin-top: 6em;
@@ -99,57 +102,67 @@ const playerOptions = {
   end: 251,
 };
 
-const Tours = () => (
-  <Wrapper>
-    <Container>
-      <Title>Co, jak, gdzie pływamy?</Title>
+const Tours = () => {
+  const response = useStaticQuery(graphql`
+    query ToursQuery {
+      allSanityHomepage {
+        nodes {
+          content {
+            cruises_wssText
+            cruises_wtText
+            cruises_title
+          }
+        }
+      }
+    }
+  `);
 
-      <WindowCheck>
-        <ToursWrapper>
-          <StyledYoutubeBackground
-            videoId="scOuCXapnm4"
-            playerOptions={{ ...playerOptions, start: 58, end: 251 }}
-          >
-            <Tour>
-              <TourContentWrapper>
-                <TourLogoImg src={wtLogoImg} alt="DPŻ World Tour" />
-                <TourText>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua.
-                  </p>
-                  <TourLinkButton internal to="/rejsy/dpz-world-tour">
-                    Dowiedz się więcej
-                  </TourLinkButton>
-                </TourText>
-              </TourContentWrapper>
-            </Tour>
-          </StyledYoutubeBackground>
-          <StyledYoutubeBackground
-            videoId="szfhEsHKFec"
-            playerOptions={{ ...playerOptions, start: 17, end: 225 }}
-          >
-            <Tour>
-              <TourContentWrapper>
-                <TourLogoImg src={wssLogoImg} alt="DPŻ We Shall Sea" />
-                <TourText>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua.
-                  </p>
-                  <TourLinkButton internal to="/rejsy/dpz-we-shall-sea">
-                    Dowiedz się więcej
-                  </TourLinkButton>
-                </TourText>
-              </TourContentWrapper>
-            </Tour>
-          </StyledYoutubeBackground>
-        </ToursWrapper>
-      </WindowCheck>
-    </Container>
-  </Wrapper>
-);
+  const data = getHomepageSingleNode(response);
+
+  return (
+    <Wrapper>
+      <Container>
+        <Title>{data.cruises_title}</Title>
+
+        <WindowCheck>
+          <ToursWrapper>
+            <StyledYoutubeBackground
+              videoId="scOuCXapnm4"
+              playerOptions={{ ...playerOptions, start: 58, end: 251 }}
+            >
+              <Tour>
+                <TourContentWrapper>
+                  <TourLogoImg src={wtLogoImg} alt="DPŻ World Tour" />
+                  <TourText>
+                    <p>{data.cruises_wtText}</p>
+                    <TourLinkButton internal to="/rejsy/dpz-world-tour">
+                      Dowiedz się więcej
+                    </TourLinkButton>
+                  </TourText>
+                </TourContentWrapper>
+              </Tour>
+            </StyledYoutubeBackground>
+            <StyledYoutubeBackground
+              videoId="szfhEsHKFec"
+              playerOptions={{ ...playerOptions, start: 17, end: 225 }}
+            >
+              <Tour>
+                <TourContentWrapper>
+                  <TourLogoImg src={wssLogoImg} alt="DPŻ We Shall Sea" />
+                  <TourText>
+                    <p>{data.cruises_wssText}</p>
+                    <TourLinkButton internal to="/rejsy/dpz-we-shall-sea">
+                      Dowiedz się więcej
+                    </TourLinkButton>
+                  </TourText>
+                </TourContentWrapper>
+              </Tour>
+            </StyledYoutubeBackground>
+          </ToursWrapper>
+        </WindowCheck>
+      </Container>
+    </Wrapper>
+  );
+};
 
 export default Tours;

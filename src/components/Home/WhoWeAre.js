@@ -1,14 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 import { Container, Row, Col, media } from "styled-bootstrap-grid";
-import { Link } from "gatsby";
+import { graphql, Link, useStaticQuery } from "gatsby";
+import SanityBlockContent from "@sanity/block-content-to-react";
+import Img from "gatsby-image";
 
 import Card, { CardSidePadding } from "components/shared/Card";
 
 import colors from "utils/colors";
+import { getHomepageSingleNode } from "helpers/nodeExtractors";
 
 import logoImg from "assets/images/logo_text.svg";
-import mockImg from "assets/images/brand_photo.jpg";
 
 const StyledSection = styled.section`
   padding: 3em 0 3em;
@@ -40,55 +42,75 @@ const GalleryWrapper = styled.div`
 `}
 `;
 
-const GalleryImg = styled.img`
+const GalleryImg = styled(Img)`
   width: 100%;
   border-radius: 1em;
 `;
 
-const WhoWeAre = () => (
-  <StyledSection id="kim-jestesmy">
-    <Container>
-      <Row>
-        <Col>
-          <CardSidePadding>
-            <Heading>Kim jesteśmy?</Heading>
-          </CardSidePadding>
+const WhoWeAre = () => {
+  const response = useStaticQuery(graphql`
+    query WhoWeAreQuery {
+      allSanityHomepage {
+        nodes {
+          content {
+            _rawAboutUsBody
+            aboutUs_title
+            aboutUs_images {
+              asset {
+                fluid(maxWidth: 920) {
+                  ...GatsbySanityImageFluid
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
 
-          <Card>
-            <Row>
-              <Col md="8">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                  irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                  cupidatat non proident, sunt in culpa qui officia deserunt
-                  mollit anim id est laborum.
-                  <br />
-                  <Link to="/o-nas">Więcej o nas</Link>
-                </p>
-              </Col>
-              <Col md="3" mdOffset="1" hiddenXsDown>
-                <LogoImg src={logoImg} />
-              </Col>
-            </Row>
-          </Card>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <CardSidePadding>
-            <GalleryWrapper>
-              <GalleryImg src={mockImg} />
-              <GalleryImg src={mockImg} />
-            </GalleryWrapper>
-          </CardSidePadding>
-        </Col>
-      </Row>
-    </Container>
-  </StyledSection>
-);
+  const data = getHomepageSingleNode(response);
+
+  return (
+    <StyledSection id="kim-jestesmy">
+      <Container>
+        <Row>
+          <Col>
+            <CardSidePadding>
+              <Heading>{data.aboutUs_title}</Heading>
+            </CardSidePadding>
+
+            <Card>
+              <Row>
+                <Col md="8">
+                  <p>
+                    <SanityBlockContent blocks={data._rawAboutUsBody} />
+                    <Link to="/o-nas">Więcej o nas</Link>
+                  </p>
+                </Col>
+                <Col md="3" mdOffset="1" hiddenXsDown>
+                  <LogoImg src={logoImg} />
+                </Col>
+              </Row>
+            </Card>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <CardSidePadding>
+              <GalleryWrapper>
+                {data.aboutUs_images.map(image => (
+                  <GalleryImg
+                    fluid={image.asset.fluid}
+                    alt="DPŻ - Dobra Praktyka Żeglarska"
+                  />
+                ))}
+              </GalleryWrapper>
+            </CardSidePadding>
+          </Col>
+        </Row>
+      </Container>
+    </StyledSection>
+  );
+};
 
 export default WhoWeAre;

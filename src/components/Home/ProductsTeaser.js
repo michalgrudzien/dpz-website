@@ -2,12 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import { Container, Row, Col, media } from "styled-bootstrap-grid";
 import { Parallax } from "react-scroll-parallax";
+import { graphql, useStaticQuery } from "gatsby";
+import Img from "gatsby-image";
 
-import mockPhoto from "assets/images/nos_dpz_teaser.jpg";
-import nosLogoImg from "assets/images/nos_dpz_logo.svg";
-import spozycieLogoImg from "assets/images/dpz_spozycie_logo.svg";
 import colors from "utils/colors";
 import LinkButton from "components/shared/LinkButton";
+import { getHomepageSingleNode } from "helpers/nodeExtractors";
+
+import nosLogoImg from "assets/images/nos_dpz_logo.svg";
+import spozycieLogoImg from "assets/images/dpz_spozycie_logo.svg";
 
 const Title = styled.h1`
   line-height: 1;
@@ -24,7 +27,7 @@ const Title = styled.h1`
   `}
 `;
 
-const Photo = styled.img`
+const GalleryImg = styled(Img)`
   width: 100%;
   margin: 1em auto;
   border-radius: 1em;
@@ -53,63 +56,95 @@ const StyledLinkButton = styled(LinkButton)`
   margin: 0.5em;
 `;
 
-const ProductsTeaser = ({ isOnMobile }) => (
-  <section>
-    <Container>
-      <Row alignItems="center">
-        <Col lg="4">
-          <Parallax disabled={isOnMobile} x={[-5, 0]}>
-            <Title>Nasze produkty</Title>
-          </Parallax>
-        </Col>
-        <Col lg="4" xs="4" sm="4">
-          <Parallax disabled={isOnMobile} y={[-5, 0]}>
-            <Photo src={mockPhoto} />
-          </Parallax>
-        </Col>
-        <Col lg="4" xs="4" sm="4">
-          <Parallax disabled={isOnMobile} x={[5, 0]}>
-            <Photo src={mockPhoto} />
-          </Parallax>
-        </Col>
+const ProductsTeaser = ({ isOnMobile }) => {
+  const response = useStaticQuery(graphql`
+    query ProductsTeaserQuery {
+      allSanityHomepage {
+        nodes {
+          content {
+            _rawProductsBody
+            products_images {
+              asset {
+                fluid(maxWidth: 920) {
+                  ...GatsbySanityImageFluid
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
 
-        <Col lg="4" xs="4" sm="4">
-          <Parallax disabled={isOnMobile} x={[-5, 0]}>
-            <Photo src={mockPhoto} />
-          </Parallax>
-        </Col>
-        <Col lg="8">
-          <TextWrapper>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-            <Row alignItems="center">
-              <Col xs="6" sm="6" lg="6">
-                <LogoImg src={nosLogoImg} />
-              </Col>
-              <Col xs="6" sm="6" lg="6">
-                <LogoImg src={spozycieLogoImg} />
-              </Col>
-            </Row>
-            <ButtonWrapper>
-              <StyledLinkButton internal to="/produkty">
-                Więcej o produktach DPŻ
-              </StyledLinkButton>
-              <StyledLinkButton href="https://zamow.depezet.com">
-                Przejdź do zamawialni
-              </StyledLinkButton>
-            </ButtonWrapper>
-          </TextWrapper>
-        </Col>
-      </Row>
-    </Container>
-  </section>
-);
+  const data = getHomepageSingleNode(response);
+
+  return (
+    <section>
+      <Container>
+        <Row alignItems="center">
+          <Col lg="4">
+            <Parallax disabled={isOnMobile} x={[-5, 0]}>
+              <Title>Nasze produkty</Title>
+            </Parallax>
+          </Col>
+          <Col lg="4" xs="4" sm="4">
+            <Parallax disabled={isOnMobile} y={[-5, 0]}>
+              <GalleryImg
+                fluid={data.products_images[0].asset.fluid}
+                alt="DPŻ: Nasze produkty"
+              />
+            </Parallax>
+          </Col>
+          <Col lg="4" xs="4" sm="4">
+            <Parallax disabled={isOnMobile} x={[5, 0]}>
+              <GalleryImg
+                fluid={data.products_images[1].asset.fluid}
+                alt="DPŻ: Nasze produkty"
+              />
+            </Parallax>
+          </Col>
+
+          <Col lg="4" xs="4" sm="4">
+            <Parallax disabled={isOnMobile} x={[-5, 0]}>
+              <GalleryImg
+                fluid={data.products_images[2].asset.fluid}
+                alt="DPŻ: Nasze produkty"
+              />
+            </Parallax>
+          </Col>
+          <Col lg="8">
+            <TextWrapper>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+              <Row alignItems="center">
+                <Col xs="6" sm="6" lg="6">
+                  <LogoImg src={nosLogoImg} />
+                </Col>
+                <Col xs="6" sm="6" lg="6">
+                  <LogoImg src={spozycieLogoImg} />
+                </Col>
+              </Row>
+              <ButtonWrapper>
+                <StyledLinkButton internal to="/produkty">
+                  Więcej o produktach DPŻ
+                </StyledLinkButton>
+                <StyledLinkButton href="https://zamow.depezet.com">
+                  Przejdź do zamawialni
+                </StyledLinkButton>
+              </ButtonWrapper>
+            </TextWrapper>
+          </Col>
+        </Row>
+      </Container>
+    </section>
+  );
+};
 
 export default ProductsTeaser;

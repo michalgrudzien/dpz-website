@@ -6,8 +6,10 @@ import Youtube from "react-youtube-embed";
 import colors from "utils/colors";
 import { animatedGradientBg, boxShadow } from "utils/styles";
 
-import wtLogoImg from "assets/images/dpz_world_tour_logo_w.svg";
 import { Parallax } from "react-scroll-parallax";
+import { graphql, useStaticQuery } from "gatsby";
+import { getHomepageSingleNode } from "helpers/nodeExtractors";
+import SanityBlockContent from "@sanity/block-content-to-react";
 
 const Wrapper = styled.section`
   padding: 2em 0;
@@ -55,56 +57,73 @@ const LogoImg = styled.img`
   max-width: 300px;
 `;
 
-const LatestTrip = ({ isOnMobile }) => (
-  <Wrapper>
-    <BackgroundWrapper>
-      <Container>
-        <Row>
-          <Col>
-            <h1>Ostatnie cumowanie: DPŻ World Tour 2019</h1>
-          </Col>
-        </Row>
-        <Row>
-          <Col lg="6">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-            </p>
-          </Col>
-          <Col hiddenMdDown lg="4" lgOffset="2">
-            <LogoImg src={wtLogoImg} alt="DPŻ World Tour" />
-          </Col>
-        </Row>
-      </Container>
-    </BackgroundWrapper>
-    <Parallax y={[10, -10]} disabled={isOnMobile}>
-      <VideoWrapper>
+const LatestTrip = ({ isOnMobile }) => {
+  const response = useStaticQuery(graphql`
+    query LatestTripQuery {
+      allSanityHomepage {
+        nodes {
+          content {
+            _rawLatestCruiseBody
+            latestCruise_title
+            latestCruise_youtubeTitle
+            latestCruise_youtubeUrl
+            latestCruise_cruiseLogo {
+              asset {
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  const data = getHomepageSingleNode(response);
+
+  return (
+    <Wrapper>
+      <BackgroundWrapper>
         <Container>
-          <VideoTitle>
-            DPŻ World Tour: Mazury 2019 - Miuosh & Bajm - Miasto szczęścia
-          </VideoTitle>
-          <YoutubeWrapper>
-            <Youtube id="scOuCXapnm4" aspectRatio="56.25%" />
-          </YoutubeWrapper>
-          <YoutubeTeaser>
-            <span>
-              Więcej znajdziesz na naszym{" "}
-              <YoutubeLink
-                href="https://www.youtube.com/channel/UCku8IcZT7gwCDSfonuduBew"
-                target="_blank"
-                rel="noreferrer noopener"
-              >
-                kanale YouTube
-              </YoutubeLink>
-              .
-            </span>
-          </YoutubeTeaser>
+          <Row>
+            <Col>
+              <h1>{data.latestCruise_title}</h1>
+            </Col>
+          </Row>
+          <Row>
+            <Col lg="6">
+              <SanityBlockContent blocks={data._rawLatestCruiseBody} />
+            </Col>
+            <Col hiddenMdDown lg="4" lgOffset="2">
+              <LogoImg src={data.latestCruise_cruiseLogo.asset.url} alt="DPŻ" />
+            </Col>
+          </Row>
         </Container>
-      </VideoWrapper>
-    </Parallax>
-  </Wrapper>
-);
+      </BackgroundWrapper>
+      <Parallax y={[10, -10]} disabled={isOnMobile}>
+        <VideoWrapper>
+          <Container>
+            <VideoTitle>{data.latestCruise_youtubeTitle}</VideoTitle>
+            <YoutubeWrapper>
+              <Youtube id={data.latestCruise_youtubeUrl} aspectRatio="56.25%" />
+            </YoutubeWrapper>
+            <YoutubeTeaser>
+              <span>
+                Więcej znajdziesz na naszym{" "}
+                <YoutubeLink
+                  href="https://www.youtube.com/channel/UCku8IcZT7gwCDSfonuduBew"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  kanale YouTube
+                </YoutubeLink>
+                .
+              </span>
+            </YoutubeTeaser>
+          </Container>
+        </VideoWrapper>
+      </Parallax>
+    </Wrapper>
+  );
+};
 
 export default LatestTrip;

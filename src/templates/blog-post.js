@@ -3,7 +3,7 @@ import { graphql, Link } from "gatsby";
 import Img from "gatsby-image";
 import styled from "styled-components";
 import { Col, Container, Row, media } from "styled-bootstrap-grid";
-import BlockContent from "@sanity/block-content-to-react";
+import SanityBlockContent from "@sanity/block-content-to-react";
 import { getFluidGatsbyImage } from "gatsby-source-sanity";
 import get from "lodash.get";
 
@@ -158,7 +158,7 @@ const BlogPost = ({ data: { sanityPost: post, placeholderImage } }) => (
                 <Date>Data publikacji: {post.publishedAt}</Date>
               )}
               <PostContentWrapper>
-                <BlockContent
+                <SanityBlockContent
                   projectId="850bz552"
                   dataset="production"
                   blocks={post._rawBody}

@@ -2,10 +2,14 @@ import React from "react";
 import { Col, Container, Row, media } from "styled-bootstrap-grid";
 import styled from "styled-components";
 import { Parallax } from "react-scroll-parallax";
+import { graphql, useStaticQuery } from "gatsby";
 
+import { getHomepageSingleNode } from "helpers/nodeExtractors";
 import colors from "utils/colors";
+
 import bulletImg from "assets/images/list_bullet.svg";
 import boatImg from "assets/images/boat.svg";
+import SanityBlockContent from "@sanity/block-content-to-react";
 
 const Section = styled.section`
   margin: 4em 0;
@@ -74,79 +78,63 @@ const BoatImg = styled.img`
   `}
 `;
 
-const WhatWeDo = ({ isOnMobile }) => (
-  <Section>
-    <Wrapper>
-      <Parallax disabled={isOnMobile} x={[5, 0]}>
-        <BoatImg src={boatImg} />
-      </Parallax>
-      <Container>
-        <Row>
-          <Col lg="8">
-            <Title>Działalność klubu i&nbsp;nasze cele</Title>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-            </p>
-          </Col>
-        </Row>
-        <Row>
-          <Col lg="8">
-            <List>
-              <ListItem>
-                <ListItemTitle>Popularyzacja żeglarstwa</ListItemTitle>
-                <ListItemText>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt.
-                </ListItemText>
-              </ListItem>
-              <ListItem>
-                <ListItemTitle>Popularyzacja żeglarstwa</ListItemTitle>
-                <ListItemText>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt.
-                </ListItemText>
-              </ListItem>
-              <ListItem>
-                <ListItemTitle>Popularyzacja żeglarstwa</ListItemTitle>
-                <ListItemText>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt.
-                </ListItemText>
-              </ListItem>
-              <ListItem>
-                <ListItemTitle>Popularyzacja żeglarstwa</ListItemTitle>
-                <ListItemText>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt.
-                </ListItemText>
-              </ListItem>
-              <ListItem>
-                <ListItemTitle>Popularyzacja żeglarstwa</ListItemTitle>
-                <ListItemText>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt.
-                </ListItemText>
-              </ListItem>
-            </List>
-          </Col>
-        </Row>
-        <Row>
-          <Col lg="6">
-            <Subtitle>Lorem ipsum? lorem ipsum</Subtitle>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-            </p>
-          </Col>
-        </Row>
-      </Container>
-    </Wrapper>
-  </Section>
-);
+const WhatWeDo = ({ isOnMobile }) => {
+  const response = useStaticQuery(graphql`
+    query WhatWeDoQuery {
+      allSanityHomepage {
+        nodes {
+          content {
+            _rawWhatWeDoBody
+            _rawWhatWeDoBottomBody
+            whatWeDo_bottomTitle
+            whatWeDo_title
+            whatWeDo_list {
+              text
+              title
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  const data = getHomepageSingleNode(response);
+
+  return (
+    <Section>
+      <Wrapper>
+        <Parallax disabled={isOnMobile} x={[5, 0]}>
+          <BoatImg src={boatImg} />
+        </Parallax>
+        <Container>
+          <Row>
+            <Col lg="8">
+              <Title>{data.whatWeDo_title}</Title>
+              <SanityBlockContent blocks={data._rawWhatWeDoBody} />
+            </Col>
+          </Row>
+          <Row>
+            <Col lg="8">
+              <List>
+                {data.whatWeDo_list.map(listItem => (
+                  <ListItem>
+                    <ListItemTitle>{listItem.title}</ListItemTitle>
+                    <ListItemText>{listItem.text}</ListItemText>
+                  </ListItem>
+                ))}
+              </List>
+            </Col>
+          </Row>
+          <Row>
+            <Col lg="6">
+              <Subtitle>{data.whatWeDo_bottomTitle}</Subtitle>
+              <SanityBlockContent blocks={data._rawWhatWeDoBottomBody} />
+            </Col>
+          </Row>
+        </Container>
+      </Wrapper>
+    </Section>
+  );
+};
 
 export default WhatWeDo;
