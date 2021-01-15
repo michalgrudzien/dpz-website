@@ -3,12 +3,10 @@ import { reset } from "styled-reset";
 import { media } from "styled-bootstrap-grid";
 
 import colors from "./colors";
-import fonts from "./fonts";
 
 //TODO: Write global styles for :focus states, selection css
 const GlobalStyle = createGlobalStyle`
   ${reset}
-  ${fonts}
    
   html, body {
     font-size: 12px;
@@ -29,7 +27,7 @@ const GlobalStyle = createGlobalStyle`
 
     color: ${colors.default};
     font-family: 'Poppins', sans-serif;
-    font-weight: 300;
+    font-weight: 100;
     box-sizing: border-box;
 
     * {

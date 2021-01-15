@@ -13,6 +13,20 @@ module.exports = {
         path: `${__dirname}/src/assets/images`,
       },
     },
+    {
+      resolve: `gatsby-plugin-google-fonts-v2`,
+      options: {
+        fonts: [
+          {
+            family: `Poppins`,
+            weights: [`300`, `500`],
+          },
+          {
+            family: `Bebas Neue`,
+          },
+        ],
+      },
+    },
     `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-plugin-portal`,
