@@ -46,8 +46,7 @@ const Contact = () => {
       setFormState(FORM_STATES.LOADING);
       ajax(
         "POST",
-        "https://formspree.io/mpzydeay", // TEST URL
-        // "https://formspree.io/meqrgwjk", // PRODUCTION URL
+        `https://formspree.io/${process.env.GATSBY_FORMSPREE_FORM_ID}`,
         values,
         () => setFormState(FORM_STATES.SUCCESS),
         () => setFormState(FORM_STATES.ERROR)

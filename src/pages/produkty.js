@@ -7,6 +7,7 @@ import PageLayout from "components/PageLayout";
 import BrandCard from "components/Products/BrandCard";
 import ShopTeaser from "components/Products/ShopTeaser";
 import PhotoHero from "components/shared/PhotoHero";
+import IfShopOpen from "components/IfShopOpen";
 
 import nosDpzLogoImg from "assets/images/nos_dpz_logo.svg";
 import spozycieLogoImg from "assets/images/dpz_spozycie_logo.svg";
@@ -95,7 +96,9 @@ const ProductsPage = () => {
           </p>
         </BrandCard>
       </BrandsSection>
-      <ShopTeaser />
+      <IfShopOpen>
+        <ShopTeaser />
+      </IfShopOpen>
     </PageLayout>
   );
 };

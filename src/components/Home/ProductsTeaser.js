@@ -5,9 +5,12 @@ import { Parallax } from "react-scroll-parallax";
 import { graphql, useStaticQuery } from "gatsby";
 import Img from "gatsby-image";
 
-import colors from "utils/colors";
 import LinkButton from "components/shared/LinkButton";
+import BlockContent from "components/BlockContent";
+import IfShopOpen from "components/IfShopOpen";
+
 import { getSingleNode } from "helpers/nodeExtractors";
+import colors from "utils/colors";
 
 import nosLogoImg from "assets/images/nos_dpz_logo.svg";
 import spozycieLogoImg from "assets/images/dpz_spozycie_logo.svg";
@@ -114,15 +117,7 @@ const ProductsTeaser = ({ isOnMobile }) => {
           </Col>
           <Col lg="8">
             <TextWrapper>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
+              <BlockContent blocks={data._rawProductsBody} />
               <Row alignItems="center">
                 <Col xs="6" sm="6" lg="6">
                   <LogoImg src={nosLogoImg} />
@@ -135,9 +130,11 @@ const ProductsTeaser = ({ isOnMobile }) => {
                 <StyledLinkButton internal to="/produkty">
                   Więcej o produktach DPŻ
                 </StyledLinkButton>
-                <StyledLinkButton href="https://zamow.depezet.com">
-                  Przejdź do zamawialni
-                </StyledLinkButton>
+                <IfShopOpen>
+                  <StyledLinkButton href="https://zamow.depezet.com">
+                    Przejdź do zamawialni
+                  </StyledLinkButton>
+                </IfShopOpen>
               </ButtonWrapper>
             </TextWrapper>
           </Col>

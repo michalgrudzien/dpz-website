@@ -35,8 +35,8 @@ const serializers = {
 
 const BlockContent = props => (
   <SanityBlockContent
-    projectId="850bz552"
-    dataset="production"
+    projectId={process.env.GATSBY_SANITY_PROJECT_ID}
+    dataset={process.env.GATSBY_SANITY_DATASET}
     {...props}
     serializers={{ ...serializers, ...props.serializers }}
   />
