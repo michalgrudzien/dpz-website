@@ -1,4 +1,9 @@
+import capitalize from "helpers/capitalize";
 import get from "lodash.get";
 
-export const getHomepageSingleNode = response =>
-  get(response, "allSanityHomepage.nodes[0].content", {});
+export const getSingleNode = (response, sanitySchemaName) =>
+  get(
+    response,
+    `allSanity${capitalize(sanitySchemaName)}.nodes[0].content`,
+    {}
+  );

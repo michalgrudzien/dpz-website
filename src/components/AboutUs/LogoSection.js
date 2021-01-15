@@ -3,9 +3,12 @@ import styled from "styled-components";
 import { Container, Row, Col, media } from "styled-bootstrap-grid";
 
 import Card from "components/shared/Card";
+import BlockContent from "components/BlockContent";
 
 import logoTextBg from "assets/images/logo_text_bg.svg";
 import logoPartsImg from "assets/images/logo_parts.svg";
+import { graphql, useStaticQuery } from "gatsby";
+import { getSingleNode } from "helpers/nodeExtractors";
 
 const StyledSection = styled.section`
   padding: 5em 0 3em;
@@ -52,17 +55,28 @@ const LogoTextWrapper = styled.div`
 `;
 
 const LogoSection = () => {
+  const response = useStaticQuery(graphql`
+    query LogoAboutUsQuery {
+      allSanityAboutUs {
+        nodes {
+          content {
+            _rawLogoTopBody
+            _rawLogoBottomBody
+          }
+        }
+      }
+    }
+  `);
+
+  const data = getSingleNode(response, "aboutUs");
+
   return (
     <StyledSection id="logo">
       <Container>
         <Row>
           <Col>
             <LogoTextWrapper>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt Lorem ipsum dolor sit amet,
-                consectetur adipiscing elit, sed do eiusmod tempor incididunt
-              </p>
+              <BlockContent blocks={data._rawLogoTopBody} />
             </LogoTextWrapper>
           </Col>
         </Row>
@@ -82,16 +96,7 @@ const LogoSection = () => {
           <Col>
             <Card>
               <LogoTextWrapper>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt Lorem ipsum dolor sit amet,
-                  consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt Lorem ipsum dolor sit amet,
-                  consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                </p>
+                <BlockContent blocks={data._rawLogoBottomBody} />
               </LogoTextWrapper>
             </Card>
           </Col>

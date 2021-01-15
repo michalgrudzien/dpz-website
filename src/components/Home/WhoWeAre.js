@@ -2,13 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { Container, Row, Col, media } from "styled-bootstrap-grid";
 import { graphql, Link, useStaticQuery } from "gatsby";
-import SanityBlockContent from "@sanity/block-content-to-react";
 import Img from "gatsby-image";
 
 import Card, { CardSidePadding } from "components/shared/Card";
+import BlockContent from "components/BlockContent";
 
 import colors from "utils/colors";
-import { getHomepageSingleNode } from "helpers/nodeExtractors";
+import { getSingleNode } from "helpers/nodeExtractors";
 
 import logoImg from "assets/images/logo_text.svg";
 
@@ -68,7 +68,7 @@ const WhoWeAre = () => {
     }
   `);
 
-  const data = getHomepageSingleNode(response);
+  const data = getSingleNode(response, "homepage");
 
   return (
     <StyledSection id="kim-jestesmy">
@@ -83,7 +83,7 @@ const WhoWeAre = () => {
               <Row>
                 <Col md="8">
                   <p>
-                    <SanityBlockContent blocks={data._rawAboutUsBody} />
+                    <BlockContent blocks={data._rawAboutUsBody} />
                     <Link to="/o-nas">Więcej o nas</Link>
                   </p>
                 </Col>

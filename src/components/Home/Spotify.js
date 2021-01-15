@@ -3,12 +3,12 @@ import styled from "styled-components";
 import { Container, Row, Col } from "styled-bootstrap-grid";
 import { graphql, useStaticQuery } from "gatsby";
 import Img from "gatsby-image";
-import SanityBlockContent from "@sanity/block-content-to-react";
 
 import colors from "utils/colors";
-import { getHomepageSingleNode } from "helpers/nodeExtractors";
+import { getSingleNode } from "helpers/nodeExtractors";
 
 import spotifyBgImg from "assets/images/spotify_bg.svg";
+import BlockContent from "components/BlockContent";
 
 const Wrapper = styled.section`
   padding: 8em 0;
@@ -73,7 +73,7 @@ const Spotify = () => {
     }
   `);
 
-  const data = getHomepageSingleNode(response);
+  const data = getSingleNode(response, "homepage");
 
   return (
     <Wrapper>
@@ -81,7 +81,7 @@ const Spotify = () => {
         <Row>
           <Col lg="4">
             <h1>Spotify</h1>
-            <SanityBlockContent blocks={data._rawSpotifyBody} />
+            <BlockContent blocks={data._rawSpotifyBody} />
           </Col>
           <Col lg="7" lgOffset="1">
             <CoversWrapper>

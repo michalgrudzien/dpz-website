@@ -7,7 +7,7 @@ import { graphql, useStaticQuery } from "gatsby";
 import WindowCheck from "components/WindowCheck";
 import LinkButton from "components/shared/LinkButton";
 
-import { getHomepageSingleNode } from "helpers/nodeExtractors";
+import { getSingleNode } from "helpers/nodeExtractors";
 import colors from "utils/colors";
 import { boxShadow } from "utils/styles";
 
@@ -117,7 +117,7 @@ const Tours = () => {
     }
   `);
 
-  const data = getHomepageSingleNode(response);
+  const data = getSingleNode(response, "homepage");
 
   return (
     <Wrapper>

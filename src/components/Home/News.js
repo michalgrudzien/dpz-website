@@ -33,7 +33,7 @@ const ButtonWrapper = styled.div`
 
 const News = () => {
   const response = useStaticQuery(graphql`
-    query MyQuery {
+    query NewsHomeQuery {
       allSanityPost(
         sort: { fields: publishedAt, order: DESC }
         limit: 4

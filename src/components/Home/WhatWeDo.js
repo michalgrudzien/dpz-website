@@ -4,12 +4,13 @@ import styled from "styled-components";
 import { Parallax } from "react-scroll-parallax";
 import { graphql, useStaticQuery } from "gatsby";
 
-import { getHomepageSingleNode } from "helpers/nodeExtractors";
+import BlockContent from "components/BlockContent";
+
+import { getSingleNode } from "helpers/nodeExtractors";
 import colors from "utils/colors";
 
 import bulletImg from "assets/images/list_bullet.svg";
 import boatImg from "assets/images/boat.svg";
-import SanityBlockContent from "@sanity/block-content-to-react";
 
 const Section = styled.section`
   margin: 4em 0;
@@ -98,7 +99,7 @@ const WhatWeDo = ({ isOnMobile }) => {
     }
   `);
 
-  const data = getHomepageSingleNode(response);
+  const data = getSingleNode(response, "homepage");
 
   return (
     <Section>
@@ -110,7 +111,7 @@ const WhatWeDo = ({ isOnMobile }) => {
           <Row>
             <Col lg="8">
               <Title>{data.whatWeDo_title}</Title>
-              <SanityBlockContent blocks={data._rawWhatWeDoBody} />
+              <BlockContent blocks={data._rawWhatWeDoBody} />
             </Col>
           </Row>
           <Row>
@@ -128,7 +129,7 @@ const WhatWeDo = ({ isOnMobile }) => {
           <Row>
             <Col lg="6">
               <Subtitle>{data.whatWeDo_bottomTitle}</Subtitle>
-              <SanityBlockContent blocks={data._rawWhatWeDoBottomBody} />
+              <BlockContent blocks={data._rawWhatWeDoBottomBody} />
             </Col>
           </Row>
         </Container>

@@ -7,7 +7,7 @@ import Img from "gatsby-image";
 
 import colors from "utils/colors";
 import LinkButton from "components/shared/LinkButton";
-import { getHomepageSingleNode } from "helpers/nodeExtractors";
+import { getSingleNode } from "helpers/nodeExtractors";
 
 import nosLogoImg from "assets/images/nos_dpz_logo.svg";
 import spozycieLogoImg from "assets/images/dpz_spozycie_logo.svg";
@@ -76,7 +76,7 @@ const ProductsTeaser = ({ isOnMobile }) => {
     }
   `);
 
-  const data = getHomepageSingleNode(response);
+  const data = getSingleNode(response, "homepage");
 
   return (
     <section>

@@ -1,16 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 import { Container, Row, Col, media } from "styled-bootstrap-grid";
+import { graphql, useStaticQuery } from "gatsby";
 
 import { CardSidePadding } from "components/shared/Card";
 import FeaturedPost from "components/shared/FeaturedPost";
-
-import colors from "utils/colors";
 import PostCard from "components/shared/PostCard";
 import LinkButton from "components/shared/LinkButton";
-import { graphql, useStaticQuery } from "gatsby";
-import { getHomepageSingleNode } from "helpers/nodeExtractors";
-import SanityBlockContent from "@sanity/block-content-to-react";
+import BlockContent from "components/BlockContent";
+
+import colors from "utils/colors";
+import { getSingleNode } from "helpers/nodeExtractors";
 
 const StyledSection = styled.section`
   padding: 3em 0 3em;
@@ -65,7 +65,7 @@ const Blog = () => {
     }
   `);
 
-  const data = getHomepageSingleNode(response);
+  const data = getSingleNode(response, "homepage");
 
   const {
     allSanityPost: { nodes: posts },
@@ -78,7 +78,7 @@ const Blog = () => {
           <Col lg="6">
             <CardSidePadding>
               <Heading>Blog</Heading>
-              <SanityBlockContent blocks={data._rawBlogBody} />
+              <BlockContent blocks={data._rawBlogBody} />
             </CardSidePadding>
           </Col>
         </Row>

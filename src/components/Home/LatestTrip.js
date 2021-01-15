@@ -2,14 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { Container, Row, Col } from "styled-bootstrap-grid";
 import Youtube from "react-youtube-embed";
+import { Parallax } from "react-scroll-parallax";
+import { graphql, useStaticQuery } from "gatsby";
+
+import BlockContent from "components/BlockContent";
 
 import colors from "utils/colors";
 import { animatedGradientBg, boxShadow } from "utils/styles";
-
-import { Parallax } from "react-scroll-parallax";
-import { graphql, useStaticQuery } from "gatsby";
-import { getHomepageSingleNode } from "helpers/nodeExtractors";
-import SanityBlockContent from "@sanity/block-content-to-react";
+import { getSingleNode } from "helpers/nodeExtractors";
 
 const Wrapper = styled.section`
   padding: 2em 0;
@@ -78,7 +78,7 @@ const LatestTrip = ({ isOnMobile }) => {
     }
   `);
 
-  const data = getHomepageSingleNode(response);
+  const data = getSingleNode(response, "homepage");
 
   return (
     <Wrapper>
@@ -91,7 +91,7 @@ const LatestTrip = ({ isOnMobile }) => {
           </Row>
           <Row>
             <Col lg="6">
-              <SanityBlockContent blocks={data._rawLatestCruiseBody} />
+              <BlockContent blocks={data._rawLatestCruiseBody} />
             </Col>
             <Col hiddenMdDown lg="4" lgOffset="2">
               <LogoImg src={data.latestCruise_cruiseLogo.asset.url} alt="DPŻ" />

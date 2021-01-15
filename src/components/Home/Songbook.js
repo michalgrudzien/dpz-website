@@ -1,15 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 import { Container, Row, Col, media } from "styled-bootstrap-grid";
+import { graphql, useStaticQuery } from "gatsby";
 
-import songbookBgImg from "assets/images/spiewnik_bg.jpg";
-import colors from "utils/colors";
 import CircleFile from "components/shared/CircleFile";
 import LinkButton from "components/shared/LinkButton";
 import CircleNumber from "components/shared/CircleNumber";
-import SanityBlockContent from "@sanity/block-content-to-react";
-import { graphql, useStaticQuery } from "gatsby";
-import { getHomepageSingleNode } from "helpers/nodeExtractors";
+
+import songbookBgImg from "assets/images/spiewnik_bg.jpg";
+import colors from "utils/colors";
+import { getSingleNode } from "helpers/nodeExtractors";
+import BlockContent from "components/BlockContent";
 
 const Wrapper = styled.section`
   padding: 3em 0;
@@ -56,7 +57,7 @@ const Songbook = () => {
     }
   `);
 
-  const data = getHomepageSingleNode(response);
+  const data = getSingleNode(response, "homepage");
 
   return (
     <Wrapper>
@@ -64,7 +65,7 @@ const Songbook = () => {
         <Row>
           <Col lg="6">
             <Heading>{data.songbook_title}</Heading>
-            <SanityBlockContent blocks={data._rawSongbookBody} />
+            <BlockContent blocks={data._rawSongbookBody} />
             <LinkButton
               href="https://www.youtube.com/watch?v=wKPU-_QUTcA&list=PLAxNrJ8oszpi3qNYz-mLJTVS7sFEBaBUK"
               target="_blank"

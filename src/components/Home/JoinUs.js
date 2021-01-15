@@ -2,17 +2,17 @@ import React from "react";
 import styled from "styled-components";
 import { Container, Row, Col, media } from "styled-bootstrap-grid";
 import { graphql, Link, useStaticQuery } from "gatsby";
-import SanityBlockContent from "@sanity/block-content-to-react";
 import Img from "gatsby-image";
 
 import CircleFile from "components/shared/CircleFile";
 import { CardSidePadding } from "components/shared/Card";
+import BlockContent from "components/BlockContent";
 
 import { boxShadow } from "utils/styles";
 import colors from "utils/colors";
 
 import logoCornerImg from "assets/images/logo_corner.svg";
-import { getHomepageSingleNode } from "helpers/nodeExtractors";
+import { getSingleNode } from "helpers/nodeExtractors";
 
 const Wrapper = styled.section`
   margin-top: -200px;
@@ -94,7 +94,7 @@ const JoinUs = () => {
     }
   `);
 
-  const data = getHomepageSingleNode(response);
+  const data = getSingleNode(response, "homepage");
 
   return (
     <Wrapper>
@@ -104,14 +104,14 @@ const JoinUs = () => {
             <ContentCard>
               <CardSidePadding>
                 <Title>{data.joinUs_title}</Title>
-                <SanityBlockContent blocks={data._rawJoinUsBody} />
+                <BlockContent blocks={data._rawJoinUsBody} />
               </CardSidePadding>
               <GroupPhotoImg fluid={data.joinUs_photo.asset.fluid} />
               <CardSidePadding>
                 <Row>
                   <Col lg="6">
                     <SecondaryText>
-                      <SanityBlockContent blocks={data._rawJoinUsBottomBody} />
+                      <BlockContent blocks={data._rawJoinUsBottomBody} />
                       <Link to="/o-nas">Więcej o Stowarzyszeniu</Link>
                     </SecondaryText>
                   </Col>

@@ -1,10 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import { Container, Row, Col, media } from "styled-bootstrap-grid";
+import { graphql, useStaticQuery } from "gatsby";
+import Img from "gatsby-image";
 
 import CircleNumber from "components/shared/CircleNumber";
-import Card from "components/shared/Card";
+import Card, { CardSidePadding } from "components/shared/Card";
+import BlockContent from "components/BlockContent";
+
 import colors from "utils/colors";
+import { getSingleNode } from "helpers/nodeExtractors";
 
 const HeroWrapper = styled.div`
   position: relative;
@@ -52,7 +57,48 @@ const HeroCard = styled(Card)`
   `}
 `;
 
+const ImagesWrapper = styled.div`
+  margin-top: -16px;
+  display: grid;
+  grid-column-gap: 1em;
+  grid-template-columns: repeat(3, 1fr);
+
+  ${media.xs`
+    grid-template-columns: 1fr;
+  `}
+`;
+
+const Image = styled(Img)`
+  border-radius: 1em;
+  margin-bottom: 1em;
+`;
+
 const HeroSection = () => {
+  const response = useStaticQuery(graphql`
+    query AboutUsHeroQuery {
+      allSanityAboutUs {
+        nodes {
+          content {
+            pretitle
+            title
+            membersCount
+            membersCountCaption
+            _rawBody
+            images {
+              asset {
+                fluid(maxWidth: 1200) {
+                  ...GatsbySanityImageFluid
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  const data = getSingleNode(response, "aboutUs");
+
   return (
     <section>
       <HeroWrapper>
@@ -60,26 +106,34 @@ const HeroSection = () => {
           <Row>
             <Col>
               <HeroHeading>
-                <HeroPretitle>Stowarzyszenie</HeroPretitle>
-                <HeroTitle>Dobra Praktyka Żeglarska</HeroTitle>
+                <HeroPretitle>{data.pretitle}</HeroPretitle>
+                <HeroTitle>{data.title}</HeroTitle>
               </HeroHeading>
-              <MembersCount number={34} label="członków" />
+              <MembersCount
+                number={data.membersCount}
+                label={data.membersCountCaption}
+              />
             </Col>
           </Row>
           <Row>
             <Col>
               <HeroCard>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                  irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                  cupidatat non proident, sunt in culpa qui officia deserunt
-                  mollit anim id est laborum.
-                </p>
+                <BlockContent blocks={data._rawBody} />
               </HeroCard>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <CardSidePadding>
+                <ImagesWrapper>
+                  {data.images.map(image => (
+                    <Image
+                      fluid={image.asset.fluid}
+                      alt="Dobra Praktyka Żeglarska"
+                    />
+                  ))}
+                </ImagesWrapper>
+              </CardSidePadding>
             </Col>
           </Row>
         </Container>

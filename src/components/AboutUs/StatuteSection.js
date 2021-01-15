@@ -1,13 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import { Container, Row, Col, media } from "styled-bootstrap-grid";
+import { graphql, useStaticQuery } from "gatsby";
 
 import CircleFile from "components/shared/CircleFile";
 import ScrollAnchor from "components/shared/ScrollAnchor";
+import BlockContent from "components/BlockContent";
+
 import colors from "utils/colors";
 
 import documentIconImg from "assets/images/document_icon.svg";
 import logoBg from "assets/images/logo_w_partial.svg";
+import { getSingleNode } from "helpers/nodeExtractors";
 
 const Section = styled.section`
   h1,
@@ -45,13 +49,16 @@ const StatuteFile = styled(CircleFile)`
 const DocumentsList = styled.ul`
   margin-top: 3em;
   ${media.md`
-    columns: 2;
+    display: grid;
+    grid-row-gap: 1em;
+    grid-template-columns: repeat(2, 1fr);
   `}
 `;
 
 const DocumentsListItem = styled.li`
   margin-bottom: 3em;
   margin-right: 1em;
+  display: block;
 `;
 
 const DocumentsListItemLink = styled.a`
@@ -71,7 +78,29 @@ const DocumentsListItemLink = styled.a`
   text-decoration: none;
   font-size: 0.88em;
   line-height: 1.2;
+  font-weight: 500;
   color: ${colors.white};
+
+  :hover {
+    text-decoration: underline;
+  }
+
+  small {
+    font-weight: 300;
+    color: ${colors.lightGrey};
+  }
+`;
+
+const DocumentsAttachments = styled.div`
+  margin: 0.5em 0 0 40px;
+`;
+
+const DocumentAttachmentsLink = styled.a`
+  color: ${colors.white};
+  margin-right: 1em;
+  font-size: 0.75em;
+  text-decoration: none;
+  display: inline-block;
 
   :hover {
     text-decoration: underline;
@@ -86,18 +115,88 @@ const LogoScrollAnchor = styled(ScrollAnchor)`
   `}
 `;
 
+const renderDocuments = documents =>
+  documents.map(document => {
+    const {
+      title,
+      publishedAt,
+      file: {
+        asset: { url },
+      },
+      attachments,
+    } = document;
+
+    return (
+      <DocumentsListItem>
+        <div>
+          <DocumentsListItemLink
+            href={url}
+            title={title}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            <small>{publishedAt}</small>
+            <br />
+            {title}
+          </DocumentsListItemLink>
+          <DocumentsAttachments>
+            {attachments.map(({ title, file: { asset: { url } } }) => (
+              <DocumentAttachmentsLink
+                href={url}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                {title}
+              </DocumentAttachmentsLink>
+            ))}
+          </DocumentsAttachments>
+        </div>
+      </DocumentsListItem>
+    );
+  });
+
 const StatuteSection = () => {
+  const response = useStaticQuery(graphql`
+    query StatuteAboutUsQuery {
+      allSanityAboutUs {
+        nodes {
+          content {
+            statuteTitle
+            _rawStatuteBody
+            documentsTitle
+            documents {
+              title
+              publishedAt
+              file {
+                asset {
+                  url
+                }
+              }
+              attachments {
+                title
+                publishedAt
+                file {
+                  asset {
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  const data = getSingleNode(response, "aboutUs");
+
   return (
     <Section>
       <Container>
         <Row>
           <Col md="9">
-            <h1>Statut</h1>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis
-            </p>
+            <h1>{data.statuteTitle}</h1>
+            <BlockContent blocks={data._rawStatuteBody} />
           </Col>
           <Col md="3">
             <StatuteFile url="#" label="Statut stowarzyszenia" />
@@ -105,68 +204,9 @@ const StatuteSection = () => {
         </Row>
         <Row>
           <Col>
-            <h2>Podjęte uchwały</h2>
+            <h2>{data.documentsTitle}</h2>
             <DocumentsList>
-              <DocumentsListItem>
-                <DocumentsListItemLink href="#">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor
-                </DocumentsListItemLink>
-              </DocumentsListItem>
-              <DocumentsListItem>
-                <DocumentsListItemLink href="#">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor
-                </DocumentsListItemLink>
-              </DocumentsListItem>
-              <DocumentsListItem>
-                <DocumentsListItemLink href="#">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor
-                </DocumentsListItemLink>
-              </DocumentsListItem>
-              <DocumentsListItem>
-                <DocumentsListItemLink href="#">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor
-                </DocumentsListItemLink>
-              </DocumentsListItem>
-              <DocumentsListItem>
-                <DocumentsListItemLink href="#">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor
-                </DocumentsListItemLink>
-              </DocumentsListItem>
-              <DocumentsListItem>
-                <DocumentsListItemLink href="#">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor
-                </DocumentsListItemLink>
-              </DocumentsListItem>
-              <DocumentsListItem>
-                <DocumentsListItemLink href="#">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor
-                </DocumentsListItemLink>
-              </DocumentsListItem>
-              <DocumentsListItem>
-                <DocumentsListItemLink href="#">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor
-                </DocumentsListItemLink>
-              </DocumentsListItem>
-              <DocumentsListItem>
-                <DocumentsListItemLink href="#">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor
-                </DocumentsListItemLink>
-              </DocumentsListItem>
-              <DocumentsListItem>
-                <DocumentsListItemLink href="#">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor
-                </DocumentsListItemLink>
-              </DocumentsListItem>
+              {renderDocuments(data.documents.reverse())}
             </DocumentsList>
           </Col>
         </Row>
