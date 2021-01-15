@@ -65,12 +65,23 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      allSanityTour {
+        nodes {
+          slug {
+            current
+          }
+        }
+      }
     }
   `);
 
   if (data.errors) {
     throw data.errors;
   }
+
+  /**
+   * POSTS AND CATEGORIES
+   */
 
   //Get categories, posts from fetched datae
   const categories = get(data, "data.allSanityCategory.nodes", []);
@@ -173,6 +184,20 @@ exports.createPages = async ({ graphql, actions }) => {
       path,
       component: require.resolve("./src/templates/blog-post.js"),
       context: { id: post.id },
+    });
+  });
+
+  /**
+   * TOUR PAGES
+   */
+
+  const tours = get(data, "data.allSanityTour.nodes", []);
+
+  tours.forEach(tour => {
+    createPage({
+      path: `/rejsy/${tour.slug.current}`,
+      component: require.resolve("./src/templates/tour.js"),
+      context: { slug: tour.slug.current },
     });
   });
 };

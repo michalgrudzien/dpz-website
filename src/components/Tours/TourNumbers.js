@@ -32,9 +32,9 @@ const NumberWrapper = styled.div`
 const TourNumbers = ({ numbers }) => (
   <Wrapper>
     <NumbersGrid>
-      {numbers.map(({ number, label }) => (
+      {numbers.map(({ number, caption }) => (
         <NumberWrapper>
-          <CircleNumber number={number} label={label} />
+          <CircleNumber number={number} label={caption} />
         </NumberWrapper>
       ))}
     </NumbersGrid>
