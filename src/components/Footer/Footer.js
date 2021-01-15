@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "styled-bootstrap-grid";
 import { Link } from "gatsby";
-import * as P from "./paritals";
+import * as P from "./partials";
 
 import { ContactContext } from "components/PageLayout";
 import colors from "utils/colors";
@@ -134,7 +134,9 @@ const Footer = () => (
                       <P.FooterMenuLink to="/o-nas">O nas</P.FooterMenuLink>
                     </P.FooterMenuListItem>
                     <P.FooterMenuListItem>
-                      <P.FooterMenuLink to="/">Rejs z DPŻ</P.FooterMenuLink>
+                      <P.FooterMenuLink to="/#dzialalnosc-klubu">
+                        Działalność klubu
+                      </P.FooterMenuLink>
                     </P.FooterMenuListItem>
                     <P.FooterMenuListItem>
                       <P.FooterMenuLink to="/rejsy/dpz-world-tour">
@@ -155,10 +157,14 @@ const Footer = () => (
                       <P.FooterMenuLink to="/blog">Blog</P.FooterMenuLink>
                     </P.FooterMenuListItem>
                     <P.FooterMenuListItem>
-                      <P.FooterMenuLink to="/">Śpiewnik</P.FooterMenuLink>
+                      <P.FooterMenuAnchorLink to="/#spiewnik">
+                        Śpiewnik
+                      </P.FooterMenuAnchorLink>
                     </P.FooterMenuListItem>
                     <P.FooterMenuListItem>
-                      <P.FooterMenuLink to="/">Dołącz do nas</P.FooterMenuLink>
+                      <P.FooterMenuLink to="/#dolacz-do-nas">
+                        Dołącz do nas
+                      </P.FooterMenuLink>
                     </P.FooterMenuListItem>
                     <P.FooterMenuListItem>
                       <P.FooterMenuLink to="/trudne-sprawy">

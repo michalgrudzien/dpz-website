@@ -1,7 +1,8 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { media } from "styled-bootstrap-grid";
 import Wave from "react-wavify";
 import { Link } from "gatsby";
+import { AnchorLink } from "gatsby-plugin-anchor-links";
 
 import colors from "utils/colors";
 
@@ -122,12 +123,20 @@ export const FooterMenuListItem = styled.li`
   `}
 `;
 
-export const FooterMenuLink = styled(Link)`
+const footerLinkStyles = css`
   color: ${colors.white};
 
   :hover {
     text-decoration: none;
   }
+`;
+
+export const FooterMenuLink = styled(Link)`
+  ${footerLinkStyles};
+`;
+
+export const FooterMenuAnchorLink = styled(AnchorLink)`
+  ${footerLinkStyles};
 `;
 
 export const FooterContactLink = styled.a`

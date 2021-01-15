@@ -58,12 +58,18 @@ const IndexPage = () => {
         <News />
         <LatestTrip isOnMobile={isOnMobile} />
         <ProductsTeaser isOnMobile={isOnMobile} />
-        <WhatWeDo isOnMobile={isOnMobile} />
-        <JoinUs />
+        <section id="dzialalnosc-klubu">
+          <WhatWeDo isOnMobile={isOnMobile} />
+        </section>
+        <section id="dolacz-do-nas">
+          <JoinUs />
+        </section>
         <Tours />
         <Blog />
         <Instagram />
-        <Songbook />
+        <section id="spiewnik">
+          <Songbook />
+        </section>
         <Spotify />
       </ParallaxProvider>
     </PageLayout>
