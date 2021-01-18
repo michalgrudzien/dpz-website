@@ -118,12 +118,12 @@ const JoinUs = () => {
                   <Col lg="6">
                     <FilesWrapper>
                       <StyledCircleFile
-                        url="/"
+                        url="/documents/dpz_deklaracja_czlonkowska.pdf"
                         label="Deklaracja członkowska"
                         dark
                       />
                       <StyledCircleFile
-                        url="/"
+                        url="/documents/dpz_statut_latest.pdf"
                         label="Statut Stowarzyszenia"
                         dark
                       />

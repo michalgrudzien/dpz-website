@@ -51,6 +51,7 @@ const Songbook = () => {
             _rawSongbookBody
             songbook_number
             songbook_numberCaption
+            songbook_youtubePlaylistUrl
           }
         }
       }
@@ -67,7 +68,7 @@ const Songbook = () => {
             <Heading>{data.songbook_title}</Heading>
             <BlockContent blocks={data._rawSongbookBody} />
             <LinkButton
-              href="https://www.youtube.com/watch?v=wKPU-_QUTcA&list=PLAxNrJ8oszpi3qNYz-mLJTVS7sFEBaBUK"
+              href={data.songbook_youtubePlaylistUrl}
               target="_blank"
               rel="noreferrer noopener"
             >
@@ -80,7 +81,10 @@ const Songbook = () => {
                 number={data.songbook_number}
                 label={data.songbook_numberCaption}
               />
-              <CircleFile url="/" label="Śpiewnik DPŻ w formacie PDF" />
+              <CircleFile
+                url="/media/spiewnik_dpz_print_latest.pdf"
+                label="Śpiewnik DPŻ w formacie PDF"
+              />
             </LinksWrapper>
           </Col>
         </Row>

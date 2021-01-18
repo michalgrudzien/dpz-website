@@ -199,7 +199,10 @@ const StatuteSection = () => {
             <BlockContent blocks={data._rawStatuteBody} />
           </Col>
           <Col md="3">
-            <StatuteFile url="#" label="Statut stowarzyszenia" />
+            <StatuteFile
+              url="/documents/dpz_statut_latest.pdf"
+              label="Statut stowarzyszenia"
+            />
           </Col>
         </Row>
         <Row>
