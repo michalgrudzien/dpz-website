@@ -199,6 +199,10 @@ export const AgreementText = styled.small`
   display: inline-block;
   margin-bottom: 1.5em;
   line-height: 1.35;
+
+  a {
+    color: ${colors.turquoise};
+  }
 `;
 
 export const ErrorText = styled.small`

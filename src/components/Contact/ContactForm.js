@@ -12,7 +12,6 @@ const ContactForm = ({
   errorMessage,
   consent,
   setContactOpen,
-  resetForm,
 }) => (
   <form onSubmit={formik.handleSubmit} method="POST" data-netlify="true">
     <Container fluid>
