@@ -4,6 +4,7 @@ import { Container, Row, Col, media } from "styled-bootstrap-grid";
 
 import LinkButton from "components/shared/LinkButton";
 import colors from "utils/colors";
+import BlockContent from "components/BlockContent";
 
 const Wrapper = styled.div`
   background: ${colors.gradient};
@@ -27,20 +28,18 @@ const ShopButton = styled(LinkButton)`
 `}
 `;
 
-const ShopTeaser = () => (
+const ShopTeaser = ({ title, body }) => (
   <Wrapper>
     <Container>
       <Row>
         <Col md="8">
-          <h1>Podoba się? No to zamów!</h1>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam.
-          </p>
+          <h1>{title}</h1>
+          <BlockContent blocks={body} />
         </Col>
         <Col md="12">
-          <ShopButton>Przejdź do zamawialni</ShopButton>
+          <ShopButton href="https://zamow.depezet.com">
+            Przejdź do zamawialni
+          </ShopButton>
         </Col>
       </Row>
     </Container>

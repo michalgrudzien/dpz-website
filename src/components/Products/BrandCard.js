@@ -2,12 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { Container, Row, Col, media } from "styled-bootstrap-grid";
 import Youtube from "react-youtube-embed";
+import Img from "gatsby-image";
 
 import colors from "utils/colors";
 
 import Card, { CardSidePadding } from "components/shared/Card";
-
-import mockImg from "assets/images/brand_photo.jpg";
 
 const Wrapper = styled.div`
   padding-bottom: 4em;
@@ -83,7 +82,7 @@ const YoutubeItemWrapper = styled.div`
   overflow: hidden;
 `;
 
-const GalleryImg = styled.img`
+const GalleryImg = styled(Img)`
   width: 100%;
   border-radius: 1em;
 
@@ -105,6 +104,7 @@ const BrandCard = ({
   logo,
   alt,
   youtubeId,
+  gallery,
   children,
   className,
   flip,
@@ -136,11 +136,9 @@ const BrandCard = ({
             <YoutubeItemWrapper>
               <Youtube id={youtubeId} aspectRatio="68.3%" />
             </YoutubeItemWrapper>
-            <GalleryImg src={mockImg} />
-            <GalleryImg src={mockImg} />
-            <GalleryImg src={mockImg} />
-            <GalleryImg src={mockImg} />
-            <GalleryImg src={mockImg} />
+            {gallery.map(galleryItem => (
+              <GalleryImg fluid={galleryItem.asset.fluid} alt={alt} />
+            ))}
           </GalleryWrapper>
         </Col>
       </Row>

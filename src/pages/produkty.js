@@ -1,5 +1,5 @@
 import React from "react";
-import { useStaticQuery, graphql } from "gatsby";
+import { graphql } from "gatsby";
 import styled from "styled-components";
 import { media } from "styled-bootstrap-grid";
 
@@ -9,8 +9,8 @@ import ShopTeaser from "components/Products/ShopTeaser";
 import PhotoHero from "components/shared/PhotoHero";
 import IfShopOpen from "components/IfShopOpen";
 
-import nosDpzLogoImg from "assets/images/nos_dpz_logo.svg";
-import spozycieLogoImg from "assets/images/dpz_spozycie_logo.svg";
+import get from "lodash.get";
+import BlockContent from "components/BlockContent";
 
 const BrandsSection = styled.section`
   padding-top: 6em;
@@ -20,28 +20,16 @@ const BrandsSection = styled.section`
   `}
 `;
 
-const imagesQuery = graphql`
-  query {
-    heroImage: file(relativePath: { eq: "products_hero.jpg" }) {
-      childImageSharp {
-        fluid(maxWidth: 1920) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-  }
-`;
-
-const ProductsPage = () => {
-  const images = useStaticQuery(imagesQuery);
+const ProductsPage = ({ data: response }) => {
+  const data = get(response, "allSanityProducts.nodes[0]", {});
 
   return (
     <PageLayout colorTheme="light">
       <PhotoHero
-        fluidImage={images.heroImage.childImageSharp.fluid}
+        fluidImage={data.heroPhoto.asset.fluid}
         backgroundPosition="90%"
         overlayOpacity="0.25"
-        title="Produkty Depeżetu"
+        title={data.title}
         anchor={{
           label: "Nasze marki",
           scrollTo: "#marki",
@@ -49,58 +37,83 @@ const ProductsPage = () => {
       />
       <BrandsSection id="marki">
         <BrandCard
-          title="Ciuchy letnie i takie na Mazury jesienią"
-          logo={nosDpzLogoImg}
-          youtubeId="KAJBFHLXaVc"
-          alt="Noś DPŻ"
+          title={data.nosdpz.title}
+          logo={data.nosdpz.logo.asset.url}
+          youtubeId={data.nosdpz.youtubeUrl}
+          gallery={data.nosdpz.images}
+          alt={data.nosdpz.name}
         >
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur.{" "}
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur.{" "}
-          </p>
+          <BlockContent blocks={data.nosdpz._rawBody} />
         </BrandCard>
         <BrandCard
-          title="Gadżety i akcesoria, ale nie smycze i długopisy"
-          logo={spozycieLogoImg}
-          youtubeId="9tZrYIhn8DE"
-          alt="DPŻ Spożycie"
+          title={data.dpzspozycie.title}
+          logo={data.dpzspozycie.logo.asset.url}
+          youtubeId={data.dpzspozycie.youtubeUrl}
+          gallery={data.dpzspozycie.images}
+          alt={data.dpzspozycie.name}
           flip
         >
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur.{" "}
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur.{" "}
-          </p>
+          <BlockContent blocks={data.dpzspozycie._rawBody} />
         </BrandCard>
       </BrandsSection>
       <IfShopOpen>
-        <ShopTeaser />
+        <ShopTeaser title={data.shopTitle} body={data._rawShopBody} />
       </IfShopOpen>
     </PageLayout>
   );
 };
 
 export default ProductsPage;
+
+export const pageQuery = graphql`
+  query ProductsQuery {
+    allSanityProducts {
+      nodes {
+        heroPhoto {
+          asset {
+            fluid(maxWidth: 1920) {
+              ...GatsbySanityImageFluid
+            }
+          }
+        }
+        title
+        nosdpz {
+          title
+          _rawBody
+          youtubeUrl
+          logo {
+            asset {
+              url
+            }
+          }
+          images {
+            asset {
+              fluid {
+                ...GatsbySanityImageFluid
+              }
+            }
+          }
+        }
+        dpzspozycie {
+          title
+          _rawBody
+          youtubeUrl
+          logo {
+            asset {
+              url
+            }
+          }
+          images {
+            asset {
+              fluid {
+                ...GatsbySanityImageFluid
+              }
+            }
+          }
+        }
+        shopTitle
+        _rawShopBody
+      }
+    }
+  }
+`;
