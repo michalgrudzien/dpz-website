@@ -10,6 +10,7 @@ import BlockContent from "components/BlockContent";
 import colors from "utils/colors";
 import { animatedGradientBg, boxShadow } from "utils/styles";
 import { getSingleNode } from "helpers/nodeExtractors";
+import get from "lodash.get";
 
 const Wrapper = styled.section`
   padding: 2em 0;
@@ -60,6 +61,13 @@ const LogoImg = styled.img`
 const LatestTrip = ({ isOnMobile }) => {
   const response = useStaticQuery(graphql`
     query LatestTripQuery {
+      allSanitySiteMetadata {
+        nodes {
+          socialMedia {
+            youtube
+          }
+        }
+      }
       allSanityHomepage {
         nodes {
           content {
@@ -79,6 +87,11 @@ const LatestTrip = ({ isOnMobile }) => {
   `);
 
   const data = getSingleNode(response, "homepage");
+  const youtubeUrl = get(
+    response,
+    "allSanitySiteMetadata.nodes[0].socialMedia.youtube",
+    ""
+  );
 
   return (
     <Wrapper>
@@ -110,7 +123,7 @@ const LatestTrip = ({ isOnMobile }) => {
               <span>
                 Więcej znajdziesz na naszym{" "}
                 <YoutubeLink
-                  href="https://www.youtube.com/channel/UCku8IcZT7gwCDSfonuduBew"
+                  href={youtubeUrl}
                   target="_blank"
                   rel="noreferrer noopener"
                 >

@@ -26,7 +26,7 @@ const FORM_STATES = {
 };
 
 const Contact = () => {
-  const [formState, setFormState] = useState(FORM_STATES.ERROR);
+  const [formState, setFormState] = useState(FORM_STATES.READY);
   const response = useStaticQuery(graphql`
     query ContactQuery {
       allSanityContact {
