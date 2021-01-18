@@ -12,7 +12,7 @@ import PostCard from "components/shared/PostCard";
 import BlockContent from "components/BlockContent";
 
 import colors from "utils/colors";
-import { boxShadow, portableTextStyles } from "utils/styles";
+import { boxShadow } from "utils/styles";
 
 const Wrapper = styled.div`
   padding: 8em 0;
@@ -20,7 +20,6 @@ const Wrapper = styled.div`
 
 const PostContentWrapper = styled.div`
   padding: 3em 0 1em;
-  ${portableTextStyles};
 `;
 
 const MainImg = styled(Img)`

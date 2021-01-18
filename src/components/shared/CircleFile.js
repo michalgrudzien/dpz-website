@@ -65,7 +65,13 @@ const Label = styled.span`
 const CircleFile = ({ url, label, dark, linkProps, className, ...rest }) => (
   <ExternalWrapper className={className}>
     <StyledCircle hoverable {...rest}>
-      <FileLink href={url} dark={dark} {...linkProps}>
+      <FileLink
+        href={url}
+        dark={dark}
+        target="_blank"
+        rel="noreferrer noopener"
+        {...linkProps}
+      >
         <Wrapper>
           <Icon />
           <Label>{label}</Label>

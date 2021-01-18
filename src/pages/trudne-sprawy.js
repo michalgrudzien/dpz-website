@@ -6,6 +6,10 @@ import Youtube from "react-youtube-embed";
 import PageLayout from "components/PageLayout";
 import Card from "components/shared/Card";
 import { boxShadow } from "utils/styles";
+import { graphql } from "gatsby";
+import get from "lodash.get";
+import BlockContent from "components/BlockContent";
+import CircleFile from "components/shared/CircleFile";
 
 const StyledSection = styled.section`
   padding: 8em 0 2em;
@@ -20,57 +24,61 @@ const Title = styled.h1`
 
 const YoutubeWrapper = styled.div`
   ${boxShadow};
+  border-radius: 0 0 1em 1em;
+  overflow: hidden;
 `;
 
-const CookiesPage = () => (
-  <PageLayout colorTheme="dark" withCookiesModal={false}>
-    <StyledSection>
-      <Container>
-        <Row>
-          <Col>
-            <Title>Trudne sprawy</Title>
-            <Card>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur.{" "}
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur.{" "}
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur.{" "}
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur.{" "}
-              </p>
-            </Card>
-            <YoutubeWrapper>
-              <Youtube id="I01XMRo2ESg" aspectRatio="68.3%" />
-            </YoutubeWrapper>
-          </Col>
-        </Row>
-      </Container>
-    </StyledSection>
-  </PageLayout>
-);
+const CircleWrapper = styled.div`
+  width: fit-content;
+  margin: 0 auto;
+`;
+
+const CookiesPage = ({ data: response }) => {
+  const data = get(response, "allSanityPrivacyPolicy.nodes[0]", {});
+
+  return (
+    <PageLayout colorTheme="dark" withCookiesModal={false}>
+      <StyledSection>
+        <Container>
+          <Row>
+            <Col>
+              <Title>{data.title}</Title>
+              <Card>
+                <BlockContent blocks={data._rawBody} />
+                <CircleWrapper>
+                  <CircleFile
+                    label="Nasza polityka prywatności (PDF)"
+                    url={data.file.asset.url}
+                    dark
+                  />
+                </CircleWrapper>
+              </Card>
+              <YoutubeWrapper>
+                <Youtube id={data.youtubeUrl} aspectRatio="68.3%" />
+              </YoutubeWrapper>
+            </Col>
+          </Row>
+        </Container>
+      </StyledSection>
+    </PageLayout>
+  );
+};
 
 export default CookiesPage;
+
+export const pageQuery = graphql`
+  query PrivacyPolicyQuery {
+    allSanityPrivacyPolicy {
+      nodes {
+        title
+        _rawBody
+        youtubeUrl
+        file {
+          asset {
+            url
+          }
+        }
+      }
+    }
+  }
+`;

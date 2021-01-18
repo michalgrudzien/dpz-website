@@ -5,11 +5,11 @@ import Modal, { ModalProvider, BaseModalBackground } from "styled-react-modal";
 
 import colors from "utils/colors";
 import Button from "components/shared/Button";
-import LinkButton from "components/shared/LinkButton";
 
 import cookieImg from "assets/images/cookie.svg";
 import isWindowDefined from "helpers/isWindowDefined";
 import { boxShadow } from "utils/styles";
+import { graphql, Link, useStaticQuery } from "gatsby";
 
 const ModalBackground = styled(BaseModalBackground)`
   z-index: 500;
@@ -22,6 +22,7 @@ const StyledModal = Modal.styled`
   margin: 0 15px;
   
   background-color: ${colors.turquoise};
+  border-radius: 1em;
   ${boxShadow};
 
   &, p, h2 {
@@ -29,6 +30,9 @@ const StyledModal = Modal.styled`
   }
   h2 {
     margin-top: 0.75em;
+  }
+  a{
+    color ${colors.white};
   }
 
   ${media.md`
@@ -64,21 +68,34 @@ const CookieImg = styled.img`
 `;
 
 const getLocalStorageCookie = () =>
-  isWindowDefined() ? localStorage.getItem("cookies-accepted") : () => {};
+  isWindowDefined() ? localStorage.getItem("cookies-consent") : () => {};
 const setLocalStorageCookie = value =>
-  isWindowDefined()
-    ? localStorage.setItem("cookies-accepted", value)
-    : () => {};
+  isWindowDefined() ? localStorage.setItem("cookies-consent", value) : () => {};
 
 const CookiesModal = ({ enabledOnPage }) => {
-  const [isCookiesAccepted, setCookiesAccepted] = useState(
-    getLocalStorageCookie()
-  );
-  let isModalOpen = !isCookiesAccepted && enabledOnPage;
+  const [isAlreadyShown, setAlreadyShown] = useState(getLocalStorageCookie());
+  let isModalOpen = !isAlreadyShown && enabledOnPage;
+
+  const response = useStaticQuery(graphql`
+    query CookiesModalQuery {
+      allSanityPrivacyPolicy {
+        nodes {
+          bannerText
+        }
+      }
+    }
+  `);
+
+  const data = response.allSanityPrivacyPolicy.nodes[0];
 
   const handleAcceptanceClick = () => {
-    setLocalStorageCookie(true);
-    setCookiesAccepted(true);
+    setLocalStorageCookie(1);
+    setAlreadyShown(true);
+  };
+
+  const handleRejectionClick = () => {
+    setLocalStorageCookie(0);
+    setAlreadyShown(true);
   };
 
   return (
@@ -87,18 +104,16 @@ const CookiesModal = ({ enabledOnPage }) => {
         <CookieImg src={cookieImg} alt="Cookie" />
         <h2>Trudne sprawy</h2>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Ut enim ad minim veniam, quis nostrud
-          exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          {data.bannerText}
+          <br />
+          <Link to="/trudne-sprawy">Trudne sprawy - szczegóły</Link>
         </p>
         <ButtonsWrapper>
-          <LinkButton internal naked white to="/trudne-sprawy">
-            Więcej o trudnych sprawach
-          </LinkButton>
+          <Button white naked onClick={handleRejectionClick}>
+            Nie zgadzam się
+          </Button>
           <Button white onClick={handleAcceptanceClick}>
-            OK, mam to
+            Zgoda
           </Button>
         </ButtonsWrapper>
       </StyledModal>
