@@ -19,7 +19,12 @@ const Wrapper = styled.div`
   grid-template-rows: 270px 325px;
   grid-gap: 5px;
   height: 600px;
-  ${boxShadow}
+  ${boxShadow};
+
+  ${media.xs`
+    height: auto;
+    grid-template-rows: 270px auto;
+  `}
 `;
 
 const TextWrapper = styled.div`
@@ -62,6 +67,10 @@ const HeadingLink = styled(Link)`
 const Content = styled.p`
   height: 215px;
   overflow: hidden;
+
+  ${media.xs`
+    height: auto;
+  `}
 `;
 
 const ReadMoreLink = styled(Link)`
