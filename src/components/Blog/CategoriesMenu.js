@@ -6,6 +6,7 @@ import colors from "utils/colors";
 
 const CategoriesList = styled.ul`
   font-family: "Bebas Neue", sans-serif;
+  font-size: 1.25em;
   padding: 1em 0;
 
   ${media.md`

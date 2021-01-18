@@ -9,7 +9,7 @@ const GlobalStyle = createGlobalStyle`
   ${reset}
    
   html, body {
-    font-size: 12px;
+    font-size: 14px;
 
     ${({ isContactOpen }) =>
       isContactOpen &&
