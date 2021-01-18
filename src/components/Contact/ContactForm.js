@@ -4,8 +4,16 @@ import { Container, Row, Col } from "styled-bootstrap-grid";
 import TextField from "./TextField";
 import TextareaField from "./TextareaField";
 import { SubmitButton, AgreementText, ErrorText } from "./partials";
+import { Link } from "gatsby";
 
-const ContactForm = ({ form: formik, hasError }) => (
+const ContactForm = ({
+  form: formik,
+  hasError,
+  errorMessage,
+  consent,
+  setContactOpen,
+  resetForm,
+}) => (
   <form onSubmit={formik.handleSubmit} method="POST" data-netlify="true">
     <Container fluid>
       <Row>
@@ -58,12 +66,15 @@ const ContactForm = ({ form: formik, hasError }) => (
         </Col>
         <Col md={8}>
           <AgreementText>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur.
+            {consent}{" "}
+            <Link
+              to="/trudne-sprawy"
+              onClick={() => {
+                setContactOpen(false);
+              }}
+            >
+              Dowiedz się więcej
+            </Link>
           </AgreementText>
         </Col>
         <Col md={4}>
@@ -73,11 +84,7 @@ const ContactForm = ({ form: formik, hasError }) => (
         </Col>
         {hasError && (
           <Col>
-            <ErrorText>
-              Kurza stopa, coś nie pykło. Spróbuj ponownie później, napisz
-              bezpośrednio na kontakt@depezet.com lub uderz do nas na
-              Instagramie/Messengerze.
-            </ErrorText>
+            <ErrorText>{errorMessage}</ErrorText>
           </Col>
         )}
       </Row>

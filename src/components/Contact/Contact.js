@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { graphql, useStaticQuery } from "gatsby";
+import get from "lodash.get";
 
 import Loader from "react-spinners/PropagateLoader";
 
@@ -14,6 +16,7 @@ import messengerIcon from "assets/images/messenger_w.svg";
 
 import ContactForm from "./ContactForm";
 import * as P from "./partials";
+import BlockContent from "components/BlockContent";
 
 const FORM_STATES = {
   READY: "formState/ready",
@@ -23,7 +26,22 @@ const FORM_STATES = {
 };
 
 const Contact = () => {
-  const [formState, setFormState] = useState(FORM_STATES.READY);
+  const [formState, setFormState] = useState(FORM_STATES.ERROR);
+  const response = useStaticQuery(graphql`
+    query ContactQuery {
+      allSanityContact {
+        nodes {
+          title
+          _rawBody
+          consent
+          successMessage
+          errorMessage
+        }
+      }
+    }
+  `);
+
+  const data = get(response, "allSanityContact.nodes[0]", {});
 
   const form = useFormik({
     initialValues: {
@@ -69,7 +87,14 @@ const Contact = () => {
     }
     if (formState === FORM_STATES.READY || formState === FORM_STATES.ERROR) {
       return (
-        <ContactForm form={form} hasError={formState === FORM_STATES.ERROR} />
+        <ContactForm
+          form={form}
+          hasError={formState === FORM_STATES.ERROR}
+          errorMessage={data.errorMessage}
+          consent={data.consent}
+          setContactOpen={setContactOpen}
+          resetForm={resetForm}
+        />
       );
     }
 
@@ -77,14 +102,7 @@ const Contact = () => {
       return (
         <div>
           <h1>Poszło!</h1>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur.
-          </p>
+          <p>{data.successMessage}</p>
           <P.SuccessButton
             onClick={() => {
               setContactOpen(false);
@@ -113,15 +131,8 @@ const Contact = () => {
               />
               <P.Header isOpen={isContactOpen}>
                 <div>
-                  <h2>Skontaktuj się z nami!</h2>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur.
-                  </p>
+                  <h2>{data.title}</h2>
+                  <BlockContent blocks={data._rawBody} />
                 </div>
                 <P.SocialIconsWrapper>
                   <P.ContactSocialLink
