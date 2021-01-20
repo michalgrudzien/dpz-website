@@ -24,7 +24,7 @@ const ProductsPage = ({ data: response }) => {
   const data = get(response, "allSanityProducts.nodes[0]", {});
 
   return (
-    <PageLayout colorTheme="light">
+    <PageLayout colorTheme="light" seoProps={data.seo}>
       <PhotoHero
         fluidImage={data.heroPhoto.asset.fluid}
         backgroundPosition="90%"
@@ -69,6 +69,17 @@ export const pageQuery = graphql`
   query ProductsQuery {
     allSanityProducts {
       nodes {
+        seo {
+          title
+          description
+          image {
+            asset {
+              fixed(width: 1200, height: 630) {
+                src
+              }
+            }
+          }
+        }
         heroPhoto {
           asset {
             fluid(maxWidth: 1920) {

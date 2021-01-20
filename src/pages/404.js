@@ -31,7 +31,7 @@ const StyledImg = styled.img`
 `;
 
 const NotFoundPage = () => (
-  <PageLayout colorTheme="dark">
+  <PageLayout colorTheme="dark" seoProps={{ title: "404 - nie znaleziono" }}>
     <Wrapper>
       <Container>
         <Row alignItems="center">

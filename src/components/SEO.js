@@ -9,23 +9,44 @@ import React from "react";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
+import get from "lodash.get";
 
-function SEO({ description, lang, meta, title }) {
-  const { site } = useStaticQuery(
+function SEO({ description, lang, image, title = "DPŻ" }) {
+  const response = useStaticQuery(
     graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            author
+      query SeoQuery {
+        allSanitySiteMetadata {
+          nodes {
+            pageTitle
+            pageDescription
+            defaultMetaImage {
+              asset {
+                fixed(width: 1200, height: 630) {
+                  src
+                }
+              }
+            }
           }
         }
       }
     `
   );
 
-  const metaDescription = description || site.siteMetadata.description;
+  const data = get(response, "allSanitySiteMetadata.nodes[0]", {});
+
+  const metaDescription = description || data.pageDescription;
+
+  let imageUrl = undefined;
+
+  if (image) {
+    if (image.hasOwnProperty("asset")) {
+      imageUrl = image.asset.fixed.src;
+    } else {
+      imageUrl = image;
+    }
+  }
+
+  const metaImage = imageUrl || data.defaultMetaImage.asset.fixed.src;
 
   return (
     <Helmet
@@ -33,7 +54,7 @@ function SEO({ description, lang, meta, title }) {
         lang,
       }}
       title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      titleTemplate={`%s | ${data.pageTitle}`}
       meta={[
         {
           name: `description`,
@@ -48,6 +69,10 @@ function SEO({ description, lang, meta, title }) {
           content: metaDescription,
         },
         {
+          property: `og:image`,
+          content: metaImage,
+        },
+        {
           property: `og:type`,
           content: `website`,
         },
@@ -57,7 +82,7 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata.author,
+          content: data.pageTitle,
         },
         {
           name: `twitter:title`,
@@ -67,7 +92,7 @@ function SEO({ description, lang, meta, title }) {
           name: `twitter:description`,
           content: metaDescription,
         },
-      ].concat(meta)}
+      ]}
     />
   );
 }

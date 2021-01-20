@@ -46,7 +46,7 @@ const LogoImg = styled.img`
 `;
 
 const Tour = ({ data: { sanityTour: tour } }) => (
-  <PageLayout colorTheme="light">
+  <PageLayout colorTheme="light" seoProps={tour.seo}>
     <PhotoHero
       fluidImage={tour.heroPhoto.asset.fluid}
       overlayOpacity="0.25"
@@ -102,6 +102,17 @@ export default Tour;
 export const pageQuery = graphql`
   query TourQuery($slug: String) {
     sanityTour(slug: { current: { eq: $slug } }) {
+      seo {
+        title
+        description
+        image {
+          asset {
+            fixed(width: 1200, height: 630) {
+              src
+            }
+          }
+        }
+      }
       slug {
         current
       }

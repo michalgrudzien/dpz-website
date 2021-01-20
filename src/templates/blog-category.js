@@ -53,8 +53,11 @@ const PaginationWrapper = styled.div`
   margin: 0 auto;
 `;
 
-const CommonPageWrapper = ({ category, children }) => (
-  <PageLayout colorTheme="dark">
+const CommonPageWrapper = ({ category, description, children }) => (
+  <PageLayout
+    colorTheme="dark"
+    seoProps={{ title: `${category.title} - Blog`, description }}
+  >
     <Wrapper>
       <Heading title="Blog" subtitle={category.title} />
       {children}
@@ -65,6 +68,8 @@ const CommonPageWrapper = ({ category, children }) => (
 
 const BlogCategory = ({ data, pageContext }) => {
   const posts = get(data, "allSanityPost.nodes", []);
+  const description = get(data, "sanityCategory.description", "");
+
   const { pageNumber, pagesCount, category } = pageContext;
 
   const hasNextPage = pageNumber < pagesCount;
@@ -73,7 +78,7 @@ const BlogCategory = ({ data, pageContext }) => {
 
   if (posts.length === 0)
     return (
-      <CommonPageWrapper category={category}>
+      <CommonPageWrapper category={category} description={description}>
         <NoPostsWrapper>
           <NoPostsImg src={noPostsIconImg} alt="Brak postów" />
           <NoPostsHeading>Nie ma postów w tej kategorii...</NoPostsHeading>
@@ -84,7 +89,7 @@ const BlogCategory = ({ data, pageContext }) => {
 
   if (posts.length === 1 && pageNumber === 1)
     return (
-      <CommonPageWrapper category={category}>
+      <CommonPageWrapper category={category} description={description}>
         <FeaturedPost post={posts[0]} />
       </CommonPageWrapper>
     );
@@ -93,7 +98,7 @@ const BlogCategory = ({ data, pageContext }) => {
   const cardPosts = hasFeaturedPost ? posts.slice(1) : posts;
 
   return (
-    <CommonPageWrapper category={category}>
+    <CommonPageWrapper category={category} description={description}>
       {hasFeaturedPost && <FeaturedPost post={posts[0]} />}
       <Container>
         <CardsWrapper hasFeaturedPost={hasFeaturedPost}>
@@ -129,6 +134,9 @@ const BlogCategory = ({ data, pageContext }) => {
 export const pageQuery = graphql`
   # prettier-ignore
   query CategoryPostsQuery($skip: Int, $postsPerPage: Int, $categorySlugs: [String]) {
+    sanityCategory(slug: { current: { in: $categorySlugs } }) {
+      description
+    }
     allSanityPost(
       limit: $postsPerPage
       skip: $skip

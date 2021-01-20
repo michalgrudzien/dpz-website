@@ -37,7 +37,7 @@ const CookiesPage = ({ data: response }) => {
   const data = get(response, "allSanityPrivacyPolicy.nodes[0]", {});
 
   return (
-    <PageLayout colorTheme="dark" withCookiesModal={false}>
+    <PageLayout colorTheme="dark" withCookiesModal={false} seoProps={data.seo}>
       <StyledSection>
         <Container>
           <Row>
@@ -70,6 +70,17 @@ export const pageQuery = graphql`
   query PrivacyPolicyQuery {
     allSanityPrivacyPolicy {
       nodes {
+        seo {
+          title
+          description
+          image {
+            asset {
+              fixed(width: 1200, height: 630) {
+                src
+              }
+            }
+          }
+        }
         title
         _rawBody
         youtubeUrl

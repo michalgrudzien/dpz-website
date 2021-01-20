@@ -8,6 +8,7 @@ import Contact from "components/Contact";
 import CookiesModal from "components/CookiesModal";
 
 import GlobalStyle from "utils/GlobalStyle";
+import SEO from "components/SEO";
 
 export const ContactContext = createContext({
   isContactOpen: false,
@@ -24,12 +25,14 @@ const PageLayout = ({
   colorTheme,
   isUnderConstruction,
   withCookiesModal,
+  seoProps,
 }) => {
   const [isContactOpen, setContactOpen] = useState(false);
   if (isUnderConstruction) return <UnderConstruction />;
 
   return (
     <ContactContext.Provider value={{ isContactOpen, setContactOpen }}>
+      <SEO {...seoProps} />
       <GlobalStyle isContactOpen={isContactOpen} />
       <Header colorTheme={colorTheme} />
       {children}

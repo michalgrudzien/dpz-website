@@ -91,7 +91,18 @@ const StyledCategoriesMenu = styled(CategoriesMenu)`
 `;
 
 const BlogPost = ({ data: { sanityPost: post, placeholderImage } }) => (
-  <PageLayout colorTheme="dark">
+  <PageLayout
+    colorTheme="dark"
+    seoProps={{
+      title: `${post.title} - Blog`,
+      description: post.excerpt,
+      image: get(
+        post,
+        "mainImage.asset.fixed.src",
+        placeholderImage.childImageSharp.fixed.src
+      ),
+    }}
+  >
     <Wrapper>
       <Container>
         <Row>
@@ -177,6 +188,9 @@ export const pageQuery = graphql`
         fluid(maxWidth: 1024) {
           ...GatsbyImageSharpFluid
         }
+        fixed(width: 1200, height: 630) {
+          src
+        }
       }
     }
     sanityPost(id: { eq: $id }) {
@@ -188,6 +202,9 @@ export const pageQuery = graphql`
         asset {
           fluid {
             ...GatsbySanityImageFluid
+          }
+          fixed(width: 1200, height: 630) {
+            src
           }
         }
       }

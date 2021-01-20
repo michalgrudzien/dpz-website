@@ -1,6 +1,7 @@
 import React from "react";
-import { graphql, useStaticQuery } from "gatsby";
+import { graphql } from "gatsby";
 import { ParallaxProvider } from "react-scroll-parallax";
+import get from "lodash.get";
 
 import PageLayout from "components/PageLayout";
 
@@ -20,40 +21,17 @@ import Spotify from "components/Home/Spotify";
 
 const MOBILE_BREAKPOINT = 768;
 
-const imagesQuery = graphql`
-  query {
-    heroImage1: file(relativePath: { eq: "home_hero_1.jpg" }) {
-      childImageSharp {
-        fluid(maxWidth: 1920) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-    heroImage2: file(relativePath: { eq: "home_hero_2.jpg" }) {
-      childImageSharp {
-        fluid(maxWidth: 1920) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-  }
-`;
-
-const IndexPage = () => {
-  const images = useStaticQuery(imagesQuery);
+const IndexPage = ({ data: response }) => {
   const [windowWidth] = useWindowSize();
+
+  const seo = get(response, "allSanityHomepage.nodes[0].seo", {});
 
   const isOnMobile = windowWidth < MOBILE_BREAKPOINT;
 
-  const heroImages = [
-    images.heroImage1.childImageSharp.fluid,
-    images.heroImage2.childImageSharp.fluid,
-  ];
-
   return (
-    <PageLayout colorTheme="light">
+    <PageLayout colorTheme="light" seoProps={seo}>
       <ParallaxProvider>
-        <HomeHero images={heroImages} />
+        <HomeHero />
         <WhoWeAre />
         <News />
         <LatestTrip isOnMobile={isOnMobile} />
@@ -78,78 +56,22 @@ const IndexPage = () => {
 
 export default IndexPage;
 
-// export const pageQuery = graphql`
-// query MyQuery {
-//   allSanityHomepage {
-//     nodes {
-//       content {
-//         aboutUs_title
-//         latestCruise_title
-//         latestCruise_youtubeTitle
-//         latestCruise_youtubeUrl
-//         whatWeDo_title
-//         whatWeDo_bottomTitle
-//         joinUs_title
-//         cruises_wtText
-//         cruises_wssText
-//         songbook_title
-//         songbook_number
-//         songbook_numberCaption
-//         _rawAboutUsBody
-//         _rawBlogBody
-//         _rawJoinUsBody
-//         _rawJoinUsBottomBody
-//         _rawLatestCruiseBody
-//         _rawProductsBody
-//         _rawSongbookBody
-//         _rawSpotifyBody
-//         _rawWhatWeDoBody
-//         _rawWhatWeDoBottomBody
-//         aboutUs_images {
-//           asset {
-//             fluid {
-//               src
-//             }
-//           }
-//         }
-//         whatWeDo_list {
-//           text
-//           title
-//         }
-//         spotify_playlists {
-//           name
-//           spotifyUrl
-//           coverImage {
-//             asset {
-//               fixed(width: 400) {
-//                 src
-//               }
-//             }
-//           }
-//         }
-//         products_images {
-//           asset {
-//             fluid {
-//               src
-//             }
-//           }
-//         }
-//         joinUs_photo {
-//           asset {
-//             fluid {
-//               src
-//             }
-//           }
-//         }
-//         latestCruise_cruiseLogo {
-//           asset {
-//             fluid {
-//               src
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
-// `
+export const pageQuery = graphql`
+  query MyQuery {
+    allSanityHomepage {
+      nodes {
+        seo {
+          title
+          description
+          image {
+            asset {
+              fixed(width: 1200, height: 630) {
+                src
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
