@@ -7,6 +7,7 @@ module.exports = {
     title: `Dobra Praktyka Żeglarska`,
     description: `Ilość przepłynięcia jakiej jeszcze nie widziałeś.`,
     author: `@depezet`,
+    siteUrl: process.env.GATSBY_SITE_URL,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

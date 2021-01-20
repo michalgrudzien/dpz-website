@@ -90,7 +90,7 @@ const StyledCategoriesMenu = styled(CategoriesMenu)`
   margin-top: 2em;
 `;
 
-const BlogPost = ({ data: { sanityPost: post, placeholderImage } }) => (
+const BlogPost = ({ data: { sanityPost: post, placeholderImage, site } }) => (
   <PageLayout
     colorTheme="dark"
     seoProps={{
@@ -99,7 +99,9 @@ const BlogPost = ({ data: { sanityPost: post, placeholderImage } }) => (
       image: get(
         post,
         "mainImage.asset.fixed.src",
-        placeholderImage.childImageSharp.fixed.src
+        `${site.siteMetadata.siteUrl}${
+          placeholderImage.childImageSharp.fixed.src
+        }`
       ),
     }}
   >
@@ -183,6 +185,11 @@ export default BlogPost;
 
 export const pageQuery = graphql`
   query PostQuery($id: String) {
+    site {
+      siteMetadata {
+        siteUrl
+      }
+    }
     placeholderImage: file(relativePath: { eq: "blog_placeholder.jpg" }) {
       childImageSharp {
         fluid(maxWidth: 1024) {
