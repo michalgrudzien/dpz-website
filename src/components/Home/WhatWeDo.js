@@ -35,6 +35,7 @@ const Title = styled.h1`
 const List = styled.ul`
   margin: 2em 0 2em 32px;
   list-style-image: url(${bulletImg});
+  text-shadow: 0px 0px 2px ${colors.white};
 
   ${media.lg`
     display: grid;

@@ -92,6 +92,10 @@ function SEO({ description, lang, image, title = "DPŻ" }) {
           name: `twitter:description`,
           content: metaDescription,
         },
+        {
+          name: `robots`,
+          content: parseInt(process.env.GATSBY_NO_FOLLOW) ? `noindex,nofollow` : `index,follow`
+        }
       ]}
     />
   );
