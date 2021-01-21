@@ -11,6 +11,8 @@ import isWindowDefined from "helpers/isWindowDefined";
 import { boxShadow } from "utils/styles";
 import { graphql, Link, useStaticQuery } from "gatsby";
 
+const GDPR_COOKIE_NAME = "gatsby-plugin-google-analytics-gdpr_cookies-enabled";
+
 const ModalBackground = styled(BaseModalBackground)`
   z-index: 500;
 `;
@@ -68,9 +70,9 @@ const CookieImg = styled.img`
 `;
 
 const getLocalStorageCookie = () =>
-  isWindowDefined() ? localStorage.getItem("cookies-consent") : () => {};
-const setLocalStorageCookie = value =>
-  isWindowDefined() ? localStorage.setItem("cookies-consent", value) : () => {};
+  isWindowDefined() ? localStorage.getItem(GDPR_COOKIE_NAME) : () => {};
+const setLocalStorageCookie = (value) =>
+  isWindowDefined() ? localStorage.setItem(GDPR_COOKIE_NAME, value) : () => {};
 
 const CookiesModal = ({ enabledOnPage }) => {
   const [isAlreadyShown, setAlreadyShown] = useState(getLocalStorageCookie());
@@ -89,12 +91,12 @@ const CookiesModal = ({ enabledOnPage }) => {
   const data = response.allSanityPrivacyPolicy.nodes[0];
 
   const handleAcceptanceClick = () => {
-    setLocalStorageCookie(1);
+    setLocalStorageCookie(true);
     setAlreadyShown(true);
   };
 
   const handleRejectionClick = () => {
-    setLocalStorageCookie(0);
+    setLocalStorageCookie(false);
     setAlreadyShown(true);
   };
 
