@@ -12,6 +12,11 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sitemap`,
+    `gatsby-plugin-instagram`,
+    `gatsby-plugin-smoothscroll`,
+    `gatsby-plugin-styled-components`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-meta-redirect`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -39,7 +44,6 @@ module.exports = {
         ],
       },
     },
-    `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-plugin-portal`,
       options: {
@@ -47,8 +51,6 @@ module.exports = {
         id: "portal",
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-meta-redirect`,
     {
       resolve: `gatsby-plugin-sharp`,
       options: {
@@ -65,7 +67,6 @@ module.exports = {
         overlayDrafts: true,
       },
     },
-    `gatsby-plugin-smoothscroll`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

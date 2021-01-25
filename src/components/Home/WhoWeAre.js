@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Container, Row, Col, media } from "styled-bootstrap-grid";
-import { graphql, Link, useStaticQuery } from "gatsby";
+import { graphql, useStaticQuery } from "gatsby";
 import Img from "gatsby-image";
 
 import Card, { CardSidePadding } from "components/shared/Card";
@@ -78,14 +78,10 @@ const WhoWeAre = () => {
             <CardSidePadding>
               <Heading>{data.aboutUs_title}</Heading>
             </CardSidePadding>
-
             <Card>
               <Row>
                 <Col md="8">
-                  <p>
-                    <BlockContent blocks={data._rawAboutUsBody} />
-                    <Link to="/o-nas">Więcej o nas</Link>
-                  </p>
+                  <BlockContent blocks={data._rawAboutUsBody} />
                 </Col>
                 <Col md="3" mdOffset="1" hiddenXsDown>
                   <LogoImg src={logoImg} />
@@ -98,7 +94,7 @@ const WhoWeAre = () => {
           <Col>
             <CardSidePadding>
               <GalleryWrapper>
-                {data.aboutUs_images.map(image => (
+                {data.aboutUs_images.map((image) => (
                   <GalleryImg
                     fluid={image.asset.fluid}
                     alt="DPŻ - Dobra Praktyka Żeglarska"

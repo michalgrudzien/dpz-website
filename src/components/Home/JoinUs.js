@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Container, Row, Col, media } from "styled-bootstrap-grid";
-import { graphql, Link, useStaticQuery } from "gatsby";
+import { graphql, useStaticQuery } from "gatsby";
 import Img from "gatsby-image";
 
 import CircleFile from "components/shared/CircleFile";
@@ -112,7 +112,6 @@ const JoinUs = () => {
                   <Col lg="6">
                     <SecondaryText>
                       <BlockContent blocks={data._rawJoinUsBottomBody} />
-                      <Link to="/o-nas">Więcej o Stowarzyszeniu</Link>
                     </SecondaryText>
                   </Col>
                   <Col lg="6">
