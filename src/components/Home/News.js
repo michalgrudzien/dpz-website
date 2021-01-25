@@ -42,7 +42,7 @@ const News = () => {
         nodes {
           title
           excerpt
-          publishedAt
+          publishedAt(formatString: "DD.MM.YYYY")
           slug {
             current
           }

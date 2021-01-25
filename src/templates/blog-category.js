@@ -102,7 +102,7 @@ const BlogCategory = ({ data, pageContext }) => {
       {hasFeaturedPost && <FeaturedPost post={posts[0]} />}
       <Container>
         <CardsWrapper hasFeaturedPost={hasFeaturedPost}>
-          {cardPosts.map(post => (
+          {cardPosts.map((post) => (
             <PostCard post={post} />
           ))}
         </CardsWrapper>
@@ -146,7 +146,7 @@ export const pageQuery = graphql`
       nodes {
         title
         excerpt
-        publishedAt
+        publishedAt(formatString: "DD.MM.YYYY")
         slug {
           current
         }
@@ -169,38 +169,3 @@ export const pageQuery = graphql`
 `;
 
 export default BlogCategory;
-
-// export const pageQuery = graphql`
-//   # prettier-ignore
-//   query CategoryPostsQuery($skip: Int, $postsPerPage: Int, $categoryId: String) {
-//     allSanityPost(
-//       limit: $postsPerPage,
-//       skip: $skip,
-//       sort: { fields: publishedAt, order: DESC },
-//       filter: { category: { id: { eq: $categoryId } } }
-//     ) {
-//       nodes {
-//         title
-//         excerpt
-//         publishedAt
-//         slug {
-//           current
-//         }
-//         category {
-//           id
-//           slug {
-//             current
-//           }
-//           title
-//         }
-//         mainImage {
-//           asset {
-//             fluid(maxWidth: 1024) {
-//               ...GatsbySanityImageFluid
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// `;
