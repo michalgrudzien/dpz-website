@@ -68,6 +68,8 @@ const News = () => {
     allSanityPost: { nodes: posts },
   } = response;
 
+  if (posts.length < 1) return null;
+
   return (
     <StyledSection>
       <Container>
