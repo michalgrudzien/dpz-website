@@ -28,6 +28,7 @@
   },
   {
     "label": "Blog",
-    "linkTo": "/blog/"
+    "linkTo": "/blog",
+    "blogSubmenu": true
   }
 ]

@@ -56,6 +56,8 @@ const MenuLink = styled(Link)`
     text-decoration: underline;
   }
 
+  white-space: nowrap;
+
   ${({ hasSubmenu, isSubmenuOpen }) =>
     hasSubmenu &&
     `&::after {
@@ -121,7 +123,11 @@ const MenuItem = ({
         >
           {submenu.map((item, index) => (
             <StyledSubmenuListItem key={index} colorTheme={colorTheme}>
-              <MenuLink to={item.linkTo} activeClassName="is-active">
+              <MenuLink
+                to={item.linkTo}
+                activeClassName="is-active"
+                partiallyActive={!item.exact}
+              >
                 {item.label}
               </MenuLink>
             </StyledSubmenuListItem>

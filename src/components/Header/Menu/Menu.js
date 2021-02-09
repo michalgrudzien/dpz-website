@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { graphql, useStaticQuery } from "gatsby";
 import { media } from "styled-bootstrap-grid";
 
 import Portal from "components/Portal";
@@ -31,22 +32,45 @@ const MobileNavWrapper = styled.div`
   `}
 `;
 
-const getKey = item => `${item.label}_${item.linkTo}`;
+const getKey = (item) => `${item.label}_${item.linkTo}`;
 
 const Menu = ({ isMenuOpen, setMenuOpen, colorTheme, isShrinked }) => {
+  const {
+    allSanityCategory: { nodes: categories },
+  } = useStaticQuery(graphql`
+    query CategoriesMenuQuery {
+      allSanityCategory {
+        nodes {
+          slug {
+            current
+          }
+          title
+        }
+      }
+    }
+  `);
+
+  const categoriesSubmenu = [
+    { label: "Wszystkie kategorie", linkTo: "/blog/wszystkie-kategorie" },
+    ...categories.map((category) => ({
+      label: category.title,
+      linkTo: `/blog/${category.slug.current}`,
+    })),
+  ];
+
   return (
     <ContactContext.Consumer>
       {({ setContactOpen }) => (
         <>
           <DesktopNav>
             <MenuList>
-              {structure.map(item => (
+              {structure.map((item) => (
                 <MenuItem
                   key={getKey(item)}
                   label={item.label}
                   linkTo={item.linkTo}
                   exact={item.exact}
-                  submenu={item.submenu}
+                  submenu={item.blogSubmenu ? categoriesSubmenu : item.submenu}
                   colorTheme={colorTheme}
                   isShrinked={isShrinked}
                 />
@@ -69,7 +93,7 @@ const Menu = ({ isMenuOpen, setMenuOpen, colorTheme, isShrinked }) => {
             <Portal>
               <MobileNav isOpen={isMenuOpen}>
                 <MenuList>
-                  {structure.map(item => (
+                  {structure.map((item) => (
                     <MenuItemMobile
                       key={getKey(item)}
                       label={item.label}

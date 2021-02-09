@@ -9,7 +9,7 @@ const SubmenuList = styled.ul`
   top: 2em;
   padding: 0 1em;
   right: -1em;
-  width: 140px;
+  width: fit-content;
 
   transition: all 50ms ease-in;
 
