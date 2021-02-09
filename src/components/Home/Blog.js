@@ -39,7 +39,11 @@ const Blog = () => {
           }
         }
       }
-      allSanityPost(sort: { fields: publishedAt, order: DESC }, limit: 4) {
+      allSanityPost(
+        sort: { fields: publishedAt, order: DESC }
+        limit: 4
+        filter: { category: { slug: { current: { ne: "aktualnosci" } } } }
+      ) {
         nodes {
           title
           excerpt
