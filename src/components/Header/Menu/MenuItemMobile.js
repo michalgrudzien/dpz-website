@@ -7,28 +7,31 @@ import colors from "utils/colors";
 
 const StyledListItem = styled.li`
   display: block;
-  text-align: center;
   font-family: "Bebas Neue", sans-serif;
-  font-size: 2rem;
-  margin-bottom: 3rem;
+  font-size: 1.35rem;
+
+  margin-bottom: 0;
+  padding-left: 1rem;
 
   ${({ hasSubmenu }) =>
-    hasSubmenu && `font-size: 1.5rem; color: ${colors.secondary};`}
+    hasSubmenu && `font-size: 1.25rem; color: ${colors.secondary};`}
 `;
 
 const linkStyles = css`
+  display: block;
   color: ${colors.secondary};
+  border-radius: 5px;
   text-decoration: none;
+
+  margin: 0 1rem 0.5rem 0;
+  padding: 0.65rem 1rem 0.35rem 1rem;
 
   transition: color 100ms ease-out;
 
   &:hover,
   &.is-active {
-    color: ${colors.primary};
-  }
-
-  &.is-active {
-    color: ${colors.primary};
+    background-color: ${colors.primary};
+    color: ${colors.white};
   }
 `;
 
@@ -41,12 +44,14 @@ const ClickLink = styled.a`
   cursor: pointer;
 `;
 
-const SubmenuList = styled.ul`
-  margin-top: 12px;
+const SubmenuList = styled.ul``;
 
-  ${StyledListItem} {
-    margin-bottom: 1rem;
-  }
+const SubmenuLabel = styled.span`
+  display: block;
+  padding: 0.65rem 1rem 0.5rem 0;
+  margin: 0 1rem 0.5rem 0;
+  color: ${colors.darkGrey};
+  font-size: 0.85em;
 `;
 
 const MenuItemMobile = ({
@@ -75,7 +80,11 @@ const MenuItemMobile = ({
           )}
         </>
       )}
-      {hasSubmenu && label}
+      {hasSubmenu && (
+        <StyledListItem>
+          <SubmenuLabel>{label}</SubmenuLabel>
+        </StyledListItem>
+      )}
       {hasSubmenu && (
         <SubmenuList>
           {submenu.map((item, index) => (
@@ -83,7 +92,11 @@ const MenuItemMobile = ({
               {isClickLink ? (
                 <ClickLink onClick={onClick}>{label}</ClickLink>
               ) : (
-                <StyledLink to={item.linkTo} activeClassName="is-active">
+                <StyledLink
+                  to={item.linkTo}
+                  activeClassName="is-active"
+                  partiallyActive={!item.exact}
+                >
                   {item.label}
                 </StyledLink>
               )}

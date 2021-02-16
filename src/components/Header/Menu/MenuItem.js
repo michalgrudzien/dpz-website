@@ -49,6 +49,11 @@ const StyledSubmenuListItem = styled.li`
   ${listItemCommonStyles};
   display: block;
   text-align: right;
+
+  a {
+    text-shadow: none;
+    color: ${colors.secondary};
+  }
 `;
 
 const MenuLink = styled(Link)`

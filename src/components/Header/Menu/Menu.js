@@ -99,7 +99,9 @@ const Menu = ({ isMenuOpen, setMenuOpen, colorTheme, isShrinked }) => {
                       label={item.label}
                       linkTo={item.linkTo}
                       exact={item.exact}
-                      submenu={item.submenu}
+                      submenu={
+                        item.blogSubmenu ? categoriesSubmenu : item.submenu
+                      }
                     />
                   ))}
                   <MenuItemMobile

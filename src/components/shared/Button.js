@@ -10,7 +10,7 @@ export const buttonStyles = css`
   color: ${colors.white};
   background-color: ${colors.turquoise};
   padding: 0.75em 2.25em 0.65em;
-  font-size: 1.5em;
+  font-size: 1.2em;
   border: none;
   cursor: pointer;
   text-align: center;

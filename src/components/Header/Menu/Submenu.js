@@ -13,28 +13,10 @@ const SubmenuList = styled.ul`
 
   transition: all 50ms ease-in;
 
-  ${({ colorTheme, isShrinked }) => {
-    if (!isShrinked) {
-      if (colorTheme === "light") {
-        return `
-                color: ${colors.white};
-                background-color: transparent;
-            `;
-      } else {
-        return `
-                color: ${colors.secondary};
-                background-color: transparent;
-            `;
-      }
-    } else {
-      return `
-            padding: 1em;
-            color: ${colors.secondary};
-            background-color: white;
-            box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
-        `;
-    }
-  }}
+  padding: 1em;
+  background-color: white;
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 `;
 
 const SubmenuWrapper = styled.div`
