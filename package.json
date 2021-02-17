@@ -13,7 +13,7 @@
     "gatsby-background-image": "1.4.0",
     "gatsby-image": "2.10.0",
     "gatsby-plugin-anchor-links": "^1.2.0",
-    "gatsby-plugin-google-analytics-gdpr": "0.0.5",
+    "gatsby-plugin-gdpr-cookies": "^1.0.12",
     "gatsby-plugin-google-fonts-v2": "0.0.6",
     "gatsby-plugin-instagram": "0.0.3",
     "gatsby-plugin-manifest": "2.11.0",

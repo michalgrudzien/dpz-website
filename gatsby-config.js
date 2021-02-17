@@ -76,13 +76,19 @@ module.exports = {
         background_color: `#FFFFFF`,
         theme_color: `#FFFFFF`,
         display: `minimal-ui`,
-        icon: `src/assets/images/dpz_logo.png`, // This path is relative to the root of the site.
+        icon: `src/assets/images/dpz_logo.png`,
       },
     },
     {
-      resolve: `gatsby-plugin-google-analytics-gdpr`,
+      resolve: `gatsby-plugin-gdpr-cookies`,
       options: {
-        trackingId: process.env.GATSBY_GOOGLE_ANALYTICS_ID,
+        googleAnalytics: {
+          trackingId: process.env.GATSBY_GOOGLE_ANALYTICS_ID,
+          cookieName: "gatsby-gdpr-google-analytics",
+          anonymize: true,
+          allowAdFeatures: false,
+        },
+        environments: ["production"],
       },
     },
   ],
