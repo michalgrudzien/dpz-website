@@ -79,5 +79,11 @@ module.exports = {
         icon: `src/assets/images/dpz_logo.png`, // This path is relative to the root of the site.
       },
     },
+    {
+      resolve: `gatsby-plugin-google-analytics-gdpr`,
+      options: {
+        trackingId: process.env.GATSBY_GOOGLE_ANALYTICS_ID,
+      },
+    },
   ],
 };

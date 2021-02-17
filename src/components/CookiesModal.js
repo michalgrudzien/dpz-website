@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { media } from "styled-bootstrap-grid";
 import Modal, { ModalProvider, BaseModalBackground } from "styled-react-modal";
+import Cookies from "js-cookie";
 
 import colors from "utils/colors";
 import Button from "components/shared/Button";
@@ -11,7 +12,7 @@ import isWindowDefined from "helpers/isWindowDefined";
 import { boxShadow } from "utils/styles";
 import { graphql, Link, useStaticQuery } from "gatsby";
 
-const GDPR_COOKIE_NAME = "gatsby-plugin-google-analytics-gdpr_cookies-enabled";
+import { GDPR_COOKIE_NAME } from "utils/constants";
 
 const ModalBackground = styled(BaseModalBackground)`
   z-index: 500;
@@ -69,14 +70,26 @@ const CookieImg = styled.img`
   `}
 `;
 
-const getLocalStorageCookie = () =>
-  isWindowDefined() ? localStorage.getItem(GDPR_COOKIE_NAME) : () => {};
-const setLocalStorageCookie = (value) =>
-  isWindowDefined() ? localStorage.setItem(GDPR_COOKIE_NAME, value) : () => {};
+const getGdprCookie = () =>
+  isWindowDefined() ? Cookies.get(GDPR_COOKIE_NAME) : null;
+const setGdprCookie = (value) =>
+  isWindowDefined()
+    ? Cookies.set(GDPR_COOKIE_NAME, value, {
+        expires: 365,
+      })
+    : null;
+
+const setLocalStorageAnswered = () =>
+  localStorage.setItem("gdpr-consent-answered", 1);
 
 const CookiesModal = ({ enabledOnPage }) => {
-  const [isAlreadyShown, setAlreadyShown] = useState(getLocalStorageCookie());
-  let isModalOpen = !isAlreadyShown && enabledOnPage;
+  const gdprAnswered = localStorage.getItem("gdpr-consent-answered");
+
+  const [isAlreadyShown, setAlreadyShown] = useState(!!parseInt(gdprAnswered));
+  const isModalOpen = !isAlreadyShown && enabledOnPage;
+
+  //Update expiration date
+  setGdprCookie(getGdprCookie());
 
   const response = useStaticQuery(graphql`
     query CookiesModalQuery {
@@ -91,12 +104,14 @@ const CookiesModal = ({ enabledOnPage }) => {
   const data = response.allSanityPrivacyPolicy.nodes[0];
 
   const handleAcceptanceClick = () => {
-    setLocalStorageCookie(true);
+    setGdprCookie(true);
+    setLocalStorageAnswered();
     setAlreadyShown(true);
   };
 
   const handleRejectionClick = () => {
-    setLocalStorageCookie(false);
+    setGdprCookie(false);
+    setLocalStorageAnswered();
     setAlreadyShown(true);
   };
 
