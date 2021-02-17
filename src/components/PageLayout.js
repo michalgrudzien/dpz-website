@@ -9,6 +9,7 @@ import CookiesModal from "components/CookiesModal";
 
 import GlobalStyle from "utils/GlobalStyle";
 import SEO from "components/SEO";
+import WindowCheck from "components/WindowCheck";
 
 export const ContactContext = createContext({
   isContactOpen: false,
@@ -38,7 +39,9 @@ const PageLayout = ({
       {children}
       <Footer />
       <Contact />
-      <CookiesModal enabledOnPage={withCookiesModal} />
+      <WindowCheck>
+        <CookiesModal enabledOnPage={withCookiesModal} />
+      </WindowCheck>
     </ContactContext.Provider>
   );
 };

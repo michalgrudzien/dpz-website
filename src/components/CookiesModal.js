@@ -70,14 +70,11 @@ const CookieImg = styled.img`
   `}
 `;
 
-const getGdprCookie = () =>
-  isWindowDefined() ? Cookies.get(GDPR_COOKIE_NAME) : null;
+const getGdprCookie = () => Cookies.get(GDPR_COOKIE_NAME);
 const setGdprCookie = (value) =>
-  isWindowDefined()
-    ? Cookies.set(GDPR_COOKIE_NAME, value, {
-        expires: 365,
-      })
-    : null;
+  Cookies.set(GDPR_COOKIE_NAME, value, {
+    expires: 365,
+  });
 
 const setLocalStorageAnswered = () =>
   localStorage.setItem("gdpr-consent-answered", 1);
