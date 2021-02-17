@@ -26,7 +26,6 @@ export const StyledHeadroom = styled(Headroom)`
     padding: 1em 0;
     height: 64px;
     background-color: ${colors.white};
-    border-radius: 0 0 8px 8px;
     box-sizing: content-box;
     transition: height 350ms ease-out, padding 350ms ease-out;
     ${boxShadow};
