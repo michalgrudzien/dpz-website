@@ -12,8 +12,8 @@ const HomeHero = () => {
           content {
             heroPhotos {
               asset {
-                fluid {
-                  ...GatsbySanityImageFluid
+                fluid(maxWidth: 1920) {
+                  src
                 }
               }
             }
@@ -27,10 +27,7 @@ const HomeHero = () => {
 
   return (
     <PhotoHero
-      fluidImage={
-        data.heroPhotos[Math.floor(Math.random() * data.heroPhotos.length)]
-          .asset.fluid
-      }
+      slides={data.heroPhotos.map((photo) => photo.asset.fluid.src)}
       backgroundPosition="100%"
       overlayOpacity="0.25"
       title="Dobra Praktyka Żeglarska"

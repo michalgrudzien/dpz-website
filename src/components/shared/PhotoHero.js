@@ -1,11 +1,25 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Container, Row, Col, media } from "styled-bootstrap-grid";
+import Slider from "react-slick";
 
 import BackgroundImage from "gatsby-background-image";
 
 import colors from "utils/colors";
 import ScrollAnchor from "components/shared/ScrollAnchor";
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+const commonBackgroundStyles = css`
+  max-width: 100%;
+  height: 75vh;
+  position: relative;
+
+  ${media.md`
+    height: 85vh;
+  `}
+`;
 
 const Wrapper = styled.div`
   overflow: hidden;
@@ -17,18 +31,24 @@ const Wrapper = styled.div`
 `;
 
 const StyledBackground = styled(BackgroundImage)`
-  height: 75vh;
-  position: relative;
+  ${commonBackgroundStyles};
 
   ${({ backgroundPosition }) => `
   ::before{
     background-position-x: ${backgroundPosition} !important;
   }  
   `}
+`;
+
+const BackgroundSlide = styled.div`
+  ${commonBackgroundStyles};
+  background-size: cover;
+  background-position: center;
+  background-image: ${({ backgroundUrl }) => `url(${backgroundUrl})`};
 
   ${media.md`
-    height: 85vh;
-    border-radius: 40px;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
   `}
 `;
 
@@ -41,6 +61,11 @@ const Overlay = styled.div`
 
   ${({ opacity }) => `
     background-color: rgba(0, 0, 0, ${opacity});
+  `}
+
+  ${media.md`
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
   `}
 `;
 
@@ -72,8 +97,49 @@ const StyledScrollAnchor = styled(ScrollAnchor)`
   bottom: 1.5em;
 `;
 
+const sliderConfig = {
+  fade: true,
+  infinite: true,
+  autoplay: true,
+  speed: 3000,
+  autoplaySpeed: 8000,
+  lazyLoad: true,
+};
+
+const Background = ({
+  fluidImage,
+  backgroundPosition,
+  backgroundStyle,
+  slides,
+  children,
+}) => {
+  if (fluidImage) {
+    return (
+      <StyledBackground
+        Tag="section"
+        fluid={fluidImage}
+        backgroundPosition={backgroundPosition}
+        style={backgroundStyle}
+      >
+        {children}
+      </StyledBackground>
+    );
+  } else {
+    return (
+      <>
+        <Slider {...sliderConfig}>
+          {slides.map((slide) => (
+            <BackgroundSlide backgroundUrl={slide}>{children}</BackgroundSlide>
+          ))}
+        </Slider>
+      </>
+    );
+  }
+};
+
 const PhotoHero = ({
   fluidImage,
+  slides,
   backgroundPosition,
   backgroundStyle,
   overlayOpacity,
@@ -82,11 +148,11 @@ const PhotoHero = ({
 }) => {
   return (
     <Wrapper>
-      <StyledBackground
-        Tag="section"
-        fluid={fluidImage}
+      <Background
+        fluidImage={fluidImage}
         backgroundPosition={backgroundPosition}
-        style={backgroundStyle}
+        backgroundStyle={backgroundStyle}
+        slides={slides}
       >
         <Overlay opacity={overlayOpacity} />
         <ContentWrapper>
@@ -101,7 +167,7 @@ const PhotoHero = ({
             </Row>
           </Container>
         </ContentWrapper>
-      </StyledBackground>
+      </Background>
     </Wrapper>
   );
 };
@@ -109,6 +175,8 @@ const PhotoHero = ({
 PhotoHero.defaultProps = {
   backgroundPosition: "50%",
   overlayOpacity: "0",
+  fluidImage: null,
+  slides: [],
 };
 
 export default PhotoHero;
