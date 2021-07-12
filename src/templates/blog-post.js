@@ -99,9 +99,7 @@ const BlogPost = ({ data: { sanityPost: post, placeholderImage, site } }) => (
       image: get(
         post,
         "mainImage.asset.fixed.src",
-        `${site.siteMetadata.siteUrl}${
-          placeholderImage.childImageSharp.fixed.src
-        }`
+        `${site.siteMetadata.siteUrl}${placeholderImage.childImageSharp.fixed.src}`
       ),
     }}
   >
@@ -148,18 +146,20 @@ const BlogPost = ({ data: { sanityPost: post, placeholderImage, site } }) => (
                   imageOptions={{ w: 920, fit: "max" }}
                 />
               </PostContentWrapper>
-              <Col sm="8" md="7" smOffset="4" mdOffset="5">
-                <AuthorInfoWrapper>
-                  <div>
-                    <AuthorName>{post.author.name}</AuthorName>
-                    <AuthorBio>{post.author.bio}</AuthorBio>
-                  </div>
-                  <AuthorAvatarImg
-                    fluid={post.author.image.asset.fluid}
-                    alt={post.author.name}
-                  />
-                </AuthorInfoWrapper>
-              </Col>
+              {post.author && (
+                <Col sm="8" md="7" smOffset="4" mdOffset="5">
+                  <AuthorInfoWrapper>
+                    <div>
+                      <AuthorName>{post.author.name}</AuthorName>
+                      <AuthorBio>{post.author.bio}</AuthorBio>
+                    </div>
+                    <AuthorAvatarImg
+                      fluid={post.author.image.asset.fluid}
+                      alt={post.author.name}
+                    />
+                  </AuthorInfoWrapper>
+                </Col>
+              )}
             </StyledCard>
           </Col>
         </Row>
@@ -169,7 +169,7 @@ const BlogPost = ({ data: { sanityPost: post, placeholderImage, site } }) => (
               Nie żałuj sobie, przeczytaj coś jeszcze:
             </RelatedPostsTitle>
             <RelatedPostsWrapper>
-              {post.relatedPosts.map(post => (
+              {post.relatedPosts.map((post) => (
                 <PostCard post={post} />
               ))}
             </RelatedPostsWrapper>

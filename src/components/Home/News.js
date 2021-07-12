@@ -68,6 +68,8 @@ const News = () => {
     allSanityPost: { nodes: posts },
   } = response;
 
+  console.log(posts);
+
   if (posts.length < 1) return null;
 
   return (
