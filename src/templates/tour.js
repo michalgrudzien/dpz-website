@@ -144,9 +144,9 @@ export const pageQuery = graphql`
         caption
       }
       cruises {
-        _rawBody
         year
         youtubeUrl
+        summaryPostUrl
         gallery {
           asset {
             fluid(maxWidth: 800) {
