@@ -12,6 +12,7 @@ import colors from "utils/colors";
 
 import TourNumbers from "components/Tours/TourNumbers";
 import BlockContent from "components/BlockContent";
+import LinkButton from "components/shared/LinkButton";
 
 const AboutTour = styled.section`
   padding-top: 6em;
@@ -85,13 +86,19 @@ const Tour = ({ data: { sanityTour: tour } }) => (
         </Col>
       </Row>
     </Container>
-    {tour.cruises.map(cruise => (
+    {tour.cruises.map((cruise) => (
       <TourShowcase
         year={cruise.year}
-        gallery={cruise.gallery.map(galleryItem => galleryItem.asset.fluid.src)}
+        gallery={cruise.gallery.map(
+          (galleryItem) => galleryItem.asset.fluid.src
+        )}
         youtubeId={cruise.youtubeUrl}
       >
-        <BlockContent blocks={cruise._rawBody} />
+        {cruise.summaryPostUrl && (
+          <LinkButton internal to={cruise.summaryPostUrl}>
+            Przeczytaj podsumowanie
+          </LinkButton>
+        )}
       </TourShowcase>
     ))}
   </PageLayout>
