@@ -22,7 +22,7 @@ const CardsWrapper = styled.div`
   grid-column-gap: 2em;
 
   ${media.sm`
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   `}
 
   ${({ hasFeaturedPost }) =>
