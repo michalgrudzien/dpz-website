@@ -4,6 +4,7 @@ import { Container, Row, Col } from "styled-bootstrap-grid";
 import Youtube from "react-youtube-embed";
 import { Parallax } from "react-scroll-parallax";
 import { graphql, useStaticQuery } from "gatsby";
+import Img from "gatsby-image";
 
 import BlockContent from "components/BlockContent";
 
@@ -58,6 +59,11 @@ const LogoImg = styled.img`
   max-width: 300px;
 `;
 
+const Photo = styled(Img)`
+  border-radius: 1.5em;
+  ${boxShadow};
+`;
+
 const LatestTrip = ({ isOnMobile }) => {
   const response = useStaticQuery(graphql`
     query LatestTripQuery {
@@ -74,6 +80,13 @@ const LatestTrip = ({ isOnMobile }) => {
             _rawLatestCruiseBody
             latestCruise_title
             latestCruise_youtubeTitle
+            latestCruise_photo {
+              asset {
+                fluid(maxWidth: 1920) {
+                  ...GatsbySanityImageFluid
+                }
+              }
+            }
             latestCruise_youtubeUrl
             latestCruise_cruiseLogo {
               asset {
@@ -92,6 +105,10 @@ const LatestTrip = ({ isOnMobile }) => {
     "allSanitySiteMetadata.nodes[0].socialMedia.youtube",
     ""
   );
+
+  const hasYoutubeVideo =
+    data.latestCruise_youtubeUrl && data.latestCruise_youtubeTitle;
+  const hasPhoto = data.latestCruise_photo;
 
   return (
     <Wrapper>
@@ -115,23 +132,36 @@ const LatestTrip = ({ isOnMobile }) => {
       <Parallax y={[10, -10]} disabled={isOnMobile}>
         <VideoWrapper>
           <Container>
-            <VideoTitle>{data.latestCruise_youtubeTitle}</VideoTitle>
-            <YoutubeWrapper>
-              <Youtube id={data.latestCruise_youtubeUrl} aspectRatio="56.25%" />
-            </YoutubeWrapper>
-            <YoutubeTeaser>
-              <span>
-                Więcej znajdziesz na naszym{" "}
-                <YoutubeLink
-                  href={youtubeUrl}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  kanale YouTube
-                </YoutubeLink>
-                .
-              </span>
-            </YoutubeTeaser>
+            {hasYoutubeVideo && (
+              <>
+                <VideoTitle>{data.latestCruise_youtubeTitle}</VideoTitle>
+                <YoutubeWrapper>
+                  <Youtube
+                    id={data.latestCruise_youtubeUrl}
+                    aspectRatio="56.25%"
+                  />
+                </YoutubeWrapper>
+                <YoutubeTeaser>
+                  <span>
+                    Więcej znajdziesz na naszym{" "}
+                    <YoutubeLink
+                      href={youtubeUrl}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                    >
+                      kanale YouTube
+                    </YoutubeLink>
+                    .
+                  </span>
+                </YoutubeTeaser>
+              </>
+            )}
+            {hasPhoto && (
+              <Photo
+                fluid={data.latestCruise_photo.asset.fluid}
+                alt={data.latestCruise_title}
+              />
+            )}
           </Container>
         </VideoWrapper>
       </Parallax>

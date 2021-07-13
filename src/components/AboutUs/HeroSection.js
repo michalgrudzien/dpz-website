@@ -126,7 +126,7 @@ const HeroSection = () => {
             <Col>
               <CardSidePadding>
                 <ImagesWrapper>
-                  {data.images.map(image => (
+                  {data.images.map((image) => (
                     <Image
                       fluid={image.asset.fluid}
                       alt="Dobra Praktyka Żeglarska"

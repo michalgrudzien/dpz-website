@@ -104,6 +104,7 @@ const sliderConfig = {
   speed: 3000,
   autoplaySpeed: 8000,
   lazyLoad: true,
+  swipe: true,
 };
 
 const Background = ({
@@ -128,9 +129,13 @@ const Background = ({
     return (
       <>
         <Slider {...sliderConfig}>
-          {slides.map((slide) => (
-            <BackgroundSlide backgroundUrl={slide}>{children}</BackgroundSlide>
-          ))}
+          {slides
+            .sort(() => Math.random() - 0.5)
+            .map((slide) => (
+              <BackgroundSlide backgroundUrl={slide}>
+                {children}
+              </BackgroundSlide>
+            ))}
         </Slider>
       </>
     );

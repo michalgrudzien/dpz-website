@@ -77,7 +77,7 @@ const DocumentsListItemLink = styled.a`
 
   text-decoration: none;
   font-size: 0.88em;
-  line-height: 1.2;
+  line-height: 1.44;
   font-weight: 500;
   color: ${colors.white};
 
@@ -89,6 +89,11 @@ const DocumentsListItemLink = styled.a`
     font-weight: 300;
     color: ${colors.lightGrey};
   }
+`;
+
+const DocumentTitle = styled.span`
+  padding-left: 40px;
+  display: block;
 `;
 
 const DocumentsAttachments = styled.div`
@@ -115,8 +120,8 @@ const LogoScrollAnchor = styled(ScrollAnchor)`
   `}
 `;
 
-const renderDocuments = documents =>
-  documents.map(document => {
+const renderDocuments = (documents) =>
+  documents.map((document) => {
     const {
       title,
       publishedAt,
@@ -136,8 +141,7 @@ const renderDocuments = documents =>
             rel="noreferrer noopener"
           >
             <small>{publishedAt}</small>
-            <br />
-            {title}
+            <DocumentTitle>{title}</DocumentTitle>
           </DocumentsListItemLink>
           <DocumentsAttachments>
             {attachments.map(({ title, file: { asset: { url } } }) => (
@@ -166,7 +170,7 @@ const StatuteSection = () => {
             documentsTitle
             documents {
               title
-              publishedAt
+              publishedAt(formatString: "DD.MM.YYYY")
               file {
                 asset {
                   url

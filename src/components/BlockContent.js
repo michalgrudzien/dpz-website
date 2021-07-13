@@ -83,7 +83,7 @@ const gallerySerializer = ({ node, options }) => {
         }
       ).src
   );
-  console.log(fixedImages);
+
   return <Slider gallery={fixedImages} />;
 };
 
