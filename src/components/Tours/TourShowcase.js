@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { Container, Row, Col, media } from "styled-bootstrap-grid";
-import "react-awesome-slider/dist/styles.css";
 
 import colors from "utils/colors";
 import YouTube from "react-youtube-embed";

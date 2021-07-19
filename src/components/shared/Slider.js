@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import AwesomeSlider from "react-awesome-slider";
+import "react-awesome-slider/dist/styles.css";
 
 import colors from "utils/colors";
 
