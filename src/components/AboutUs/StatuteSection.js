@@ -222,7 +222,7 @@ const StatuteSection = () => {
             <LogoScrollAnchor
               align="center"
               scrollTo="#logo"
-              label="Logo i barwy klubowe"
+              label="Nasze logo"
             />
           </Col>
         </Row>
