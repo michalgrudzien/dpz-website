@@ -110,7 +110,7 @@ const MenuItem = ({
         <ClickLink onClick={onClick}>{label}</ClickLink>
       ) : (
         <MenuLink
-          to={linkTo}
+          to={hasSubmenu ? null : linkTo}
           isSubmenuOpen={isHovered && hasSubmenu}
           hasSubmenu={hasSubmenu}
           activeClassName="is-active"

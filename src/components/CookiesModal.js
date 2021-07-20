@@ -8,7 +8,6 @@ import colors from "utils/colors";
 import Button from "components/shared/Button";
 
 import cookieImg from "assets/images/cookie.svg";
-import isWindowDefined from "helpers/isWindowDefined";
 import { boxShadow } from "utils/styles";
 import { graphql, Link, useStaticQuery } from "gatsby";
 

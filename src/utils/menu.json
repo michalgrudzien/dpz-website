@@ -10,7 +10,7 @@
   },
   {
     "label": "Rejsy",
-    "linkTo": "/rejsy",
+    "linkTo": null,
     "submenu": [
       {
         "label": "DPŻ World Tour",
@@ -28,7 +28,7 @@
   },
   {
     "label": "Blog",
-    "linkTo": "/blog",
+    "linkTo": null,
     "blogSubmenu": true
   }
 ]
