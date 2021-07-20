@@ -5,6 +5,10 @@
     "exact": true
   },
   {
+    "label": "Aktualności",
+    "linkTo": "/blog/aktualnosci"
+  },
+  {
     "label": "O nas",
     "linkTo": "/o-nas"
   },

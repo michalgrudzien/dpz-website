@@ -91,7 +91,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const postsPerPage = 10;
 
   //Create categories pages (empty and redirects)
-  categories.forEach(category => {
+  categories.forEach((category) => {
     const path = `/blog/${category.slug.current}/1`;
 
     createRedirect({
@@ -114,9 +114,9 @@ exports.createPages = async ({ graphql, actions }) => {
   });
 
   //Create categories pages (paginated)
-  categories.forEach(category => {
+  categories.forEach((category) => {
     const postsCount = posts.filter(
-      post => post.category.slug.current === category.slug.current
+      (post) => post.category.slug.current === category.slug.current
     ).length;
     const pagesCount = Math.ceil(postsCount / postsPerPage);
 
@@ -139,7 +139,10 @@ exports.createPages = async ({ graphql, actions }) => {
   });
 
   //Create all categories pseudo category
-  const pagesCount = Math.ceil(posts.length / postsPerPage);
+  const pagesCount = Math.ceil(
+    posts.filter((post) => post.category.slug.current !== "aktualnosci")
+      .length / postsPerPage
+  );
   const allPostsCategory = {
     title: "Wszystkie kategorie",
     slug: {
@@ -171,13 +174,15 @@ exports.createPages = async ({ graphql, actions }) => {
         postsPerPage,
         pageNumber: i,
         skip: postsPerPage * (i - 1),
-        categorySlugs: categories.map(category => category.slug.current),
+        categorySlugs: categories
+          .map((category) => category.slug.current)
+          .filter((slug) => slug !== "aktualnosci"),
       },
     });
   }
 
   //Create single posts` pages
-  posts.forEach(post => {
+  posts.forEach((post) => {
     const path = `/blog/${post.category.slug.current}/${post.slug.current}`;
 
     createPage({
@@ -193,7 +198,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const tours = get(data, "data.allSanityTour.nodes", []);
 
-  tours.forEach(tour => {
+  tours.forEach((tour) => {
     createPage({
       path: `/rejsy/${tour.slug.current}`,
       component: require.resolve("./src/templates/tour.js"),

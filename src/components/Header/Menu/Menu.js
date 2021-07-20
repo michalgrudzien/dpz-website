@@ -52,10 +52,12 @@ const Menu = ({ isMenuOpen, setMenuOpen, colorTheme, isShrinked }) => {
 
   const categoriesSubmenu = [
     { label: "Wszystkie kategorie", linkTo: "/blog/wszystkie-kategorie" },
-    ...categories.map((category) => ({
-      label: category.title,
-      linkTo: `/blog/${category.slug.current}`,
-    })),
+    ...categories
+      .filter((category) => category.slug.current !== "aktualnosci")
+      .map((category) => ({
+        label: category.title,
+        linkTo: `/blog/${category.slug.current}`,
+      })),
   ];
 
   return (

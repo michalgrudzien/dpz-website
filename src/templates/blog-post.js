@@ -13,6 +13,7 @@ import BlockContent from "components/BlockContent";
 
 import colors from "utils/colors";
 import { boxShadow } from "utils/styles";
+import LinkButton from "components/shared/LinkButton";
 
 const Wrapper = styled.div`
   padding: 8em 0;
@@ -90,6 +91,12 @@ const StyledCategoriesMenu = styled(CategoriesMenu)`
   margin-top: 2em;
 `;
 
+const NewsButtonWrapper = styled.div`
+  display: flex;
+  margin: 3em 0 1em;
+  justify-content: center;
+`;
+
 const BlogPost = ({ data: { sanityPost: post, placeholderImage, site } }) => (
   <PageLayout
     colorTheme="dark"
@@ -163,20 +170,30 @@ const BlogPost = ({ data: { sanityPost: post, placeholderImage, site } }) => (
             </StyledCard>
           </Col>
         </Row>
-        <Row>
-          <Col lg="10" lgOffset="1">
-            <RelatedPostsTitle>
-              Nie żałuj sobie, przeczytaj coś jeszcze:
-            </RelatedPostsTitle>
-            <RelatedPostsWrapper>
-              {post.relatedPosts.map((post) => (
-                <PostCard post={post} />
-              ))}
-            </RelatedPostsWrapper>
-          </Col>
-        </Row>
+        {post.relatedPosts.length > 0 && (
+          <Row>
+            <Col lg="10" lgOffset="1">
+              <RelatedPostsTitle>
+                Nie żałuj sobie, przeczytaj coś jeszcze:
+              </RelatedPostsTitle>
+              <RelatedPostsWrapper>
+                {post.relatedPosts.map((post) => (
+                  <PostCard post={post} />
+                ))}
+              </RelatedPostsWrapper>
+            </Col>
+          </Row>
+        )}
       </Container>
-      <StyledCategoriesMenu />
+      {post.category.slug.current === "aktualnosci" ? (
+        <NewsButtonWrapper>
+          <LinkButton internal to="/blog/aktualnosci/1">
+            Więcej aktualności
+          </LinkButton>
+        </NewsButtonWrapper>
+      ) : (
+        <StyledCategoriesMenu />
+      )}
     </Wrapper>
   </PageLayout>
 );

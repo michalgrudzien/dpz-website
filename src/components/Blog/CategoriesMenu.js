@@ -34,8 +34,8 @@ const CategoryLink = styled(Link)`
   }
 `;
 
-const renderCategoriesListItems = categories =>
-  categories.map(category => (
+const renderCategoriesListItems = (categories) =>
+  categories.map((category) => (
     <CategoriesListItem>
       <CategoryLink
         to={`/blog/${category.slug.current}`}
@@ -52,7 +52,7 @@ const CategoriesMenu = ({ className }) => {
     allSanityCategory: { nodes: categories },
   } = useStaticQuery(graphql`
     query CategoriesQuery {
-      allSanityCategory {
+      allSanityCategory(filter: { slug: { current: { ne: "aktualnosci" } } }) {
         nodes {
           slug {
             current

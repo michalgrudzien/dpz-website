@@ -59,9 +59,18 @@ const CommonPageWrapper = ({ category, description, children }) => (
     seoProps={{ title: `${category.title} - Blog`, description }}
   >
     <Wrapper>
-      <Heading title="Blog" subtitle={category.title} />
+      <Heading
+        title={
+          category.slug.current === "aktualnosci" ? category.title : "Blog"
+        }
+        subtitle={
+          category.slug.current === "aktualnosci"
+            ? "Co nowego w DPŻ?"
+            : category.title
+        }
+      />
       {children}
-      <CategoriesMenu />
+      {category.slug.current !== "aktualnosci" && <CategoriesMenu />}
     </Wrapper>
   </PageLayout>
 );
