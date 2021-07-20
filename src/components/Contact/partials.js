@@ -78,9 +78,10 @@ export const Content = styled.div`
   transition: all 400ms cubic-bezier(0.86, 0, 0.07, 1);
 
   ${media.md`
-    padding: 6em 4em;
+    padding: 6em 4em 2em;
     width: 67%;
     min-height: 100%;
+    overflow: auto;
     transform: translate(-200%, 0);
 `}
 
@@ -168,6 +169,12 @@ export const FormControl = styled.div`
     opacity: 0;
     transform: translateY(-5px);
   }
+
+  ${({ hasScrollbar }) => `
+    &::after {
+      ${hasScrollbar ? `right: 20px` : ``}
+    }
+  `}
 
   ${({ valid }) =>
     valid &&

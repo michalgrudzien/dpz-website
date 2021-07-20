@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 
 import colors from "utils/colors";
@@ -40,6 +40,13 @@ const Textarea = styled.textarea`
   `}
 `;
 
+const hasScrollbar = (ref) => {
+  const { current } = ref;
+  if (current === null) return false;
+
+  return current.clientHeight < current.scrollHeight;
+};
+
 const TextareaField = ({
   name,
   label,
@@ -52,8 +59,10 @@ const TextareaField = ({
   const hasError = touched && error;
   const isValid = touched && !error;
 
+  const ref = useRef(null);
+
   return (
-    <FormControl valid={isValid}>
+    <FormControl valid={isValid} hasScrollbar={hasScrollbar(ref)}>
       <Textarea
         id={name}
         name={name}
@@ -64,6 +73,7 @@ const TextareaField = ({
         error={hasError}
         valid={isValid}
         rows={5}
+        ref={ref}
       />
       {hasError && <ErrorLabel>{error}</ErrorLabel>}
     </FormControl>
