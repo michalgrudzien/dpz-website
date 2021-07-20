@@ -2,11 +2,12 @@ import React from "react";
 import styled, { css } from "styled-components";
 import { Container, Row, Col, media } from "styled-bootstrap-grid";
 import Slider from "react-slick";
-
 import BackgroundImage from "gatsby-background-image";
 
-import colors from "utils/colors";
 import ScrollAnchor from "components/shared/ScrollAnchor";
+
+import colors from "utils/colors";
+import { animatedGradientBg, boxShadow } from "utils/styles";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -23,10 +24,14 @@ const commonBackgroundStyles = css`
 
 const Wrapper = styled.div`
   overflow: hidden;
+  height: 75vh;
+  ${animatedGradientBg};
+  ${boxShadow};
 
   ${media.md`
     border-bottom-left-radius: 40px;
     border-bottom-right-radius: 40px;
+    height: 85vh;
   `}
 `;
 
