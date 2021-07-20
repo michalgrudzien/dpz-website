@@ -12,6 +12,9 @@ import facebookIcon from "assets/images/facebook_w.svg";
 import youtubeIcon from "assets/images/youtube_w.svg";
 import instagramIcon from "assets/images/instagram_w.svg";
 import messengerIcon from "assets/images/messenger_w.svg";
+import sanityLogo from "assets/images/sanity-logo.svg";
+import googleLogo from "assets/images/google-logo.svg";
+import slackLogo from "assets/images/slack-logo.svg";
 import get from "lodash.get";
 import BlockContent from "components/BlockContent";
 
@@ -23,6 +26,27 @@ const waveOptions = {
 };
 
 const copyright = <p>© Dobra Praktyka Żeglarska {new Date().getFullYear()}</p>;
+
+const supportedBy = (
+  <>
+    <div>We are proud to be supported by</div>
+    <P.LogosWrapper>
+      <a href="https://sanity.io" target="_blank" rel="noreferrer noopener">
+        <img src={sanityLogo} alt="sanity.io" />
+      </a>
+      <a
+        href="https://www.google.com/nonprofits/"
+        target="_blank"
+        rel="noreferrer noopener"
+      >
+        <img src={googleLogo} alt="Google for Non-profits" />
+      </a>
+      <a href="https://slack.com" target="_blank" rel="noreferrer noopener">
+        <img src={slackLogo} alt="Slack" />
+      </a>
+    </P.LogosWrapper>
+  </>
+);
 
 const Footer = () => {
   const response = useStaticQuery(graphql`
@@ -101,6 +125,7 @@ const Footer = () => {
                     />
                   </P.DesktopSocialLinksWrapper>
                   {copyright}
+                  {supportedBy}
                 </Col>
                 <Col hiddenMdUp col={3}>
                   <P.MobileSocialLinksWrapper>
@@ -185,6 +210,7 @@ const Footer = () => {
                     </P.FooterMenuList>
                   </nav>
                 </Col>
+                <Col hiddenMdUp>{supportedBy}</Col>
                 <Col hiddenMdUp>
                   <nav>
                     <P.FooterMenuList>

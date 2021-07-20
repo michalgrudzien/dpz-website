@@ -148,3 +148,12 @@ export const FooterContactLink = styled.a`
     text-decoration: none;
   }
 `;
+
+export const LogosWrapper = styled.div`
+  margin: 1em 0 0.5em;
+
+  img {
+    margin: 0 10px 10px 0;
+    width: 100px;
+  }
+`;
