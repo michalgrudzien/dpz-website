@@ -185,15 +185,17 @@ const BlogPost = ({ data: { sanityPost: post, placeholderImage, site } }) => (
           </Row>
         )}
       </Container>
-      {post.category.slug.current === "aktualnosci" ? (
-        <NewsButtonWrapper>
-          <LinkButton internal to="/blog/aktualnosci/1">
-            Więcej aktualności
-          </LinkButton>
-        </NewsButtonWrapper>
-      ) : (
-        <StyledCategoriesMenu />
-      )}
+      <>
+        {post.category.slug.current === "aktualnosci" ? (
+          <NewsButtonWrapper>
+            <LinkButton internal to="/blog/aktualnosci/1">
+              Więcej aktualności
+            </LinkButton>
+          </NewsButtonWrapper>
+        ) : (
+          <StyledCategoriesMenu />
+        )}
+      </>
     </Wrapper>
   </PageLayout>
 );
