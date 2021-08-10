@@ -52,6 +52,7 @@ const MembersCount = styled(CircleNumber)`
 `;
 
 const HeroCard = styled(Card)`
+  text-align: justify;
   ${media.sm`
     margin-top: 24px;
   `}

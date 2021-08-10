@@ -38,6 +38,7 @@ const GalleryImg = styled(Img)`
 
 const TextWrapper = styled.div`
   padding: 2em;
+  text-align: justify;
 `;
 
 const LogoImg = styled.img`

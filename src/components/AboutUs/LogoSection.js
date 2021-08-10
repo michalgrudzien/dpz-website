@@ -51,6 +51,7 @@ const LogoPartsImg = styled.img`
 `;
 
 const LogoTextWrapper = styled.div`
+  text-align: justify;
   margin: 1em 0 1em 2.5%;
 `;
 

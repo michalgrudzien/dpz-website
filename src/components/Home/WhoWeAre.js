@@ -14,6 +14,7 @@ import logoImg from "assets/images/logo_text.svg";
 
 const StyledSection = styled.section`
   padding: 3em 0 3em;
+  text-align: justify;
 
   ${media.md`
   padding: 5em 0 3em;

@@ -23,6 +23,7 @@ const ContentCard = styled.div`
   background-color: ${colors.white};
   color: ${colors.secondary};
   padding: 4em 0 3em;
+  text-align: justify;
 
   ${media.lg`
     padding: 4em 0 3em;

@@ -22,6 +22,7 @@ const Wrapper = styled.div`
   color: ${colors.secondary};
   overflow: hidden;
   position: relative;
+  text-align: justify;
 
   ${media.lg`
     padding: 4em 0 232px;
@@ -47,6 +48,7 @@ const List = styled.ul`
 const ListItem = styled.li`
   line-height: 1.33;
   margin-bottom: 2em;
+  text-align: justify;
 `;
 
 const ListItemTitle = styled.span`
@@ -118,7 +120,7 @@ const WhatWeDo = ({ isOnMobile }) => {
           <Row>
             <Col lg="8">
               <List>
-                {data.whatWeDo_list.map(listItem => (
+                {data.whatWeDo_list.map((listItem) => (
                   <ListItem>
                     <ListItemTitle>{listItem.title}</ListItemTitle>
                     <ListItemText>{listItem.text}</ListItemText>

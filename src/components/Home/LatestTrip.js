@@ -15,6 +15,7 @@ import get from "lodash.get";
 
 const Wrapper = styled.section`
   padding: 2em 0;
+  text-align: justify;
 `;
 
 const BackgroundWrapper = styled.div`
@@ -156,7 +157,7 @@ const LatestTrip = ({ isOnMobile }) => {
                 </YoutubeTeaser>
               </>
             )}
-            {hasPhoto && (
+            {hasPhoto && !hasYoutubeVideo && (
               <Photo
                 fluid={data.latestCruise_photo.asset.fluid}
                 alt={data.latestCruise_title}

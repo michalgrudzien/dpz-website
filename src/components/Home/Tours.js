@@ -23,7 +23,7 @@ const Title = styled.h1`
   margin-bottom: 0.5em;
 `;
 
-const StyledYoutubeBackground = styled(props => (
+const StyledYoutubeBackground = styled((props) => (
   <YoutubeBackground {...props} />
 ))`
   border-radius: 40px;

@@ -18,6 +18,7 @@ const Wrapper = styled.section`
   background-position: -110px -80px;
   background-repeat: no-repeat;
   min-height: 480px;
+  text-align: justify;
 `;
 
 const CoversWrapper = styled.div`
@@ -85,7 +86,7 @@ const Spotify = () => {
           </Col>
           <Col lg="7" lgOffset="1">
             <CoversWrapper>
-              {data.spotify_playlists.map(playlist => (
+              {data.spotify_playlists.map((playlist) => (
                 <CoverLink
                   href={playlist.spotifyUrl}
                   target="_blank"

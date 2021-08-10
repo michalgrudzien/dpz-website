@@ -41,6 +41,7 @@ export const Header = styled.div`
   padding: 3em 2em;
   transform: translate(0, -102%);
   transition: all 400ms cubic-bezier(0.86, 0, 0.07, 1);
+  text-align: justify;
   ${boxShadow};
 
   h2,
@@ -206,6 +207,7 @@ export const AgreementText = styled.small`
   display: inline-block;
   margin-bottom: 1.5em;
   line-height: 1.35;
+  text-align: justify;
 
   a {
     color: ${colors.turquoise};

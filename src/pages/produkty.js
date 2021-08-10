@@ -14,6 +14,7 @@ import BlockContent from "components/BlockContent";
 
 const BrandsSection = styled.section`
   padding-top: 6em;
+  text-align: justify;
 
   ${media.md`
     padding-top: 10em;

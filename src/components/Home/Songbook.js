@@ -18,6 +18,7 @@ const Wrapper = styled.section`
   background-image: url(${songbookBgImg});
   border-radius: 0 0 40px 40px;
   color: ${colors.white};
+  text-align: justify;
 
   position: relative;
   z-index: 10;

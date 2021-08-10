@@ -17,6 +17,7 @@ import LinkButton from "components/shared/LinkButton";
 const AboutTour = styled.section`
   padding-top: 6em;
   padding-bottom: 2em;
+  text-align: justify;
 
   ${media.md`
     padding-top: 10em;

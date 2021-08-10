@@ -44,13 +44,7 @@ const LogoImg = styled.img`
 `;
 
 const ContentWrapper = styled.div`
-  ${media.md`
-    ${({ flip }) =>
-      flip &&
-      `
-        text-align: right;
-    `}
-    `}
+  text-align: justify;
 `;
 
 const GalleryWrapper = styled.div`
@@ -136,7 +130,7 @@ const BrandCard = ({
             <YoutubeItemWrapper>
               <Youtube id={youtubeId} aspectRatio="68.3%" />
             </YoutubeItemWrapper>
-            {gallery.map(galleryItem => (
+            {gallery.map((galleryItem) => (
               <GalleryImg fluid={galleryItem.asset.fluid} alt={alt} />
             ))}
           </GalleryWrapper>

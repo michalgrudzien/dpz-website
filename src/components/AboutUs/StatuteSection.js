@@ -23,6 +23,7 @@ const Section = styled.section`
   padding-top: 92px;
   padding-bottom: 24px;
   margin-top: -64px;
+  text-align: justify;
 
   ${media.md`
     padding-top: 120px;
@@ -59,6 +60,7 @@ const DocumentsListItem = styled.li`
   margin-bottom: 3em;
   margin-right: 1em;
   display: block;
+  text-align: left;
 `;
 
 const DocumentsListItemLink = styled.a`
