@@ -214,9 +214,7 @@ const StatuteSection = () => {
         <Row>
           <Col>
             <h2>{data.documentsTitle}</h2>
-            <DocumentsList>
-              {renderDocuments(data.documents.reverse())}
-            </DocumentsList>
+            <DocumentsList>{renderDocuments(data.documents)}</DocumentsList>
           </Col>
         </Row>
         <Row>
