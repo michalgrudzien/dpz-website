@@ -11,6 +11,7 @@ import { animatedGradientBg, boxShadow } from "utils/styles";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import get from "lodash.get";
 
 const commonBackgroundStyles = css`
   max-width: 100%;
@@ -48,7 +49,8 @@ const StyledBackground = styled(BackgroundImage)`
 const BackgroundSlide = styled.div`
   ${commonBackgroundStyles};
   background-size: cover;
-  background-position: center;
+  background-position-x: ${({ posX }) => posX};
+  background-position-y: ${({ posY }) => posY};
   background-image: ${({ backgroundUrl }) => `url(${backgroundUrl})`};
 
   ${media.md`
@@ -137,7 +139,11 @@ const Background = ({
           {slides
             .sort(() => Math.random() - 0.5)
             .map((slide) => (
-              <BackgroundSlide backgroundUrl={slide}>
+              <BackgroundSlide
+                backgroundUrl={slide.asset.fluid.src}
+                posX={get(slide, "hotspot.x", 0.5) * 100 + "%"}
+                posY={get(slide, "hotspot.y", 0.5) * 100 + "%"}
+              >
                 {children}
               </BackgroundSlide>
             ))}

@@ -94,8 +94,10 @@ function SEO({ description, lang, image, title = "DPŻ" }) {
         },
         {
           name: `robots`,
-          content: parseInt(process.env.GATSBY_NO_FOLLOW) ? `noindex,nofollow` : `index,follow`
-        }
+          content: parseInt(process.env.GATSBY_NO_FOLLOW)
+            ? `noindex,nofollow`
+            : `index,follow`,
+        },
       ]}
     />
   );

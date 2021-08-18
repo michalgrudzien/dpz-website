@@ -11,8 +11,14 @@ const HomeHero = () => {
         nodes {
           content {
             heroPhotos {
+              hotspot {
+                height
+                width
+                x
+                y
+              }
               asset {
-                fluid(maxWidth: 1920) {
+                fluid(maxWidth: 2400) {
                   src
                 }
               }
@@ -27,9 +33,8 @@ const HomeHero = () => {
 
   return (
     <PhotoHero
-      slides={data.heroPhotos.map((photo) => photo.asset.fluid.src)}
-      backgroundPosition="100%"
-      overlayOpacity="0.25"
+      slides={data.heroPhotos}
+      overlayOpacity="0.15"
       title="Dobra Praktyka Żeglarska"
       anchor={{
         label: "Kim jesteśmy?",
