@@ -1,0 +1,38 @@
+[
+  {
+    "label": "Home",
+    "linkTo": "/",
+    "exact": true
+  },
+  {
+    "label": "Aktualności",
+    "linkTo": "/blog/aktualnosci"
+  },
+  {
+    "label": "O nas",
+    "linkTo": "/o-nas"
+  },
+  {
+    "label": "Rejsy",
+    "linkTo": null,
+    "submenu": [
+      {
+        "label": "DPŻ World Tour",
+        "linkTo": "/rejsy/dpz-world-tour"
+      },
+      {
+        "label": "DPŻ We Shall Sea",
+        "linkTo": "/rejsy/dpz-we-shall-sea"
+      }
+    ]
+  },
+  {
+    "label": "Produkty",
+    "linkTo": "/produkty"
+  },
+  {
+    "label": "Blog",
+    "linkTo": null,
+    "blogSubmenu": true
+  }
+]

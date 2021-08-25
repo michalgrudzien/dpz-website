@@ -1,117 +1,77 @@
 import React from "react";
-import styled from "styled-components";
-import { Reset } from "styled-reset";
-import GlobalStyle from "settings/GlobalStyle";
-import SEO from "components/SEO";
-import colors from "settings/colors";
-import YoutubeBackground from "react-youtube-background";
+import { graphql } from "gatsby";
+import { ParallaxProvider } from "react-scroll-parallax";
+import get from "lodash.get";
 
-import facebookIcon from "assets/images/facebook_icon.svg";
-import messengerIcon from "assets/images/messenger_icon.svg";
-import instagramIcon from "assets/images/instagram_icon.svg";
-import youtubeIcon from "assets/images/youtube_icon.svg";
+import PageLayout from "components/PageLayout";
 
-const Wrapper = styled.div`
-  display: flex;
-  width: 100%;
-  height: 100vh;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  z-index: 1000;
-`;
+import HomeHero from "components/Home/HomeHero";
+import WhoWeAre from "components/Home/WhoWeAre";
+import News from "components/Home/News";
+import LatestTrip from "components/Home/LatestTrip";
+import ProductsTeaser from "components/Home/ProductsTeaser";
+import WhatWeDo from "components/Home/WhatWeDo";
+import JoinUs from "components/Home/JoinUs";
+import useWindowSize from "hooks/useWindowSize";
+import Tours from "components/Home/Tours";
+import Blog from "components/Home/Blog";
+import Instagram from "components/Home/Instagram";
+import Songbook from "components/Home/Songbook";
+import Spotify from "components/Home/Spotify";
 
-const Heading = styled.h1`
-  font-size: 9em;
-  text-align: center;
-  margin: 0 auto;
-  padding-bottom: 0.1em;
-  margin-bottom: 0.15em;
-  position: relative;
-  :after {
-    content: "";
-    display: block;
-    position: absolute;
-    width: 75%;
-    left: 12.5%;
-    height: 3px;
-    background-color: ${colors.white};
-  }
-`;
+const MOBILE_BREAKPOINT = 768;
 
-const Icon = styled.img`
-  width: 36px;
-  height: auto;
-  margin: 0 15px;
-  transition: all 150ms ease-out;
-  :hover {
-    transform: scale(1.05);
-  }
-`;
+const IndexPage = ({ data: response }) => {
+  const [windowWidth] = useWindowSize();
 
-const OldPageLink = styled.small`
-  margin: 24px 0;
-  text-transform: uppercase;
-  font-size: 0.75em;
-  font-weight: 500;
-  a {
-    color: #ffffff;
-    font-weight: 700;
-    text-decoration: none;
-  }
-`;
+  const seo = get(response, "allSanityHomepage.nodes[0].seo", {});
 
-const Footer = styled.footer`
-  font-size: 0.75em;
-  padding: 15px 0;
-  position: absolute;
-  bottom: 0;
-  text-transform: uppercase;
-`;
+  const isOnMobile = windowWidth < MOBILE_BREAKPOINT;
 
-const content = (
-  <Wrapper>
-    <>
-      <Heading>Idzie nowe</Heading>
-      <div>
-        <a href="https://www.facebook.com/dobrapraktykazeglarska/">
-          <Icon src={facebookIcon} alt="Facebook" />
-        </a>
-        <a href="https://m.me/dobrapraktykazeglarska/">
-          <Icon src={messengerIcon} alt="Messenger" />
-        </a>
-        <a href="https://www.instagram.com/de_pe_zet/">
-          <Icon src={instagramIcon} alt="Instagram" />
-        </a>
-        <a href="https://www.youtube.com/channel/UCku8IcZT7gwCDSfonuduBew">
-          <Icon src={youtubeIcon} alt="YouTube" />
-        </a>
-      </div>
-      <OldPageLink>
-        Szukasz starej strony? Jest <a href="http://old.depezet.com">tutaj</a>{" "}
-        :)
-      </OldPageLink>
-    </>
-    <Footer>© Dobra Praktyka Żeglarska {new Date().getFullYear()}</Footer>
-  </Wrapper>
-);
-
-const IndexPage = () => (
-  <>
-    <Reset />
-    <GlobalStyle />
-    <SEO title="Idzie nowe" />
-    {/* <YoutubeBackground videoId="BEImUEpgPi4" overlay="rgba(5,15,25,0.9)"> */}
-    {typeof window !== "undefined" ? (
-      <YoutubeBackground videoId="BEImUEpgPi4" overlay="rgba(5,15,25,0.8)">
-        {content}
-      </YoutubeBackground>
-    ) : (
-      content
-    )}
-    {/* </YoutubeBackground> */}
-  </>
-);
+  return (
+    <PageLayout colorTheme="light" seoProps={seo}>
+      <ParallaxProvider>
+        <HomeHero />
+        <WhoWeAre />
+        <News />
+        <LatestTrip isOnMobile={isOnMobile} />
+        <ProductsTeaser isOnMobile={isOnMobile} />
+        <section id="dzialalnosc-klubu">
+          <WhatWeDo isOnMobile={isOnMobile} />
+        </section>
+        <section id="dolacz-do-nas">
+          <JoinUs />
+        </section>
+        <Tours />
+        <Blog />
+        <Instagram />
+        <section id="spiewnik">
+          <Songbook />
+        </section>
+        <Spotify />
+      </ParallaxProvider>
+    </PageLayout>
+  );
+};
 
 export default IndexPage;
+
+export const pageQuery = graphql`
+  query MyQuery {
+    allSanityHomepage {
+      nodes {
+        seo {
+          title
+          description
+          image {
+            asset {
+              fixed(width: 1200, height: 630) {
+                src
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
