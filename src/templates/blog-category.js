@@ -149,7 +149,7 @@ export const pageQuery = graphql`
     allSanityPost(
       limit: $postsPerPage
       skip: $skip
-      filter: { category: {slug: { current: { in: $categorySlugs } } } }
+      filter: { category: { elemMatch:{ slug: { current: { in: $categorySlugs } } } } }
       sort: { fields: publishedAt, order: DESC }
     ) {
       nodes {

@@ -42,7 +42,7 @@ const Blog = () => {
       allSanityPost(
         sort: { fields: publishedAt, order: DESC }
         limit: 4
-        filter: { category: { slug: { current: { ne: "aktualnosci" } } } }
+        filter: { category: { elemMatch:{ slug: { current: {regex: "/^((?!aktualnosci).)*$/"} } } } }
       ) {
         nodes {
           title

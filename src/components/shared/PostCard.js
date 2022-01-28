@@ -8,7 +8,7 @@ import get from "lodash.get";
 import colors from "utils/colors";
 
 import { boxShadow } from "utils/styles";
-import { getPostCategoryUrl, getPostUrl } from "helpers/linkGenerators";
+import { getCategoryUrl, getPostUrl } from "helpers/linkGenerators";
 
 const PaddingWrapper = styled.div`
   padding-top: 2.5em;
@@ -89,9 +89,10 @@ const ReadMoreLink = styled(Link)`
 const CategoryLink = styled(Link)`
   font-family: "Bebas Neue";
   text-decoration: none;
+  white-space: nowrap;
   color: ${colors.white};
   padding: 0.25em 0.7em 0.1em 0.7em;
-  border-radius: 8px;
+  border-radius: 10px;
   background-color: ${colors.primary};
   letter-spacing: 0.2px;
   transition: background-color 100ms ease-in;
@@ -100,6 +101,10 @@ const CategoryLink = styled(Link)`
     background-color: ${colors.secondary};
   }
 `;
+
+const MetadataWrapper = styled.small`
+  line-height: 1.66;
+`
 
 const PostCard = ({ post }) => {
   const localData = useStaticQuery(graphql`
@@ -115,7 +120,6 @@ const PostCard = ({ post }) => {
   `);
 
   const postUrl = getPostUrl(post);
-  const categoryUrl = getPostCategoryUrl(post);
 
   return (
     <PaddingWrapper>
@@ -133,10 +137,10 @@ const PostCard = ({ post }) => {
           </PostImgBackgroundWrapper>
         </Link>
         <TextWrapper>
-          <small>
+          <MetadataWrapper>
             {post.publishedAt} |{" "}
-            <CategoryLink to={categoryUrl}>{post.category.title}</CategoryLink>
-          </small>
+            {post.category.map((category) => <><CategoryLink to={getCategoryUrl(category)}>{category.title}</CategoryLink>{" "}</>)}
+          </MetadataWrapper>
           <HeadingLink to={postUrl}>{post.title}</HeadingLink>
           <Content>{post.excerpt}</Content>
           <div>

@@ -6,7 +6,7 @@ import Img from "gatsby-image";
 import get from "lodash.get";
 
 import colors from "utils/colors";
-import { getPostCategoryUrl, getPostUrl } from "helpers/linkGenerators";
+import { getCategoryUrl, getPostUrl } from "helpers/linkGenerators";
 
 const PostImg = styled(Img)`
   width: 100%;
@@ -47,11 +47,21 @@ const ReadMoreLink = styled(Link)`
 const CategoryLink = styled(Link)`
   font-family: "Bebas Neue";
   text-decoration: none;
+  display: inline-block;
   color: ${colors.white};
   padding: 0.35em 0.7em 0.15em 0.7em;
-  border-radius: 10px;
+  border-radius: 14px;
   background-color: ${colors.primary};
+  transition: background-color 100ms ease-in;
+
+  :hover {
+    background-color: ${colors.secondary};
+  }
 `;
+
+const MetadataWrapper = styled.small`
+  line-height: 1.5;
+`
 
 const FeaturedPost = ({ post }) => {
   const localData = useStaticQuery(graphql`
@@ -67,7 +77,6 @@ const FeaturedPost = ({ post }) => {
   `);
 
   const postUrl = getPostUrl(post);
-  const categoryUrl = getPostCategoryUrl(post);
 
   return (
     <Container>
@@ -86,12 +95,11 @@ const FeaturedPost = ({ post }) => {
         </Col>
         <Col md="6">
           <div>
-            <small>
+            <MetadataWrapper>
               {post.publishedAt} |{" "}
-              <CategoryLink to={categoryUrl}>
-                {post.category.title}
-              </CategoryLink>
-            </small>
+              {post.category.map((category) => <><CategoryLink to={getCategoryUrl(category)}>{category.title}</CategoryLink>{" "}</>)}
+
+            </MetadataWrapper>
             <HeadingLink to={postUrl}>{post.title}</HeadingLink>
             <p>{post.excerpt}</p>
             <ReadMoreLink to={postUrl}>Czytaj dalej</ReadMoreLink>

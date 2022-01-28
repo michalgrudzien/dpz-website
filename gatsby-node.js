@@ -116,7 +116,7 @@ exports.createPages = async ({ graphql, actions }) => {
   //Create categories pages (paginated)
   categories.forEach((category) => {
     const postsCount = posts.filter(
-      (post) => post.category.slug.current === category.slug.current
+      (post) => post.category.findIndex((cat) => cat.slug.current === category.slug.current) > -1
     ).length;
     const pagesCount = Math.ceil(postsCount / postsPerPage);
 
@@ -140,7 +140,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   //Create all categories pseudo category
   const pagesCount = Math.ceil(
-    posts.filter((post) => post.category.slug.current !== "aktualnosci")
+    posts.filter((post) => !post.category.map(cat => cat.slug.current).includes("aktualnosci"))
       .length / postsPerPage
   );
   const allPostsCategory = {
@@ -183,7 +183,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   //Create single posts` pages
   posts.forEach((post) => {
-    const path = `/blog/${post.category.slug.current}/${post.slug.current}`;
+    const path = `/blog/${post.category[0].slug.current}/${post.slug.current}`;
 
     createPage({
       path,

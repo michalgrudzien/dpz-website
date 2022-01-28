@@ -14,6 +14,7 @@ import BlockContent from "components/BlockContent";
 import colors from "utils/colors";
 import { boxShadow } from "utils/styles";
 import LinkButton from "components/shared/LinkButton";
+import getFirstPostCategory from "helpers/getFirstPostCategory"
 
 const Wrapper = styled.div`
   padding: 8em 0;
@@ -119,8 +120,8 @@ const BlogPost = ({ data: { sanityPost: post, placeholderImage, site } }) => (
               subtitle={
                 <span>
                   <Link to="/blog">Blog</Link> /{" "}
-                  <Link to={`/blog/${post.category.slug.current}`}>
-                    {post.category.title}
+                  <Link to={`/blog/${getFirstPostCategory(post).slug.current}`}>
+                    {getFirstPostCategory(post).title}
                   </Link>
                 </span>
               }
@@ -186,7 +187,7 @@ const BlogPost = ({ data: { sanityPost: post, placeholderImage, site } }) => (
         )}
       </Container>
       <>
-        {post.category.slug.current === "aktualnosci" ? (
+        {getFirstPostCategory(post).slug.current === "aktualnosci" ? (
           <NewsButtonWrapper>
             <LinkButton internal to="/blog/aktualnosci/1">
               Więcej aktualności

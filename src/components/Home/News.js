@@ -37,7 +37,7 @@ const News = () => {
       allSanityPost(
         sort: { fields: publishedAt, order: DESC }
         limit: 4
-        filter: { category: { slug: { current: { eq: "aktualnosci" } } } }
+        filter: { category: { elemMatch:{ slug: { current: { eq: "aktualnosci" } } } } }
       ) {
         nodes {
           title
