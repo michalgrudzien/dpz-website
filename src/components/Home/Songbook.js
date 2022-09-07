@@ -53,6 +53,11 @@ const Songbook = () => {
             songbook_number
             songbook_numberCaption
             songbook_youtubePlaylistUrl
+            songbook_pdf {
+              asset {
+                url
+              }
+            }
           }
         }
       }
@@ -83,7 +88,7 @@ const Songbook = () => {
                 label={data.songbook_numberCaption}
               />
               <CircleFile
-                url="/media/spiewnik_dpz_print_latest.pdf"
+                url={data.songbook_pdf.asset.url}
                 label="Śpiewnik DPŻ w formacie PDF"
               />
             </LinksWrapper>
