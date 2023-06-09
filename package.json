@@ -9,7 +9,7 @@
     "babel-plugin-styled-components": "1.12.0",
     "commentbox.io": "^2.0.0",
     "formik": "2.2.6",
-    "gatsby": "2.31.0",
+    "gatsby": "4.25.7",
     "gatsby-background-image": "1.4.0",
     "gatsby-image": "2.10.0",
     "gatsby-plugin-anchor-links": "^1.2.0",
