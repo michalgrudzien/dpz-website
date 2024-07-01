@@ -45,13 +45,6 @@ const CookiesPage = ({ data: response }) => {
               <Title>{data.title}</Title>
               <Card>
                 <BlockContent blocks={data._rawBody} />
-                <CircleWrapper>
-                  <CircleFile
-                    label="Nasza polityka prywatności (PDF)"
-                    url={data.file.asset.url}
-                    dark
-                  />
-                </CircleWrapper>
               </Card>
               <YoutubeWrapper>
                 <Youtube id={data.youtubeUrl} aspectRatio="68.3%" />

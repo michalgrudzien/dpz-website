@@ -115,20 +115,6 @@ const JoinUs = () => {
                       <BlockContent blocks={data._rawJoinUsBottomBody} />
                     </SecondaryText>
                   </Col>
-                  <Col lg="6">
-                    <FilesWrapper>
-                      <StyledCircleFile
-                        url="/documents/dpz_deklaracja_czlonkowska.pdf"
-                        label="Deklaracja członkowska"
-                        dark
-                      />
-                      <StyledCircleFile
-                        url="/documents/dpz_statut_latest.pdf"
-                        label="Statut Stowarzyszenia"
-                        dark
-                      />
-                    </FilesWrapper>
-                  </Col>
                 </Row>
               </CardSidePadding>
             </ContentCard>

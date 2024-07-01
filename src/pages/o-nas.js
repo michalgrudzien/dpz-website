@@ -9,7 +9,6 @@ import LogoSection from "components/AboutUs/LogoSection";
 const AboutUsPage = ({ data }) => (
   <PageLayout colorTheme="dark" seoProps={data.allSanityAboutUs.nodes[0].seo}>
     <HeroSection />
-    <StatuteSection />
     <LogoSection />
   </PageLayout>
 );

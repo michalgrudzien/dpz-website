@@ -44,7 +44,6 @@ const IndexPage = ({ data: response }) => {
         </section>
         <Tours />
         <Blog />
-        <Instagram />
         <section id="spiewnik">
           <Songbook />
         </section>
